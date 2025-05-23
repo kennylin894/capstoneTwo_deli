@@ -1,9 +1,10 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Toppings{
-    private final int[] sizes = {4,8,12};
+    private final ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
     private final String[] toppings = {
             "lettuce",
             "peppers",

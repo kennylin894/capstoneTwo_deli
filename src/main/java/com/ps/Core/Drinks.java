@@ -1,21 +1,24 @@
 package com.ps.Core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Drinks implements Product{
-    private final String[] drinkSizes = {"Small","Medium","Large"};
+    private final ArrayList<Integer> drinkSizes = new ArrayList<>(List.of(4, 8, 12));
     private String selectedSize;
-    private int amountOfDrinks;
-    private final String[] flavors = {
-            "Cola",
-            "Diet Cola",
-            "Root Beer",
-            "Lemon-Lime",
-            "Orange Soda",
-            "Iced Tea",
-            "Lemonade",
-            "Fruit Punch",
-            "Ginger Ale",
-            "Water"
-    };
+    private int amountOfDrinks = 1;
+    private final ArrayList<String> flavors = new ArrayList<String>() {{
+        add("Cola");
+        add("Diet Cola");
+        add("Root Beer");
+        add("Lemon-Lime");
+        add("Orange Soda");
+        add("Iced Tea");
+        add("Lemonade");
+        add("Fruit Punch");
+        add("Ginger Ale");
+        add("Water");
+    }};
     private String selectedFlavor;
 
     public Drinks(String selectedSize, int amountOfDrinks, String selectedFlavor) {
@@ -44,9 +47,9 @@ public class Drinks implements Product{
 
     public void getAllFlavors()
     {
-        for(int i = 0; i < flavors.length;i++)
+        for(int i = 0; i < flavors.size();i++)
         {
-            System.out.println("[" + i+1 + "] " + flavors[i]);
+            System.out.println("[" + i+1 + "] " + flavors.get(i));
         }
     }
 

@@ -1,18 +1,20 @@
 package com.ps.Core;
 
+import java.util.ArrayList;
+
 public class Chips implements Product{
-    private final String[] chipOptions = {
-            "Original",
-            "BBQ",
-            "Sour Cream & Onion",
-            "Salt & Vinegar",
-            "Jalapeño",
-            "Cheddar Cheese",
-            "Lime",
-            "Sea Salt",
-            "Kettle Cooked",
-            "Spicy Nacho"
-    };
+    private final ArrayList<String> chipOptions = new ArrayList<String>() {{
+        add("Original");
+        add("BBQ");
+        add("Sour Cream & Onion");
+        add("Salt & Vinegar");
+        add("Jalapeño");
+        add("Cheddar Cheese");
+        add("Lime");
+        add("Sea Salt");
+        add("Kettle Cooked");
+        add("Spicy Nacho");
+    }};
     private String choosenChip;
     private final double price = 1.50;
     private int amountOfChips;
@@ -24,9 +26,9 @@ public class Chips implements Product{
 
     public void getAllChips()
     {
-        for(int i = 0; i < chipOptions.length;i++)
+        for(int i = 0; i < chipOptions.size();i++)
         {
-            System.out.println("[" + i+1 + "] " + chipOptions[i]);
+            System.out.println("[" + i+1 + "] " + chipOptions.get(i));
         }
     }
 

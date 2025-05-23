@@ -1,9 +1,10 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sandwich implements Product{
-    private final int[] breadSizes = {4,8,12};
+    private final ArrayList<Integer> breadSizes = new ArrayList<>(List.of(4, 8, 12));
     private int choosenSize;
     private final String[] breadTypes = {"white","wheat","rye","wrap"};
     private String choosenBreadType;

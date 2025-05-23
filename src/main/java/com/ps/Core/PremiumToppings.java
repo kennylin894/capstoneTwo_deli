@@ -1,23 +1,24 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PremiumToppings extends Toppings{
-    private final int[] sizes = {4,8,12};
-    private final String[] meats = {
+    private final ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
+    private final ArrayList<String> meats = new ArrayList<>(List.of(
             "steak",
             "ham",
             "salami",
             "roast beef",
             "chicken",
             "bacon"
-    };
-    private final String[] cheeses = {
+    ));
+    private final ArrayList<String> cheeses = new ArrayList<>(List.of(
             "american",
             "provolone",
             "cheddar",
             "swiss"
-    };
+    ));
     private String choosenMeat;
     private String choosenCheese;
     private boolean extraMeat;
@@ -29,9 +30,9 @@ public class PremiumToppings extends Toppings{
 
     public void getAllMeats()
     {
-        for(int i = 0; i < meats.length;i++)
+        for(int i = 0; i < meats.size();i++)
         {
-            System.out.println("[" + i+1 + "] " + meats[i]);
+            System.out.println("[" + i+1 + "] " + meats.get(i));
         }
     }
 
@@ -53,9 +54,9 @@ public class PremiumToppings extends Toppings{
 
     public void getAllCheeses()
     {
-        for(int i = 0; i < cheeses.length;i++)
+        for(int i = 0; i < cheeses.size();i++)
         {
-            System.out.println("[" + i+1 + "] " + cheeses[i]);
+            System.out.println("[" + i+1 + "] " + cheeses.get(i));
         }
     }
 
