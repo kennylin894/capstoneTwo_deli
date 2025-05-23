@@ -1,7 +1,8 @@
 package com.ps.Core;
 
-public class PremiumToppings implements Toppings{
+import java.util.ArrayList;
 
+public class PremiumToppings extends Toppings{
     private final int[] sizes = {4,8,12};
     private final String[] meats = {
             "steak",
@@ -14,25 +15,24 @@ public class PremiumToppings implements Toppings{
     private final String[] cheeses = {
             "american",
             "provolone",
-            "cheedar",
+            "cheddar",
             "swiss"
     };
-    private int choosenSize;
     private String choosenMeat;
     private String choosenCheese;
     private boolean extraMeat;
     private boolean extraCheese;
 
-    public void getAllMeats()
-    {
-        for(int i = 0; i < meats.length-1;i++)
-        {
-            System.out.println("[" + i + "] " + meats[i]);
-        }
+    public PremiumToppings(int choosenSize, ArrayList<String> choosenToppings, ArrayList<String> choosenSauces) {
+        super(choosenSize, choosenToppings, choosenSauces);
     }
 
-    public int getChoosenSize() {
-        return choosenSize;
+    public void getAllMeats()
+    {
+        for(int i = 0; i < meats.length;i++)
+        {
+            System.out.println("[" + i+1 + "] " + meats[i]);
+        }
     }
 
     public String getChoosenMeat() {
@@ -53,9 +53,9 @@ public class PremiumToppings implements Toppings{
 
     public void getAllCheeses()
     {
-        for(int i = 0; i < cheeses.length-1;i++)
+        for(int i = 0; i < cheeses.length;i++)
         {
-            System.out.println("[" + i + "] " + cheeses[i]);
+            System.out.println("[" + i+1 + "] " + cheeses[i]);
         }
     }
 

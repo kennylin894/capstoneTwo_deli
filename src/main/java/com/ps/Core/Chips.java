@@ -13,7 +13,6 @@ public class Chips implements Product{
             "Kettle Cooked",
             "Spicy Nacho"
     };
-
     private String choosenChip;
     private final double price = 1.50;
     private int amountOfChips;
@@ -25,9 +24,9 @@ public class Chips implements Product{
 
     public void getAllChips()
     {
-        for(int i = 0; i < chipOptions.length-1;i++)
+        for(int i = 0; i < chipOptions.length;i++)
         {
-            System.out.println("[" + i + "] " + chipOptions[i]);
+            System.out.println("[" + i+1 + "] " + chipOptions[i]);
         }
     }
 
@@ -40,7 +39,7 @@ public class Chips implements Product{
     }
 
     @Override
-    public double getTotalPrice()
+    public double getPrice()
     {
         return this.price * getAmountOfChips();
     }

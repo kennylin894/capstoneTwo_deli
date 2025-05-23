@@ -10,6 +10,13 @@ public class Sandwich implements Product{
     private boolean isToasted;
     private ArrayList<Toppings> toppings;
 
+    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<Toppings> toppings) {
+        this.choosenSize = choosenSize;
+        this.choosenBreadType = choosenBreadType;
+        this.isToasted = isToasted;
+        this.toppings = toppings;
+    }
+
     public void getBreadSizes()
     {
         System.out.println("These are the bread sizes we have: ");
@@ -20,9 +27,9 @@ public class Sandwich implements Product{
 
     public void getAllBreadTypes()
     {
-        for(int i = 0; i < breadTypes.length-1;i++)
+        for(int i = 0; i < breadTypes.length;i++)
         {
-            System.out.println("[" + i + "] " + breadTypes[i]);
+            System.out.println("[" + i+1 + "] " + breadTypes[i]);
         }
     }
 
@@ -51,9 +58,26 @@ public class Sandwich implements Product{
         return 0.0;
     }
 
-    @Override
-    public double getTotalPrice()
+    public ArrayList<Toppings> getToppings() {
+        return toppings;
+    }
+
+    public double getAllToppingsPrice()
     {
-        return 0.0;
+        double total = 0.00;
+        for(Toppings toppings1 : getToppings())
+        {
+            total += toppings1.getTotalPrice();
+        }
+        return total;
+    }
+
+    @Override
+    public double getPrice()
+    {
+        double total = 0;
+        total += getChoosenSizePrice();
+        total += getAllToppingsPrice();
+        return total;
     }
 }

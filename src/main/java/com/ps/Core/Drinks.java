@@ -25,7 +25,7 @@ public class Drinks implements Product{
     }
 
     @Override
-    public double getTotalPrice(){
+    public double getPrice(){
         switch (getSelectedSize().toLowerCase())
         {
             case "small":
@@ -44,15 +44,10 @@ public class Drinks implements Product{
 
     public void getAllFlavors()
     {
-        for(int i = 0; i < flavors.length-1;i++)
+        for(int i = 0; i < flavors.length;i++)
         {
-            System.out.println("[" + i + "] " + flavors[i]);
+            System.out.println("[" + i+1 + "] " + flavors[i]);
         }
-    }
-
-    public Drinks(String selectedSize, String selectedFlavor) {
-        this.selectedSize = selectedSize;
-        this.selectedFlavor = selectedFlavor;
     }
 
     public void getDrinkSizes()
