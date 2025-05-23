@@ -1,5 +1,6 @@
 package com.ps.Core;
 
-public interface Toppings {
+public interface Product {
     public double getTotalPrice();
+
 }
