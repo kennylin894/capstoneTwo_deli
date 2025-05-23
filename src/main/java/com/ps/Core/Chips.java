@@ -13,12 +13,35 @@ public class Chips implements Product{
             "Kettle Cooked",
             "Spicy Nacho"
     };
+
     private String choosenChip;
     private final double price = 1.50;
+    private int amountOfChips;
+
+    public Chips(String choosenChip,int amountOfChips) {
+        this.choosenChip = choosenChip;
+        this.amountOfChips = amountOfChips;
+    }
+
+    public void getAllChips()
+    {
+        for(int i = 0; i < chipOptions.length-1;i++)
+        {
+            System.out.println("[" + i + "] " + chipOptions[i]);
+        }
+    }
+
+    public String getChoosenChip() {
+        return choosenChip;
+    }
+
+    public int getAmountOfChips() {
+        return amountOfChips;
+    }
 
     @Override
     public double getTotalPrice()
     {
-        return this.price;
+        return this.price * getAmountOfChips();
     }
 }

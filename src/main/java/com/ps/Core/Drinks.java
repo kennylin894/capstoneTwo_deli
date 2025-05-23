@@ -3,6 +3,7 @@ package com.ps.Core;
 public class Drinks implements Product{
     private final String[] drinkSizes = {"Small","Medium","Large"};
     private String selectedSize;
+    private int amountOfDrinks;
     private final String[] flavors = {
             "Cola",
             "Diet Cola",
@@ -17,22 +18,49 @@ public class Drinks implements Product{
     };
     private String selectedFlavor;
 
+    public Drinks(String selectedSize, int amountOfDrinks, String selectedFlavor) {
+        this.selectedSize = selectedSize;
+        this.amountOfDrinks = amountOfDrinks;
+        this.selectedFlavor = selectedFlavor;
+    }
+
     @Override
     public double getTotalPrice(){
         switch (getSelectedSize().toLowerCase())
         {
             case "small":
-                return 2.00;
+                return getAmountOfDrinks() * 2.00;
             case "medium":
-                return 2.50;
+                return getAmountOfDrinks() * 2.50;
             case "large":
-                return 3.00;
+                return getAmountOfDrinks() * 3.00;
         }
         return 0.0;
     }
+
+    public int getAmountOfDrinks() {
+        return amountOfDrinks;
+    }
+
+    public void getAllFlavors()
+    {
+        for(int i = 0; i < flavors.length-1;i++)
+        {
+            System.out.println("[" + i + "] " + flavors[i]);
+        }
+    }
+
     public Drinks(String selectedSize, String selectedFlavor) {
         this.selectedSize = selectedSize;
         this.selectedFlavor = selectedFlavor;
+    }
+
+    public void getDrinkSizes()
+    {
+        System.out.println("These are the drink sizes we have: ");
+        System.out.println("Size: Small'      Price: $2.00");
+        System.out.println("Size: Medium'      Price: $2.50");
+        System.out.println("Size: Large'     Price: $3.00");
     }
 
     public String getSelectedSize() {

@@ -18,6 +18,14 @@ public class Sandwich implements Product{
         System.out.println("Size: 12in'     Price: $8.50");
     }
 
+    public void getAllBreadTypes()
+    {
+        for(int i = 0; i < breadTypes.length-1;i++)
+        {
+            System.out.println("[" + i + "] " + breadTypes[i]);
+        }
+    }
+
     public String getChoosenBreadType() {
         return choosenBreadType;
     }
