@@ -12,8 +12,4 @@ public class Order {
     public ArrayList<Product> getCart() {
         return cart;
     }
-
-    public void addProduct(Product product) {
-        cart.add(product);
-    }
 }

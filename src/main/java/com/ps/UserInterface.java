@@ -1,11 +1,9 @@
 package com.ps;
 
-import com.ps.Core.Order;
-import com.ps.Core.PremiumToppings;
-import com.ps.Core.Sandwich;
-import com.ps.Core.Toppings;
+import com.ps.Core.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,6 +11,7 @@ import java.util.ArrayList;
 public class UserInterface {
 
     private static JFrame mainFrame;
+    private static ArrayList<Product> currentOrder = new ArrayList<>();
     public static void initMainMenu()
     {
         mainFrame = new JFrame("DELI-cious - Main menu");
@@ -80,6 +79,7 @@ public class UserInterface {
         //TODO: user can view the cart, and remove a sandwich if wanted
         //maybe edit a order, dont know how hard thatll be.
         menuPanel.add(viewCartButton);
+        viewCartButton.addActionListener(e -> showViewCartMenu());
 
         //TODO: prints reciept and checkout
         menuPanel.add(checkoutButton);
@@ -160,6 +160,7 @@ public class UserInterface {
         //TODO: user can view the cart, and remove a sandwich if wanted
         //maybe edit a order, dont know how hard thatll be.
         menuPanel.add(viewCartButton);
+        viewCartButton.addActionListener(e -> showViewCartMenu());
 
         //TODO: prints reciept and checkout
         menuPanel.add(checkoutButton);
@@ -459,9 +460,9 @@ public class UserInterface {
                     toppings.add(cb.getText());
                 }
             }
-            Order currentOrder = new Order();
+
             Sandwich sandwich = new Sandwich(selectedSize,selectedBread,isToasted,toppings);
-            currentOrder.addProduct(sandwich);
+            currentOrder.add(sandwich);
 
             JOptionPane.showMessageDialog(mainFrame, "Order was added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             newinitMainMenu();
@@ -487,5 +488,69 @@ public class UserInterface {
         mainFrame.getContentPane().add(orderSandwichScreen);
         mainFrame.revalidate();
         mainFrame.repaint();
+    }
+
+    public void addChipsMenu()
+    {
+
+    }
+
+    public void addDrinksMenu()
+    {
+
+    }
+
+    private static void showViewCartMenu() {
+        mainFrame.getContentPane().removeAll();
+
+        JPanel cartPanel = new JPanel(new BorderLayout());
+        cartPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+
+        JLabel cartTitle = new JLabel("Your Cart", SwingConstants.CENTER);
+        cartTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        cartPanel.add(cartTitle, BorderLayout.NORTH);
+
+        JTextArea cartTextArea = new JTextArea();
+        cartTextArea.setEditable(false);
+        cartTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        if (currentOrder.isEmpty()) {
+            cartTextArea.setText("Your cart is empty.");
+        } else {
+            StringBuilder cartContent = new StringBuilder();
+            int i = 1;
+            for (Product item : currentOrder) {
+                cartContent.append(i++).append(". ").append(item).append("\n");
+            }
+            cartTextArea.setText(cartContent.toString());
+        }
+
+        JScrollPane scrollPane = new JScrollPane(cartTextArea);
+        cartPanel.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 10));
+
+        JButton btnBack = new JButton("Back to Main Menu");
+        btnBack.addActionListener(e -> newinitMainMenu());
+
+        JButton btnClearCart = new JButton("Clear Cart");
+        btnClearCart.addActionListener(e -> {
+            currentOrder.clear();
+            showViewCartMenu(); // Refresh the screen
+        });
+
+        buttonPanel.add(btnBack);
+        buttonPanel.add(btnClearCart);
+
+        cartPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        mainFrame.add(cartPanel);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
+    public void checkOutMenu()
+    {
+
     }
 }
