@@ -320,7 +320,7 @@ public class UserInterface {
         breadPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel breadOptionsLabel = new JLabel("Choose Bread:");
         breadOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JComboBox<String> breadOptionsBox = new JComboBox<>(new String[]{"White", "Wheat", "Rye", "Italian", "Flatbread"});
+        JComboBox<String> breadOptionsBox = new JComboBox<>(new String[]{"White", "Wheat", "Rye","Wrap"});
         breadOptionsBox.setSelectedItem("White");
         breadOptionsBox.setMaximumSize(new Dimension(300, 30));
         breadOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -380,6 +380,7 @@ public class UserInterface {
             normalToppingsPanel.add(cb);
             cb.setOpaque(false);
             normalToppingsPanel.add(cb);
+            toppingCheckBoxes.add(cb);
         }
 
         //sauces
@@ -388,8 +389,7 @@ public class UserInterface {
         saucesPanel.setBackground(Color.WHITE);
         saucesPanel.setBorder(BorderFactory.createTitledBorder("Sauces"));
         for (String sauce : Toppings.getSauceToppings()) {
-            String label = "<html>" + sauce + "</html>";
-            JCheckBox cb = new JCheckBox(label);
+            JCheckBox cb = new JCheckBox(sauce);
             cb.setOpaque(false);
             saucesPanel.add(cb);
             sauceCheckBoxes.add(cb);
@@ -432,38 +432,61 @@ public class UserInterface {
                 isToasted = true;
             }
             ArrayList<String> toppings = new ArrayList<>();
+            boolean hasMeats = false;
             for(JCheckBox cb: meatCheckBoxes)
             {
                 if(cb.isSelected())
                 {
+                    hasMeats = true;
                     toppings.add(cb.getText());
                 }
             }
+            boolean hasCheese = false;
             for(JCheckBox cb: cheeseCheckBoxes)
             {
                 if(cb.isSelected())
                 {
+                    hasCheese = true;
                     toppings.add(cb.getText());
                 }
             }
+            boolean hasToppings = false;
             for(JCheckBox cb: toppingCheckBoxes)
             {
                 if(cb.isSelected())
                 {
+                    hasToppings = true;
                     toppings.add(cb.getText());
                 }
             }
+            boolean hasSauce = false;
             for(JCheckBox cb: sauceCheckBoxes)
             {
                 if(cb.isSelected())
                 {
+                    hasSauce = true;
                     toppings.add(cb.getText());
                 }
             }
 
             Sandwich sandwich = new Sandwich(selectedSize,selectedBread,isToasted,toppings);
             currentOrder.add(sandwich);
-
+            if(!hasMeats)
+            {
+                JOptionPane.showMessageDialog(mainFrame, "Your order has no meats!", "No Meats", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(!hasCheese)
+            {
+                JOptionPane.showMessageDialog(mainFrame, "Your order has no cheeses!", "No Cheeses", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(!hasToppings)
+            {
+                JOptionPane.showMessageDialog(mainFrame, "Your order has no toppings!", "No Toppings", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(!hasSauce)
+            {
+                JOptionPane.showMessageDialog(mainFrame, "Your order has no sauces!", "No Sauces", JOptionPane.INFORMATION_MESSAGE);
+            }
             JOptionPane.showMessageDialog(mainFrame, "Order was added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             newinitMainMenu();
         });
@@ -514,15 +537,58 @@ public class UserInterface {
         cartTextArea.setEditable(false);
         cartTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
-        if (currentOrder.isEmpty()) {
+        if (currentOrder.isEmpty())
+        {
             cartTextArea.setText("Your cart is empty.");
-        } else {
-            StringBuilder cartContent = new StringBuilder();
-            int i = 1;
-            for (Product item : currentOrder) {
-                cartContent.append(i++).append(". ").append(item).append("\n");
+        }
+        else
+        {
+            boolean sandwhichLabelPrinted = false;
+            boolean drinkLabelPrinted = false;
+            boolean chipLabelPrinted = false;
+            int count = 1;
+            for(Product item: currentOrder)
+            {
+                if(item instanceof Sandwich)
+                {
+                    if(!sandwhichLabelPrinted)
+                    {
+                        cartTextArea.setText("----------Sandwichs----------");
+                        cartTextArea.setText("\n");
+                        sandwhichLabelPrinted = true;
+                    }
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Sandwich #" + count).append("\n");
+                    stringBuilder.append("-------------------").append("\n");
+                    stringBuilder.append("Size: " + ((Sandwich) item).getChoosenSize()).append("'").append("\n");
+                    stringBuilder.append("Bread: " + ((Sandwich) item).getChoosenBreadType()).append("\n");
+                    if(((Sandwich) item).isToasted())
+                    {
+                        stringBuilder.append("- is Toasted").append("\n");
+                    }
+                    stringBuilder.append("Toppings").append("\n").append("-------------------").append("\n");
+                    for(String toppings: ((Sandwich) item).getToppings())
+                    {
+                        stringBuilder.append("- " + toppings).append("\n");
+                    }
+                    cartTextArea.append(stringBuilder.toString());
+                    count++;
+                }
             }
-            cartTextArea.setText(cartContent.toString());
+            for(Product item: currentOrder)
+            {
+                if(item instanceof Drinks)
+                {
+
+                }
+            }
+            for(Product item: currentOrder)
+            {
+                if(item instanceof Chips)
+                {
+
+                }
+            }
         }
 
         JScrollPane scrollPane = new JScrollPane(cartTextArea);

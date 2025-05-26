@@ -1,12 +1,13 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Sandwich implements Product{
     private final ArrayList<Integer> breadSizes = new ArrayList<>(List.of(4, 8, 12));
     private int choosenSize;
-    private final String[] breadTypes = {"white","wheat","rye","wrap"};
+    private final static ArrayList<String> breadTypes = new ArrayList<>(Arrays.asList("white", "wheat", "rye", "wrap"));
     private String choosenBreadType;
     private boolean isToasted;
     private ArrayList<String> toppings;
@@ -18,12 +19,9 @@ public class Sandwich implements Product{
         this.toppings = toppings;
     }
 
-    public void getAllBreadTypes()
+    public static ArrayList<String> getAllBreadTypes()
     {
-        for(int i = 0; i < breadTypes.length;i++)
-        {
-            System.out.println("[" + i+1 + "] " + breadTypes[i]);
-        }
+        return breadTypes;
     }
 
     public String getChoosenBreadType() {

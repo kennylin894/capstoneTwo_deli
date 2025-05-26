@@ -21,7 +21,7 @@ public abstract class Toppings{
             "mustard",
             "ketchup",
             "ranch",
-            "thousand island",
+            "thousand isl",
             "vinaigrette"
     ));
     private int choosenSize;
