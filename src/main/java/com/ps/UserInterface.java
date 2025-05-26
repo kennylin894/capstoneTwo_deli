@@ -8,8 +8,7 @@ import com.ps.Core.Toppings;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.OptionalDouble;
+
 
 public class UserInterface {
 
@@ -17,6 +16,86 @@ public class UserInterface {
     public static void initMainMenu()
     {
         mainFrame = new JFrame("DELI-cious - Main menu");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setSize(600, 600);
+        mainFrame.setLocationRelativeTo(null);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - mainFrame.getWidth()) / 2;
+        int y = (screenSize.height - mainFrame.getHeight()) / 2;
+        mainFrame.setLocation(x, y);
+
+        //making the background white
+        Color logoBg = new Color(255, 255, 255);
+        mainFrame.getContentPane().setBackground(logoBg);
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new GridLayout(7,1,10,20));
+        menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // DELI logo image
+        ImageIcon icon = new ImageIcon("D:\\Edit\\Edit Pics\\image-imageonline.co-merged (1).png");
+        Image img = icon.getImage();
+        Image scaledImg = img.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
+        JLabel imageLabel = new JLabel(new ImageIcon(scaledImg));
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 30, 0));
+        leftPanel.setBackground(logoBg);
+        leftPanel.add(imageLabel);
+        mainFrame.add(leftPanel, BorderLayout.WEST);
+
+        //Buttons
+        JButton menuButton = new JButton("View Menu");
+        JButton orderSandwichButton = new JButton("Order Sandwhich");
+        JButton orderChipsButton = new JButton("Order Chips");
+        JButton orderDrinksButton = new JButton("Order Drinks");
+        JButton viewCartButton = new JButton("View Cart");
+        JButton checkoutButton = new JButton("Checkout");
+        JButton exitButton = new JButton("Exit");
+        Font menuFont = new Font("SansSerif", Font.BOLD, 13);
+
+        JButton[] buttons = {
+                menuButton, orderSandwichButton, orderChipsButton,
+                orderDrinksButton, viewCartButton, checkoutButton, exitButton
+        };
+        //setting the color of buttons
+        for (JButton button : buttons) {
+            button.setFont(menuFont);
+            button.setBackground(new Color(173, 216, 230));
+        }
+
+        //TODO: needs to display the menu/prices
+        menuPanel.add(menuButton);
+        menuButton.addActionListener(e -> showMenuScreen());
+
+        //TODO: needs to be able to add sandwich to cart including all the toppings (can be more than 1 topping)
+        menuPanel.add(orderSandwichButton);
+        orderSandwichButton.addActionListener(e -> showOrderSandwichScreen());
+
+        //TODO: needs to be able to order chips, more than 1 chip if needed.
+        menuPanel.add(orderChipsButton);
+
+        //TODO order drinks (more than 1)
+        menuPanel.add(orderDrinksButton);
+
+        //TODO: user can view the cart, and remove a sandwich if wanted
+        //maybe edit a order, dont know how hard thatll be.
+        menuPanel.add(viewCartButton);
+
+        //TODO: prints reciept and checkout
+        menuPanel.add(checkoutButton);
+
+        //TODO: exits the program
+        menuPanel.add(exitButton);
+        exitButton.addActionListener(e -> System.exit(0));
+        mainFrame.add(menuPanel, BorderLayout.EAST);
+        mainFrame.setVisible(true);
+    }
+
+    public static void newinitMainMenu()
+    {
+        mainFrame.getContentPane().removeAll();
+        mainFrame.revalidate();
+        mainFrame.repaint();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(600, 600);
         mainFrame.setLocationRelativeTo(null);
@@ -190,7 +269,7 @@ public class UserInterface {
 
         JButton backButton = new JButton("Back");
         backButton.setBackground(new Color(173, 216, 230));
-        backButton.addActionListener(e -> initMainMenu());
+        backButton.addActionListener(e -> newinitMainMenu());
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.WHITE);
@@ -385,12 +464,12 @@ public class UserInterface {
             currentOrder.addProduct(sandwich);
 
             JOptionPane.showMessageDialog(mainFrame, "Order was added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            initMainMenu();
+            newinitMainMenu();
         });
 
         //cancelling the order
         cancelOrderButton.addActionListener(e -> {
-            initMainMenu();
+           newinitMainMenu();
         });
         int maxWidth = Math.max(addToCartButton.getPreferredSize().width, cancelOrderButton.getPreferredSize().width);
         int maxHeight = Math.max(addToCartButton.getPreferredSize().height, cancelOrderButton.getPreferredSize().height);
