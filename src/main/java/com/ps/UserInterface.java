@@ -62,11 +62,10 @@ public class UserInterface {
             button.setBackground(new Color(173, 216, 230));
         }
 
-        //TODO: needs to display the menu/prices
+
         menuPanel.add(menuButton);
         menuButton.addActionListener(e -> showMenuScreen());
 
-        //TODO: needs to be able to add sandwich to cart including all the toppings (can be more than 1 topping)
         menuPanel.add(orderSandwichButton);
         orderSandwichButton.addActionListener(e -> showOrderSandwichScreen());
 
@@ -84,7 +83,6 @@ public class UserInterface {
         //TODO: prints reciept and checkout
         menuPanel.add(checkoutButton);
 
-        //TODO: exits the program
         menuPanel.add(exitButton);
         exitButton.addActionListener(e -> System.exit(0));
         mainFrame.add(menuPanel, BorderLayout.EAST);
@@ -143,11 +141,9 @@ public class UserInterface {
             button.setBackground(new Color(173, 216, 230));
         }
 
-        //TODO: needs to display the menu/prices
         menuPanel.add(menuButton);
         menuButton.addActionListener(e -> showMenuScreen());
 
-        //TODO: needs to be able to add sandwich to cart including all the toppings (can be more than 1 topping)
         menuPanel.add(orderSandwichButton);
         orderSandwichButton.addActionListener(e -> showOrderSandwichScreen());
 
@@ -165,7 +161,6 @@ public class UserInterface {
         //TODO: prints reciept and checkout
         menuPanel.add(checkoutButton);
 
-        //TODO: exits the program
         menuPanel.add(exitButton);
         exitButton.addActionListener(e -> System.exit(0));
         mainFrame.add(menuPanel, BorderLayout.EAST);
@@ -515,12 +510,12 @@ public class UserInterface {
 
     public void addChipsMenu()
     {
-
+        //TODO
     }
 
     public void addDrinksMenu()
     {
-
+        //TODO
     }
 
     private static void showViewCartMenu() {
@@ -579,14 +574,14 @@ public class UserInterface {
             {
                 if(item instanceof Drinks)
                 {
-
+                    //TODO
                 }
             }
             for(Product item: currentOrder)
             {
                 if(item instanceof Chips)
                 {
-
+                    //TODO
                 }
             }
         }
