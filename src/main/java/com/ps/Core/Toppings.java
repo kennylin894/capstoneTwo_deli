@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Toppings{
-    private final ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
-    private final String[] toppings = {
+    private final static ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
+    private final static ArrayList<String> toppings = new ArrayList<>(List.of(
             "lettuce",
             "peppers",
             "onions",
@@ -15,15 +15,15 @@ public abstract class Toppings{
             "pickles",
             "guacamole",
             "mushrooms"
-    };
-    private final String[] sauces = {
+    ));
+    private final static ArrayList<String> sauces = new ArrayList<>(List.of(
             "mayo",
             "mustard",
             "ketchup",
             "ranch",
             "thousand island",
             "vinaigrette"
-    };
+    ));
     private int choosenSize;
     private ArrayList<String> choosenToppings;
     private ArrayList<String> choosenSauces;
@@ -39,4 +39,13 @@ public abstract class Toppings{
     }
 
     public abstract double getTotalPrice();
+
+    public static ArrayList<String> getToppings() {
+        return toppings;
+    }
+
+    public static ArrayList<String> getSauceToppings() {
+        return sauces;
+    }
+
 }

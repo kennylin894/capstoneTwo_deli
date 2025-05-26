@@ -1,7 +1,15 @@
 package com.ps;
 
+import com.ps.Core.Order;
+import com.ps.Core.PremiumToppings;
+import com.ps.Core.Sandwich;
+import com.ps.Core.Toppings;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.OptionalDouble;
 
 public class UserInterface {
 
@@ -62,6 +70,7 @@ public class UserInterface {
 
         //TODO: needs to be able to add sandwich to cart including all the toppings (can be more than 1 topping)
         menuPanel.add(orderSandwichButton);
+        orderSandwichButton.addActionListener(e -> showOrderSandwichScreen());
 
         //TODO: needs to be able to order chips, more than 1 chip if needed.
         menuPanel.add(orderChipsButton);
@@ -189,6 +198,214 @@ public class UserInterface {
         foodMenuScreen.add(bottomPanel, BorderLayout.SOUTH);
 
         mainFrame.getContentPane().add(foodMenuScreen);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
+    private static void showOrderSandwichScreen() {
+        mainFrame.getContentPane().removeAll();
+
+        JPanel orderSandwichScreen = new JPanel();
+        orderSandwichScreen.setLayout(new BoxLayout(orderSandwichScreen, BoxLayout.Y_AXIS));
+        orderSandwichScreen.setBackground(Color.WHITE);
+        orderSandwichScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+
+        JLabel titleLabel = new JLabel("Build Your Own Sandwich");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 17));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        orderSandwichScreen.add(titleLabel);
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        //sandwich size option dropdown UI
+        JPanel sizePanel = new JPanel();
+        sizePanel.setLayout(new BoxLayout(sizePanel, BoxLayout.Y_AXIS));
+        sizePanel.setBackground(Color.WHITE);
+        sizePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel sizeOptionsLabel = new JLabel("Choose Size (inches):");
+        sizeOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JComboBox<Integer> sizeOptionsBox = new JComboBox<>(new Integer[]{4, 8, 12});
+        sizeOptionsBox.setSelectedItem(4);
+        sizeOptionsBox.setMaximumSize(new Dimension(300, 30));
+        sizeOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sizePanel.add(sizeOptionsLabel);
+        sizePanel.add(sizeOptionsBox);
+        sizePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderSandwichScreen.add(sizePanel);
+
+        //bread option dropdown UI
+        JPanel breadPanel = new JPanel();
+        breadPanel.setLayout(new BoxLayout(breadPanel, BoxLayout.Y_AXIS));
+        breadPanel.setBackground(Color.WHITE);
+        breadPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel breadOptionsLabel = new JLabel("Choose Bread:");
+        breadOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JComboBox<String> breadOptionsBox = new JComboBox<>(new String[]{"White", "Wheat", "Rye", "Italian", "Flatbread"});
+        breadOptionsBox.setSelectedItem("White");
+        breadOptionsBox.setMaximumSize(new Dimension(300, 30));
+        breadOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        breadPanel.add(breadOptionsLabel);
+        breadPanel.add(breadOptionsBox);
+
+
+        JCheckBox toastedCheckBox = new JCheckBox("Is Toasted");
+        toastedCheckBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        toastedCheckBox.setOpaque(false);
+        breadPanel.add(toastedCheckBox);
+
+        breadPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        orderSandwichScreen.add(breadPanel);
+
+        //add ons coloum
+        JPanel toppingsPanel = new JPanel();
+        toppingsPanel.setLayout(new GridLayout(1, 4, 20, 0));
+
+        ArrayList<JCheckBox> meatCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> cheeseCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> toppingCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> sauceCheckBoxes = new ArrayList<>();
+
+        //Meats
+        JPanel meatsPanel = new JPanel();
+        meatsPanel.setLayout(new BoxLayout(meatsPanel, BoxLayout.Y_AXIS));
+        meatsPanel.setBackground(Color.WHITE);
+        meatsPanel.setBorder(BorderFactory.createTitledBorder("Meats"));
+        for (String meat : PremiumToppings.getMeatToppings()) {
+            JCheckBox cb = new JCheckBox(meat);
+            cb.setOpaque(false);
+            meatsPanel.add(cb);
+            meatCheckBoxes.add(cb);
+        }
+
+        //cheese
+        JPanel cheesesPanel = new JPanel();
+        cheesesPanel.setLayout(new BoxLayout(cheesesPanel, BoxLayout.Y_AXIS));
+        cheesesPanel.setBackground(Color.WHITE);
+        cheesesPanel.setBorder(BorderFactory.createTitledBorder("Cheeses"));
+        for (String cheese : PremiumToppings.getCheeseToppings()) {
+            JCheckBox cb = new JCheckBox(cheese);
+            cheesesPanel.add(cb);
+            cb.setOpaque(false);
+            cheeseCheckBoxes.add(cb);
+        }
+
+        //normal toppings
+        JPanel normalToppingsPanel = new JPanel();
+        normalToppingsPanel.setLayout(new BoxLayout(normalToppingsPanel, BoxLayout.Y_AXIS));
+        normalToppingsPanel.setBackground(Color.WHITE);
+        normalToppingsPanel.setBorder(BorderFactory.createTitledBorder("Toppings"));
+        for (String topping : Toppings.getToppings()) {
+            JCheckBox cb = new JCheckBox(topping);
+            normalToppingsPanel.add(cb);
+            cb.setOpaque(false);
+            normalToppingsPanel.add(cb);
+        }
+
+        //sauces
+        JPanel saucesPanel = new JPanel();
+        saucesPanel.setLayout(new BoxLayout(saucesPanel, BoxLayout.Y_AXIS));
+        saucesPanel.setBackground(Color.WHITE);
+        saucesPanel.setBorder(BorderFactory.createTitledBorder("Sauces"));
+        for (String sauce : Toppings.getSauceToppings()) {
+            String label = "<html>" + sauce + "</html>";
+            JCheckBox cb = new JCheckBox(label);
+            cb.setOpaque(false);
+            saucesPanel.add(cb);
+            sauceCheckBoxes.add(cb);
+        }
+
+        toppingsPanel.add(meatsPanel);
+        toppingsPanel.add(cheesesPanel);
+        toppingsPanel.add(normalToppingsPanel);
+        toppingsPanel.add(saucesPanel);
+
+        meatsPanel.setOpaque(false);
+        cheesesPanel.setOpaque(false);
+        toppingsPanel.setOpaque(false);
+        saucesPanel.setOpaque(false);
+
+        //fixed the very long vertical columns
+        toppingsPanel.setMaximumSize(toppingsPanel.getPreferredSize());
+
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderSandwichScreen.add(toppingsPanel);
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setBackground(Color.WHITE);
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+        buttonsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //cancel order and add buttons
+        int buttonSpacing = 15;
+        JButton addToCartButton = new JButton("Add to Cart");
+        JButton cancelOrderButton = new JButton("Cancel Order");
+
+        //adding to cart
+        addToCartButton.addActionListener(e -> {
+            Integer selectedSize = (Integer) sizeOptionsBox.getSelectedItem();
+            String selectedBread = (String) breadOptionsBox.getSelectedItem();
+            boolean isToasted = false;
+            if(toastedCheckBox.isSelected())
+            {
+                isToasted = true;
+            }
+            ArrayList<String> toppings = new ArrayList<>();
+            for(JCheckBox cb: meatCheckBoxes)
+            {
+                if(cb.isSelected())
+                {
+                    toppings.add(cb.getText());
+                }
+            }
+            for(JCheckBox cb: cheeseCheckBoxes)
+            {
+                if(cb.isSelected())
+                {
+                    toppings.add(cb.getText());
+                }
+            }
+            for(JCheckBox cb: toppingCheckBoxes)
+            {
+                if(cb.isSelected())
+                {
+                    toppings.add(cb.getText());
+                }
+            }
+            for(JCheckBox cb: sauceCheckBoxes)
+            {
+                if(cb.isSelected())
+                {
+                    toppings.add(cb.getText());
+                }
+            }
+            Order currentOrder = new Order();
+            Sandwich sandwich = new Sandwich(selectedSize,selectedBread,isToasted,toppings);
+            currentOrder.addProduct(sandwich);
+
+            JOptionPane.showMessageDialog(mainFrame, "Order was added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            initMainMenu();
+        });
+
+        //cancelling the order
+        cancelOrderButton.addActionListener(e -> {
+            initMainMenu();
+        });
+        int maxWidth = Math.max(addToCartButton.getPreferredSize().width, cancelOrderButton.getPreferredSize().width);
+        int maxHeight = Math.max(addToCartButton.getPreferredSize().height, cancelOrderButton.getPreferredSize().height);
+        Dimension maxSize = new Dimension(maxWidth, maxHeight);
+        addToCartButton.setMaximumSize(maxSize);
+        cancelOrderButton.setMaximumSize(maxSize);
+        buttonsPanel.add(addToCartButton);
+        buttonsPanel.add(Box.createRigidArea(new Dimension(0, buttonSpacing)));
+        buttonsPanel.add(cancelOrderButton);
+
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 15)));
+        orderSandwichScreen.add(buttonsPanel);
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        mainFrame.getContentPane().add(orderSandwichScreen);
         mainFrame.revalidate();
         mainFrame.repaint();
     }

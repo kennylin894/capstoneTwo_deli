@@ -5,19 +5,21 @@ import java.util.List;
 
 public class PremiumToppings extends Toppings{
     private final ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
-    private final ArrayList<String> meats = new ArrayList<>(List.of(
+    private final static ArrayList<String> meats = new ArrayList<>(List.of(
             "steak",
             "ham",
             "salami",
             "roast beef",
             "chicken",
-            "bacon"
+            "bacon",
+            "extra meat"
     ));
-    private final ArrayList<String> cheeses = new ArrayList<>(List.of(
+    private final static ArrayList<String> cheeses = new ArrayList<>(List.of(
             "american",
             "provolone",
             "cheddar",
-            "swiss"
+            "swiss",
+            "extra cheese"
     ));
     private String choosenMeat;
     private String choosenCheese;
@@ -26,6 +28,14 @@ public class PremiumToppings extends Toppings{
 
     public PremiumToppings(int choosenSize, ArrayList<String> choosenToppings, ArrayList<String> choosenSauces) {
         super(choosenSize, choosenToppings, choosenSauces);
+    }
+
+    public static ArrayList<String> getMeatToppings() {
+        return meats;
+    }
+
+    public static ArrayList<String> getCheeseToppings() {
+        return cheeses;
     }
 
     public void getAllMeats()
@@ -125,4 +135,6 @@ public class PremiumToppings extends Toppings{
     {
         return getMeatPrice() + getCheesePrice();
     }
+
+
 }
