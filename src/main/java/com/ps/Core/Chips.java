@@ -3,7 +3,7 @@ package com.ps.Core;
 import java.util.ArrayList;
 
 public class Chips implements Product{
-    private final ArrayList<String> chipOptions = new ArrayList<String>() {{
+    private static final ArrayList<String> chipOptions = new ArrayList<String>() {{
         add("Original");
         add("BBQ");
         add("Sour Cream & Onion");
@@ -46,7 +46,7 @@ public class Chips implements Product{
         return this.price * getAmountOfChips();
     }
 
-    public ArrayList<String> getChipOptions() {
+    public static ArrayList<String> getChipAllOptions() {
         return chipOptions;
     }
 
