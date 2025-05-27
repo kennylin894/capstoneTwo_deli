@@ -54,10 +54,14 @@ public class PremiumToppings extends Topping {
                     break;
             }
         }
-        if (meatToppings.contains(name)) {
+        if (meatToppings.contains(name) && !name.equals("extra meat")) {
             return getMeatPrice(sandwichSize) + extraMeatPrice;
-        } else if (cheeseToppings.contains(name)) {
+        } else if (cheeseToppings.contains(name) && !name.equals("extra cheese")) {
             return getCheesePrice(sandwichSize) + extraCheesePrice;
+        } else if (name.equals("extra meat")) {
+            return extraMeatPrice;
+        } else if (name.equals("extra cheese")) {
+            return extraCheesePrice;
         }
         return 0.0;
     }

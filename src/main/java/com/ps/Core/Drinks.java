@@ -1,11 +1,12 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Drinks implements Product {
     private String selectedSize;
     private int amountOfDrinks = 1;
-    private final ArrayList<String> flavors = new ArrayList<String>() {{
+    private static final ArrayList<String> flavors = new ArrayList<String>() {{
         add("Cola");
         add("Diet Cola");
         add("Root Beer");
@@ -42,12 +43,6 @@ public class Drinks implements Product {
         return amountOfDrinks;
     }
 
-    public void getAllFlavors() {
-        for (int i = 0; i < flavors.size(); i++) {
-            System.out.println("[" + i + 1 + "] " + flavors.get(i));
-        }
-    }
-
     public String getSelectedSize() {
         return selectedSize;
     }
@@ -62,5 +57,9 @@ public class Drinks implements Product {
 
     public void setSelectedFlavor(String selectedFlavor) {
         this.selectedFlavor = selectedFlavor;
+    }
+
+    public static ArrayList<String> getAllFlavors() {
+        return flavors;
     }
 }

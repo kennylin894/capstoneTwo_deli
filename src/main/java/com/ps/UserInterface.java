@@ -12,10 +12,11 @@ public class UserInterface {
 
     private static JFrame mainFrame;
     private static ArrayList<Product> currentOrder = new ArrayList<>();
-    private UserInterface()
-    {
+
+    private UserInterface() {
         System.out.println("Object be created.");
     }
+
     public static void mainMenuBluePrint() {
         mainFrame.setSize(650, 600);
         mainFrame.setLocationRelativeTo(null);
@@ -32,7 +33,7 @@ public class UserInterface {
         menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // DELI logo image
-        ImageIcon icon = new ImageIcon("D:\\Edit\\Edit Pics\\image-imageonline.co-merged (1).png");
+        ImageIcon icon = new ImageIcon("src/main/resources/images/logo.png");
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImg));
@@ -77,6 +78,7 @@ public class UserInterface {
 
         //TODO order drinks (more than 1)
         menuPanel.add(orderDrinksButton);
+        orderDrinksButton.addActionListener(e -> showOrderDrinksScreen());
 
         //TODO: user can view the cart, and remove a sandwich if wanted
         //maybe edit a order, dont know how hard thatll be.
@@ -479,8 +481,120 @@ public class UserInterface {
         //TODO
     }
 
-    public void addDrinksMenu() {
-        //TODO
+    private static void showOrderDrinksScreen() {
+        mainFrame.getContentPane().removeAll();
+        JPanel orderDrinksScreen = new JPanel();
+        orderDrinksScreen.setLayout(new BoxLayout(orderDrinksScreen, BoxLayout.Y_AXIS));
+        orderDrinksScreen.setBackground(Color.WHITE);
+        orderDrinksScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel titleLabel = new JLabel("Order Drinks");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 17));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        orderDrinksScreen.add(titleLabel);
+        orderDrinksScreen.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        // Drink flavor selection dropdown UI
+        JPanel flavorPanel = new JPanel();
+        flavorPanel.setLayout(new BoxLayout(flavorPanel, BoxLayout.Y_AXIS));
+        flavorPanel.setBackground(Color.WHITE);
+        flavorPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel flavorOptionsLabel = new JLabel("Choose Flavor:");
+        flavorOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //all drink flavors
+        String[] flavors = Drinks.getAllFlavors().toArray(new String[0]);
+        JComboBox<String> flavorOptionsBox = new JComboBox<>(flavors);
+        flavorOptionsBox.setSelectedItem("Cola");
+        flavorOptionsBox.setMaximumSize(new Dimension(300, 30));
+        flavorOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        flavorPanel.add(flavorOptionsLabel);
+        flavorPanel.add(flavorOptionsBox);
+        flavorPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderDrinksScreen.add(flavorPanel);
+
+        //drink options dropdown
+        JPanel sizePanel = new JPanel();
+        sizePanel.setLayout(new BoxLayout(sizePanel, BoxLayout.Y_AXIS));
+        sizePanel.setBackground(Color.WHITE);
+        sizePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel sizeOptionsLabel = new JLabel("Choose Size:");
+        sizeOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        String[] sizes = {"Small", "Medium", "Large"};
+        JComboBox<String> sizeOptionsBox = new JComboBox<>(sizes);
+        sizeOptionsBox.setSelectedItem("Small");
+        sizeOptionsBox.setMaximumSize(new Dimension(300, 30));
+        sizeOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sizePanel.add(sizeOptionsLabel);
+        sizePanel.add(sizeOptionsBox);
+        sizePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderDrinksScreen.add(sizePanel);
+
+
+        JPanel quantityPanel = new JPanel();
+        quantityPanel.setLayout(new BoxLayout(quantityPanel, BoxLayout.Y_AXIS));
+        quantityPanel.setBackground(Color.WHITE);
+        quantityPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel quantityLabel = new JLabel("Quantity:");
+        quantityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Integer[] quantities = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        JComboBox<Integer> quantityBox = new JComboBox<>(quantities);
+        quantityBox.setSelectedItem(1);
+        quantityBox.setMaximumSize(new Dimension(300, 30));
+        quantityBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        quantityPanel.add(quantityLabel);
+        quantityPanel.add(quantityBox);
+        quantityPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+        orderDrinksScreen.add(quantityPanel);
+
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setBackground(Color.WHITE);
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+        buttonsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton addToCartButton = new JButton("Add to Cart");
+        JButton cancelOrderButton = new JButton("Cancel Order");
+
+        //adding to cart
+        addToCartButton.addActionListener(e -> {
+            String selectedFlavor = (String) flavorOptionsBox.getSelectedItem();
+            String selectedSize = (String) sizeOptionsBox.getSelectedItem();
+            Integer selectedQuantity = (Integer) quantityBox.getSelectedItem();
+
+            //create new drink and add to cart
+            Drinks drink = new Drinks(selectedSize, selectedQuantity, selectedFlavor);
+            currentOrder.add(drink);
+
+            JOptionPane.showMessageDialog(mainFrame, String.format("Added %d %s %s drink(s) to cart!",
+                            selectedQuantity, selectedSize, selectedFlavor),
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
+            newinitMainMenu();
+        });
+
+        //cancel the order
+        cancelOrderButton.addActionListener(e -> {
+            newinitMainMenu();
+        });
+
+        int maxWidth = Math.max(addToCartButton.getPreferredSize().width, cancelOrderButton.getPreferredSize().width);
+        int maxHeight = Math.max(addToCartButton.getPreferredSize().height, cancelOrderButton.getPreferredSize().height);
+        Dimension maxSize = new Dimension(maxWidth, maxHeight);
+        addToCartButton.setMaximumSize(maxSize);
+        cancelOrderButton.setMaximumSize(maxSize);
+
+        addToCartButton.setBackground(new Color(173, 216, 230));
+        cancelOrderButton.setBackground(new Color(173, 216, 230));
+
+        buttonsPanel.add(addToCartButton);
+        buttonsPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+        buttonsPanel.add(cancelOrderButton);
+
+        orderDrinksScreen.add(buttonsPanel);
+        orderDrinksScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        mainFrame.getContentPane().add(orderDrinksScreen);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
     private static void showViewCartMenu() {
@@ -496,20 +610,21 @@ public class UserInterface {
         JTextArea cartTextArea = new JTextArea();
         cartTextArea.setEditable(false);
         cartTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        double totalPrice = 0;
 
         if (currentOrder.isEmpty()) {
             cartTextArea.setText("Your cart is empty.");
         } else {
-            boolean sandwhichLabelPrinted = false;
+            boolean sandwichLabelPrinted = false;
             boolean drinkLabelPrinted = false;
             boolean chipLabelPrinted = false;
             int count = 1;
+            //very bad way for sorting (displaying) sandwiches first etc sandwichs -> drinks -> chips
             for (Product item : currentOrder) {
                 if (item instanceof Sandwich) {
-                    if (!sandwhichLabelPrinted) {
-                        cartTextArea.setText("----------Sandwichs----------");
-                        cartTextArea.setText("\n");
-                        sandwhichLabelPrinted = true;
+                    if (!sandwichLabelPrinted) {
+                        cartTextArea.setText("-----Sandwiches-----\n");
+                        sandwichLabelPrinted = true;
                     }
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append("Sandwich #" + count).append("\n");
@@ -522,27 +637,53 @@ public class UserInterface {
                     stringBuilder.append("Toppings").append("\n").append("===================").append("\n");
                     for (Topping toppings : ((Sandwich) item).getToppings()) {
                         if (toppings.getName().equals("extra meat")) {
-                            stringBuilder.append(" * " + toppings.getName()).append("\n");
+                            stringBuilder.append(" * " + "extra meat(s)").append("\n");
                         } else if (toppings.getName().equals("extra cheese")) {
-                            stringBuilder.append(" * " + toppings.getName()).append("\n");
+                            stringBuilder.append(" * " + ("extra cheese(s)")).append("\n");
                         } else {
                             stringBuilder.append("- " + toppings.getName()).append("\n");
                         }
                     }
+                    stringBuilder.append("-------------------").append("\n");
+                    stringBuilder.append("Price : $").append(item.getPrice()).append("\n");
                     stringBuilder.append("-------------------").append("\n").append("\n");
                     cartTextArea.append(stringBuilder.toString());
                     count++;
+                    totalPrice += item.getPrice();
                 }
             }
             for (Product item : currentOrder) {
                 if (item instanceof Drinks) {
-                    //TODO
+                    if (!drinkLabelPrinted) {
+                        cartTextArea.append("------Drinks-------\n");
+                        drinkLabelPrinted = true;
+                    }
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Drink Order").append("\n");
+                    stringBuilder.append("-------------------").append("\n");
+                    stringBuilder.append("Flavor: ").append(((Drinks) item).getSelectedFlavor()).append("\n");
+                    stringBuilder.append("Size: ").append(((Drinks) item).getSelectedSize()).append("\n");
+                    stringBuilder.append("Quantity: ").append(((Drinks) item).getAmountOfDrinks()).append("\n");
+                    stringBuilder.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n");
+                    stringBuilder.append("-------------------").append("\n");
+                    cartTextArea.append(stringBuilder.toString());
+                    totalPrice += item.getPrice();
                 }
             }
             for (Product item : currentOrder) {
                 if (item instanceof Chips) {
                     //TODO
                 }
+            }
+
+            if (totalPrice >= 10.00) {
+                cartTextArea.append("╔═════════════════════════╗\n");
+                cartTextArea.append(String.format("║    TOTAL: $%.2f     ║\n", totalPrice));
+                cartTextArea.append("╚═════════════════════════╝\n");
+            } else {
+                cartTextArea.append("╔═════════════════════════╗\n");
+                cartTextArea.append(String.format("║    TOTAL: $%.2f      ║\n", totalPrice));
+                cartTextArea.append("╚═════════════════════════╝\n");
             }
         }
 

@@ -46,7 +46,7 @@ public class Sandwich implements Product{
         switch (getChoosenSize())
         {
             case 4:
-                return 4.00;
+                return 5.50;
             case 8:
                 return 7.00;
             case 12:
