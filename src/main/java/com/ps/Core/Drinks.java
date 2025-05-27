@@ -1,10 +1,8 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Drinks implements Product{
-    private final ArrayList<Integer> drinkSizes = new ArrayList<>(List.of(4, 8, 12));
+public class Drinks implements Product {
     private String selectedSize;
     private int amountOfDrinks = 1;
     private final ArrayList<String> flavors = new ArrayList<String>() {{
@@ -28,9 +26,8 @@ public class Drinks implements Product{
     }
 
     @Override
-    public double getPrice(){
-        switch (getSelectedSize().toLowerCase())
-        {
+    public double getPrice() {
+        switch (getSelectedSize().toLowerCase()) {
             case "small":
                 return getAmountOfDrinks() * 2.00;
             case "medium":
@@ -45,20 +42,10 @@ public class Drinks implements Product{
         return amountOfDrinks;
     }
 
-    public void getAllFlavors()
-    {
-        for(int i = 0; i < flavors.size();i++)
-        {
-            System.out.println("[" + i+1 + "] " + flavors.get(i));
+    public void getAllFlavors() {
+        for (int i = 0; i < flavors.size(); i++) {
+            System.out.println("[" + i + 1 + "] " + flavors.get(i));
         }
-    }
-
-    public void getDrinkSizes()
-    {
-        System.out.println("These are the drink sizes we have: ");
-        System.out.println("Size: Small'      Price: $2.00");
-        System.out.println("Size: Medium'      Price: $2.50");
-        System.out.println("Size: Large'     Price: $3.00");
     }
 
     public String getSelectedSize() {

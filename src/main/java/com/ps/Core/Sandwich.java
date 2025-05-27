@@ -2,17 +2,19 @@ package com.ps.Core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class Sandwich implements Product{
-    private final ArrayList<Integer> breadSizes = new ArrayList<>(List.of(4, 8, 12));
+    private final static ArrayList<Integer> sizes = new ArrayList<>(Arrays.asList(4, 8, 12));
+
     private int choosenSize;
-    private final static ArrayList<String> breadTypes = new ArrayList<>(Arrays.asList("white", "wheat", "rye", "wrap"));
+    private final static ArrayList<String> breadTypes = new ArrayList<>(Arrays.asList("white", "wheat", "rye", "wrap","italian"));
     private String choosenBreadType;
     private boolean isToasted;
-    private ArrayList<String> toppings;
+    private ArrayList<Topping> toppings;
 
-    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<String> toppings) {
+    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<Topping> toppings) {
         this.choosenSize = choosenSize;
         this.choosenBreadType = choosenBreadType;
         this.isToasted = isToasted;
@@ -22,6 +24,10 @@ public class Sandwich implements Product{
     public static ArrayList<String> getAllBreadTypes()
     {
         return breadTypes;
+    }
+
+    public static ArrayList<Integer> getAllSizes() {
+        return sizes;
     }
 
     public String getChoosenBreadType() {
@@ -49,14 +55,18 @@ public class Sandwich implements Product{
         return 0.0;
     }
 
-    public ArrayList<String> getToppings() {
+    public ArrayList<Topping> getToppings() {
         return toppings;
     }
 
     public double getAllToppingsPrice()
     {
-        double total = 0;
-        return total;
+        double topppingTotal = 0.0;
+        for(Topping toppings1: toppings)
+        {
+            topppingTotal += toppings1.getPrice(getChoosenSize());
+        }
+        return topppingTotal;
     }
 
     @Override
@@ -66,5 +76,21 @@ public class Sandwich implements Product{
         total += getChoosenSizePrice();
         total += getAllToppingsPrice();
         return total;
+    }
+
+    public void setChoosenSize(int choosenSize) {
+        this.choosenSize = choosenSize;
+    }
+
+    public void setChoosenBreadType(String choosenBreadType) {
+        this.choosenBreadType = choosenBreadType;
+    }
+
+    public void setToasted(boolean toasted) {
+        isToasted = toasted;
+    }
+
+    public void setToppings(ArrayList<Topping> toppings) {
+        this.toppings = toppings;
     }
 }

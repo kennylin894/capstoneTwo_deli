@@ -1,140 +1,114 @@
 package com.ps.Core;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public class PremiumToppings extends Toppings{
-    private final ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
-    private final static ArrayList<String> meats = new ArrayList<>(List.of(
-            "steak",
-            "ham",
-            "salami",
-            "roast beef",
-            "chicken",
-            "bacon",
-            "extra meat"
+public class PremiumToppings extends Topping {
+    private static final ArrayList<String> meatToppings = new ArrayList<>(Arrays.asList(
+            "Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon", "extra meat"
     ));
-    private final static ArrayList<String> cheeses = new ArrayList<>(List.of(
-            "american",
-            "provolone",
-            "cheddar",
-            "swiss",
-            "extra cheese"
+
+    private static final ArrayList<String> cheeseToppings = new ArrayList<>(Arrays.asList(
+            "American", "Provolone", "Cheddar", "Swiss", "extra cheese"
     ));
-    private String choosenMeat;
-    private String choosenCheese;
-    private boolean extraMeat;
-    private boolean extraCheese;
 
-    public PremiumToppings(int choosenSize, ArrayList<String> choosenToppings, ArrayList<String> choosenSauces) {
-        super(choosenSize, choosenToppings, choosenSauces);
-    }
+    private boolean extraMeat = false;
+    private boolean extraCheese = false;
 
-    public static ArrayList<String> getMeatToppings() {
-        return meats;
-    }
-
-    public static ArrayList<String> getCheeseToppings() {
-        return cheeses;
-    }
-
-    public void getAllMeats()
-    {
-        for(int i = 0; i < meats.size();i++)
-        {
-            System.out.println("[" + i+1 + "] " + meats.get(i));
+    public PremiumToppings(String name, boolean extra) {
+        super(name, true);
+        if (meatToppings.contains(name)) {
+            this.extraMeat = extra;
+        } else if (cheeseToppings.contains(name)) {
+            this.extraCheese = extra;
         }
-    }
-
-    public String getChoosenMeat() {
-        return choosenMeat;
-    }
-
-    public String getChoosenCheese() {
-        return choosenCheese;
-    }
-
-    public boolean isThereExtraMeat() {
-        return extraMeat;
-    }
-
-    public boolean isThereExtraCheese() {
-        return extraCheese;
-    }
-
-    public void getAllCheeses()
-    {
-        for(int i = 0; i < cheeses.size();i++)
-        {
-            System.out.println("[" + i+1 + "] " + cheeses.get(i));
-        }
-    }
-
-    public double getMeatPrice()
-    {
-        double total = 0;
-        if(getChoosenSize() == 4)
-        {
-            total += 1.00;
-            if(isThereExtraMeat())
-            {
-                total += .50;
-            }
-        }
-        else if(getChoosenSize() == 8)
-        {
-            total += 2.00;
-            if(isThereExtraMeat())
-            {
-                total += 1.00;
-            }
-        }
-        else if(getChoosenSize() == 12)
-        {
-            total += 3.00;
-            if(isThereExtraMeat())
-            {
-                total += 1.50;
-            }
-        }
-        return total;
-    }
-
-    public double getCheesePrice()
-    {
-        double total = 0;
-        if(getChoosenSize() == 4)
-        {
-            total += .75;
-            if(isThereExtraCheese())
-            {
-                total += .30;
-            }
-        }
-        else if(getChoosenSize() == 8)
-        {
-            total += 1.50;
-            if(isThereExtraCheese())
-            {
-                total += .60;
-            }
-        }
-        else if(getChoosenSize() == 12)
-        {
-            total += 2.25;
-            if(isThereExtraCheese())
-            {
-                total += .90;
-            }
-        }
-        return total;
     }
 
     @Override
-    public double getTotalPrice()
-    {
-        return getMeatPrice() + getCheesePrice();
+    public double getPrice(int sandwichSize) {
+        double extraCheesePrice = 0;
+        double extraMeatPrice = 0;
+        if (isExtraCheese()) {
+            switch (sandwichSize) {
+                case 4:
+                    extraCheesePrice = .30;
+                    break;
+                case 8:
+                    extraCheesePrice = 0.60;
+                    break;
+                case 12:
+                    extraCheesePrice = 0.90;
+                    break;
+            }
+        }
+        if (isExtraMeat()) {
+            switch (sandwichSize) {
+                case 4:
+                    extraMeatPrice = .50;
+                    break;
+                case 8:
+                    extraMeatPrice = 1.00;
+                    break;
+                case 12:
+                    extraMeatPrice = 1.50;
+                    break;
+            }
+        }
+        if (meatToppings.contains(name)) {
+            return getMeatPrice(sandwichSize) + extraMeatPrice;
+        } else if (cheeseToppings.contains(name)) {
+            return getCheesePrice(sandwichSize) + extraCheesePrice;
+        }
+        return 0.0;
     }
 
+    public static double getMeatPrice(int sandwichSize) {
+        switch (sandwichSize) {
+            case 4:
+                return 1.00;
+            case 8:
+                return 2.00;
+            case 12:
+                return 3.00;
+            default:
+                return 0.0;
+        }
+    }
 
+    public static double getCheesePrice(int sandwichSize) {
+        switch (sandwichSize) {
+            case 4:
+                return 0.75;
+            case 8:
+                return 1.50;
+            case 12:
+                return 2.25;
+            default:
+                return 0.0;
+        }
+    }
+
+    public void setExtraMeat() {
+        this.extraMeat = true;
+    }
+
+    public void setExtraCheese() {
+        this.extraCheese = true;
+    }
+
+    public boolean isExtraMeat() {
+        return extraMeat;
+    }
+
+    public boolean isExtraCheese() {
+        return extraCheese;
+    }
+
+    public static ArrayList<String> getMeatToppings() {
+        return meatToppings;
+    }
+
+    public static ArrayList<String> getCheeseToppings() {
+        return cheeseToppings;
+    }
 }

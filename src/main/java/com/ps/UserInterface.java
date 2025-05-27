@@ -12,11 +12,12 @@ public class UserInterface {
 
     private static JFrame mainFrame;
     private static ArrayList<Product> currentOrder = new ArrayList<>();
-    public static void initMainMenu()
+    private UserInterface()
     {
-        mainFrame = new JFrame("DELI-cious - Main menu");
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(600, 600);
+        System.out.println("Object be created.");
+    }
+    public static void mainMenuBluePrint() {
+        mainFrame.setSize(650, 600);
         mainFrame.setLocationRelativeTo(null);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screenSize.width - mainFrame.getWidth()) / 2;
@@ -27,7 +28,7 @@ public class UserInterface {
         Color logoBg = new Color(255, 255, 255);
         mainFrame.getContentPane().setBackground(logoBg);
         JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new GridLayout(7,1,10,20));
+        menuPanel.setLayout(new GridLayout(7, 1, 10, 20));
         menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // DELI logo image
@@ -37,24 +38,24 @@ public class UserInterface {
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImg));
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 30, 0));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 70, 30, 30));
         leftPanel.setBackground(logoBg);
         leftPanel.add(imageLabel);
         mainFrame.add(leftPanel, BorderLayout.WEST);
 
         //Buttons
         JButton menuButton = new JButton("View Menu");
-        JButton orderSandwichButton = new JButton("Order Sandwhich");
+        JButton orderYourOwnSandwichButton = new JButton("BYO Sandwich");
+        JButton orderPreMadeSandwich = new JButton("Order Sandwiches");
         JButton orderChipsButton = new JButton("Order Chips");
         JButton orderDrinksButton = new JButton("Order Drinks");
-        JButton viewCartButton = new JButton("View Cart");
-        JButton checkoutButton = new JButton("Checkout");
+        JButton viewCheckoutCartButton = new JButton("View Cart/Checkout");
         JButton exitButton = new JButton("Exit");
         Font menuFont = new Font("SansSerif", Font.BOLD, 13);
 
         JButton[] buttons = {
-                menuButton, orderSandwichButton, orderChipsButton,
-                orderDrinksButton, viewCartButton, checkoutButton, exitButton
+                menuButton, orderYourOwnSandwichButton, orderPreMadeSandwich, orderChipsButton,
+                orderDrinksButton, viewCheckoutCartButton, exitButton
         };
         //setting the color of buttons
         for (JButton button : buttons) {
@@ -62,12 +63,14 @@ public class UserInterface {
             button.setBackground(new Color(173, 216, 230));
         }
 
-
         menuPanel.add(menuButton);
         menuButton.addActionListener(e -> showMenuScreen());
 
-        menuPanel.add(orderSandwichButton);
-        orderSandwichButton.addActionListener(e -> showOrderSandwichScreen());
+        menuPanel.add(orderYourOwnSandwichButton);
+        orderYourOwnSandwichButton.addActionListener(e -> showOrderSandwichScreen());
+
+        //TODO : premade sandwiches (BONUS)
+        menuPanel.add(orderPreMadeSandwich);
 
         //TODO: needs to be able to order chips, more than 1 chip if needed.
         menuPanel.add(orderChipsButton);
@@ -77,11 +80,9 @@ public class UserInterface {
 
         //TODO: user can view the cart, and remove a sandwich if wanted
         //maybe edit a order, dont know how hard thatll be.
-        menuPanel.add(viewCartButton);
-        viewCartButton.addActionListener(e -> showViewCartMenu());
-
-        //TODO: prints reciept and checkout
-        menuPanel.add(checkoutButton);
+        // TODO: prints reciept and checkout
+        menuPanel.add(viewCheckoutCartButton);
+        viewCheckoutCartButton.addActionListener(e -> showViewCartMenu());
 
         menuPanel.add(exitButton);
         exitButton.addActionListener(e -> System.exit(0));
@@ -89,82 +90,18 @@ public class UserInterface {
         mainFrame.setVisible(true);
     }
 
-    public static void newinitMainMenu()
-    {
+    public static void initMainMenu() {
+        mainFrame = new JFrame("DELI-cious - Main menu");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainMenuBluePrint();
+    }
+
+    public static void newinitMainMenu() {
         mainFrame.getContentPane().removeAll();
         mainFrame.revalidate();
         mainFrame.repaint();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(600, 600);
-        mainFrame.setLocationRelativeTo(null);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - mainFrame.getWidth()) / 2;
-        int y = (screenSize.height - mainFrame.getHeight()) / 2;
-        mainFrame.setLocation(x, y);
-
-        //making the background white
-        Color logoBg = new Color(255, 255, 255);
-        mainFrame.getContentPane().setBackground(logoBg);
-        JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new GridLayout(7,1,10,20));
-        menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
-        // DELI logo image
-        ImageIcon icon = new ImageIcon("D:\\Edit\\Edit Pics\\image-imageonline.co-merged (1).png");
-        Image img = icon.getImage();
-        Image scaledImg = img.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
-        JLabel imageLabel = new JLabel(new ImageIcon(scaledImg));
-        JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 50, 30, 30));
-        leftPanel.setBackground(logoBg);
-        leftPanel.add(imageLabel);
-        mainFrame.add(leftPanel, BorderLayout.WEST);
-
-        //Buttons
-        JButton menuButton = new JButton("View Menu");
-        JButton orderSandwichButton = new JButton("Order Sandwhich");
-        JButton orderChipsButton = new JButton("Order Chips");
-        JButton orderDrinksButton = new JButton("Order Drinks");
-        JButton viewCartButton = new JButton("View Cart");
-        JButton checkoutButton = new JButton("Checkout");
-        JButton exitButton = new JButton("Exit");
-        Font menuFont = new Font("SansSerif", Font.BOLD, 13);
-
-        JButton[] buttons = {
-                menuButton, orderSandwichButton, orderChipsButton,
-                orderDrinksButton, viewCartButton, checkoutButton, exitButton
-        };
-        //setting the color of buttons
-        for (JButton button : buttons) {
-            button.setFont(menuFont);
-            button.setBackground(new Color(173, 216, 230));
-        }
-
-        menuPanel.add(menuButton);
-        menuButton.addActionListener(e -> showMenuScreen());
-
-        menuPanel.add(orderSandwichButton);
-        orderSandwichButton.addActionListener(e -> showOrderSandwichScreen());
-
-        //TODO: needs to be able to order chips, more than 1 chip if needed.
-        menuPanel.add(orderChipsButton);
-
-        //TODO order drinks (more than 1)
-        menuPanel.add(orderDrinksButton);
-
-        //TODO: user can view the cart, and remove a sandwich if wanted
-        //maybe edit a order, dont know how hard thatll be.
-        menuPanel.add(viewCartButton);
-        viewCartButton.addActionListener(e -> showViewCartMenu());
-
-        //TODO: prints reciept and checkout
-        menuPanel.add(checkoutButton);
-
-        menuPanel.add(exitButton);
-        exitButton.addActionListener(e -> System.exit(0));
-        mainFrame.add(menuPanel, BorderLayout.EAST);
-        mainFrame.setVisible(true);
+        mainMenuBluePrint();
     }
 
     private static void showMenuScreen() {
@@ -172,106 +109,101 @@ public class UserInterface {
         JPanel foodMenuScreen = new JPanel(new BorderLayout());
         foodMenuScreen.setBackground(Color.WHITE);
 
-        JLabel menuTitle = new JLabel("Menu",SwingConstants.CENTER);
+        JLabel menuTitle = new JLabel("Menu", SwingConstants.CENTER);
         menuTitle.setFont(new Font("SansSerif", Font.BOLD, 24));
         foodMenuScreen.add(menuTitle, BorderLayout.NORTH);
 
-        // Scrollable content area
+        // Scrollable text area
         JTextArea menuTextArea = new JTextArea();
         menuTextArea.setEditable(false);
         menuTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
-
         menuTextArea.setText("""
-+--------------------------------------------------------------+
-|                   BUILD YOUR OWN SANDWICH                    |
-+------------------+----------+----------+----------+----------+
-| Category         |   Item   |   4"     |   8"     |   12"    |
-+------------------+----------+----------+----------+----------+
-| Base Sandwich    |          |  $5.50   |  $7.00   |  $8.50   |
-+------------------+----------+----------+----------+----------+
-| Bread Choices    | White    |          |          |          |
-|                  | Wheat    |          |          |          |
-|                  | Rye      |          |          |          |
-|                  | Wrap     |          |          |          |
-+------------------+----------+----------+----------+----------+
-| Meats            | Steak    |  $1.00   |  $2.00   |  $3.00   |
-|                  | Ham      |  $1.00   |  $2.00   |  $3.00   |
-|                  | Salami   |  $1.00   |  $2.00   |  $3.00   |
-|                  | Roast Bf |  $1.00   |  $2.00   |  $3.00   |
-|                  | Chicken  |  $1.00   |  $2.00   |  $3.00   |
-|                  | Bacon    |  $1.00   |  $2.00   |  $3.00   |
-| Extra Meat       |    +     |  $0.50   |  $1.00   |  $1.50   |
-+------------------+----------+----------+----------+----------+
-| Cheese           | American |  $0.75   |  $1.50   |  $2.25   |
-|                  | Provolone|  $0.75   |  $1.50   |  $2.25   |
-|                  | Cheddar  |  $0.75   |  $1.50   |  $2.25   |
-|                  | Swiss    |  $0.75   |  $1.50   |  $2.25   |
-| Extra Cheese     |    +     |  $0.30   |  $0.60   |  $0.90   |
-+------------------+----------+----------+----------+----------+
-| Toppings (Free)  | Lettuce  |          |          |          |
-|                  | Peppers  |          |          |          |
-|                  | Onions   |          |          |          |
-|                  | Tomatoes |          |          |          |
-|                  | Jalapeños|          |          |          |
-|                  | Cucumbers|          |          |          |
-|                  | Pickles  |          |          |          |
-|                  | Guac     |          |          |          |
-|                  | Mushrooms|          |          |          |
-+------------------+----------+----------+----------+----------+
-| Sauces (Free)    | Mayo     |          |          |          |
-|                  | Mustard  |          |          |          |
-|                  | Ketchup  |          |          |          |
-|                  | Ranch    |          |          |          |
-|                  | 1000 Isl.|          |          |          |
-|                  | Vinaigret|          |          |          |
-+------------------+----------+----------+----------+----------+
-| Sides (Free)     | Au Jus   |          |          |          |
-|                  | Sauce    |          |          |          |
-+------------------+----------+----------+----------+----------+
-|                            Drinks                            |
-+------------------+----------+----------+----------+----------+
-|         Sizes         |  Small     |  Medium    |  Large     |
-+------------------+----------+----------+----------+----------+
-| Cola                  |  $2.00     |  $2.50     |  $3.00     |
-| Diet Cola             |  $2.00     |  $2.50     |  $3.00     |
-| Root Beer             |  $2.00     |  $2.50     |  $3.00     |
-| Lemon-Lime            |  $2.00     |  $2.50     |  $3.00     |
-| Orange Soda           |  $2.00     |  $2.50     |  $3.00     |
-| Iced Tea              |  $2.00     |  $2.50     |  $3.00     |
-| Lemonade              |  $2.00     |  $2.50     |  $3.00     |
-| Fruit Punch           |  $2.00     |  $2.50     |  $3.00     |
-| Ginger Ale            |  $2.00     |  $2.50     |  $3.00     |
-| Water                 |  $2.00     |  $2.50     |  $3.00     |
-+------------------+----------+----------+----------+----------+
-|                            Chips                             |
-+------------------+----------+----------+----------+----------+
-| Original             |  $1.50                                |
-| BBQ                  |  $1.50                                |
-| Sour Cream & Onion   |  $1.50                                |
-| Salt & Vinegar       |  $1.50                                |
-| Jalapeño             |  $1.50                                |
-| Cheddar Cheese       |  $1.50                                |
-| Lime                 |  $1.50                                |
-| Sea Salt             |  $1.50                                |
-| Kettle Cooked        |  $1.50                                |
-| Spicy Nacho          |  $1.50                                |
-+------------------+----------+----------+----------+----------+
-""");
-
+                +--------------------------------------------------------------+
+                |                   BUILD YOUR OWN SANDWICH                    |
+                +------------------+----------+----------+----------+----------+
+                | Category         |   Item   |   4"     |   8"     |   12"    |
+                +------------------+----------+----------+----------+----------+
+                | Base Sandwich    |          |  $5.50   |  $7.00   |  $8.50   |
+                +------------------+----------+----------+----------+----------+
+                | Bread Choices    | White    |          |          |          |
+                |                  | Wheat    |          |          |          |
+                |                  | Rye      |          |          |          |
+                |                  | Wrap     |          |          |          |
+                +------------------+----------+----------+----------+----------+
+                | Meats            | Steak    |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Ham      |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Salami   |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Roast Bf |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Chicken  |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Bacon    |  $1.00   |  $2.00   |  $3.00   |
+                | Extra Meat       |    +     |  $0.50   |  $1.00   |  $1.50   |
+                +------------------+----------+----------+----------+----------+
+                | Cheese           | American |  $0.75   |  $1.50   |  $2.25   |
+                |                  | Provolone|  $0.75   |  $1.50   |  $2.25   |
+                |                  | Cheddar  |  $0.75   |  $1.50   |  $2.25   |
+                |                  | Swiss    |  $0.75   |  $1.50   |  $2.25   |
+                | Extra Cheese     |    +     |  $0.30   |  $0.60   |  $0.90   |
+                +------------------+----------+----------+----------+----------+
+                | Toppings (Free)  | Lettuce  |          |          |          |
+                |                  | Peppers  |          |          |          |
+                |                  | Onions   |          |          |          |
+                |                  | Tomatoes |          |          |          |
+                |                  | Jalapeños|          |          |          |
+                |                  | Cucumbers|          |          |          |
+                |                  | Pickles  |          |          |          |
+                |                  | Guac     |          |          |          |
+                |                  | Mushrooms|          |          |          |
+                +------------------+----------+----------+----------+----------+
+                | Sauces (Free)    | Mayo     |          |          |          |
+                |                  | Mustard  |          |          |          |
+                |                  | Ketchup  |          |          |          |
+                |                  | Ranch    |          |          |          |
+                |                  | 1000 Isl.|          |          |          |
+                |                  | Vinaigret|          |          |          |
+                +------------------+----------+----------+----------+----------+
+                | Sides (Free)     | Au Jus   |          |          |          |
+                |                  | Sauce    |          |          |          |
+                +------------------+----------+----------+----------+----------+
+                |                            Drinks                            |
+                +------------------+----------+----------+----------+----------+
+                |         Sizes         |  Small     |  Medium    |  Large     |
+                +------------------+----------+----------+----------+----------+
+                | Cola                  |  $2.00     |  $2.50     |  $3.00     |
+                | Diet Cola             |  $2.00     |  $2.50     |  $3.00     |
+                | Root Beer             |  $2.00     |  $2.50     |  $3.00     |
+                | Lemon-Lime            |  $2.00     |  $2.50     |  $3.00     |
+                | Orange Soda           |  $2.00     |  $2.50     |  $3.00     |
+                | Iced Tea              |  $2.00     |  $2.50     |  $3.00     |
+                | Lemonade              |  $2.00     |  $2.50     |  $3.00     |
+                | Fruit Punch           |  $2.00     |  $2.50     |  $3.00     |
+                | Ginger Ale            |  $2.00     |  $2.50     |  $3.00     |
+                | Water                 |  $2.00     |  $2.50     |  $3.00     |
+                +------------------+----------+----------+----------+----------+
+                |                            Chips                             |
+                +------------------+----------+----------+----------+----------+
+                | Original             |  $1.50                                |
+                | BBQ                  |  $1.50                                |
+                | Sour Cream & Onion   |  $1.50                                |
+                | Salt & Vinegar       |  $1.50                                |
+                | Jalapeño             |  $1.50                                |
+                | Cheddar Cheese       |  $1.50                                |
+                | Lime                 |  $1.50                                |
+                | Sea Salt             |  $1.50                                |
+                | Kettle Cooked        |  $1.50                                |
+                | Spicy Nacho          |  $1.50                                |
+                +------------------+----------+----------+----------+----------+
+                """);
         JScrollPane scrollPane = new JScrollPane(menuTextArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         foodMenuScreen.add(scrollPane, BorderLayout.CENTER);
-
         JButton backButton = new JButton("Back");
         backButton.setBackground(new Color(173, 216, 230));
         backButton.addActionListener(e -> newinitMainMenu());
-
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.WHITE);
         bottomPanel.add(backButton);
         foodMenuScreen.add(bottomPanel, BorderLayout.SOUTH);
-
         mainFrame.getContentPane().add(foodMenuScreen);
         mainFrame.revalidate();
         mainFrame.repaint();
@@ -279,7 +211,6 @@ public class UserInterface {
 
     private static void showOrderSandwichScreen() {
         mainFrame.getContentPane().removeAll();
-
         JPanel orderSandwichScreen = new JPanel();
         orderSandwichScreen.setLayout(new BoxLayout(orderSandwichScreen, BoxLayout.Y_AXIS));
         orderSandwichScreen.setBackground(Color.WHITE);
@@ -299,7 +230,7 @@ public class UserInterface {
         sizePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel sizeOptionsLabel = new JLabel("Choose Size (inches):");
         sizeOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JComboBox<Integer> sizeOptionsBox = new JComboBox<>(new Integer[]{4, 8, 12});
+        JComboBox<Integer> sizeOptionsBox = new JComboBox<>(Sandwich.getAllSizes().toArray(new Integer[0]));
         sizeOptionsBox.setSelectedItem(4);
         sizeOptionsBox.setMaximumSize(new Dimension(300, 30));
         sizeOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -315,7 +246,7 @@ public class UserInterface {
         breadPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JLabel breadOptionsLabel = new JLabel("Choose Bread:");
         breadOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JComboBox<String> breadOptionsBox = new JComboBox<>(new String[]{"White", "Wheat", "Rye","Wrap"});
+        JComboBox breadOptionsBox = new JComboBox<>(Sandwich.getAllBreadTypes().toArray(new String[0]));
         breadOptionsBox.setSelectedItem("White");
         breadOptionsBox.setMaximumSize(new Dimension(300, 30));
         breadOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -332,14 +263,15 @@ public class UserInterface {
 
         orderSandwichScreen.add(breadPanel);
 
-        //add ons coloum
+        //add 5 columns
         JPanel toppingsPanel = new JPanel();
-        toppingsPanel.setLayout(new GridLayout(1, 4, 20, 0));
+        toppingsPanel.setLayout(new GridLayout(1, 5, 10, 0));
 
         ArrayList<JCheckBox> meatCheckBoxes = new ArrayList<>();
         ArrayList<JCheckBox> cheeseCheckBoxes = new ArrayList<>();
         ArrayList<JCheckBox> toppingCheckBoxes = new ArrayList<>();
         ArrayList<JCheckBox> sauceCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> sidesCheckBoxes = new ArrayList<>();
 
         //Meats
         JPanel meatsPanel = new JPanel();
@@ -372,7 +304,6 @@ public class UserInterface {
         normalToppingsPanel.setBorder(BorderFactory.createTitledBorder("Toppings"));
         for (String topping : Toppings.getToppings()) {
             JCheckBox cb = new JCheckBox(topping);
-            normalToppingsPanel.add(cb);
             cb.setOpaque(false);
             normalToppingsPanel.add(cb);
             toppingCheckBoxes.add(cb);
@@ -390,17 +321,31 @@ public class UserInterface {
             sauceCheckBoxes.add(cb);
         }
 
+        //sides
+        JPanel sidesPanel = new JPanel();
+        sidesPanel.setLayout(new BoxLayout(sidesPanel, BoxLayout.Y_AXIS)); // Fixed: changed saucesPanel to sidesPanel
+        sidesPanel.setBackground(Color.WHITE);
+        sidesPanel.setBorder(BorderFactory.createTitledBorder("Sides"));
+        for (String sides : Toppings.getSideToppings()) {
+            JCheckBox cb = new JCheckBox(sides);
+            cb.setOpaque(false);
+            sidesPanel.add(cb);
+            sidesCheckBoxes.add(cb);
+        }
+
         toppingsPanel.add(meatsPanel);
         toppingsPanel.add(cheesesPanel);
         toppingsPanel.add(normalToppingsPanel);
         toppingsPanel.add(saucesPanel);
+        toppingsPanel.add(sidesPanel);
 
         meatsPanel.setOpaque(false);
         cheesesPanel.setOpaque(false);
         toppingsPanel.setOpaque(false);
         saucesPanel.setOpaque(false);
+        sidesPanel.setOpaque(false);
 
-        //fixed the very long vertical columns
+        //fixed very long vertical columns
         toppingsPanel.setMaximumSize(toppingsPanel.getPreferredSize());
 
         orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -422,65 +367,87 @@ public class UserInterface {
             Integer selectedSize = (Integer) sizeOptionsBox.getSelectedItem();
             String selectedBread = (String) breadOptionsBox.getSelectedItem();
             boolean isToasted = false;
-            if(toastedCheckBox.isSelected())
-            {
+            if (toastedCheckBox.isSelected()) {
                 isToasted = true;
             }
             ArrayList<String> toppings = new ArrayList<>();
+            ArrayList<Topping> actualToppings = new ArrayList<>();
             boolean hasMeats = false;
-            for(JCheckBox cb: meatCheckBoxes)
-            {
-                if(cb.isSelected())
-                {
+            for (JCheckBox cb : meatCheckBoxes) {
+                if (cb.isSelected()) {
                     hasMeats = true;
                     toppings.add(cb.getText());
                 }
             }
             boolean hasCheese = false;
-            for(JCheckBox cb: cheeseCheckBoxes)
-            {
-                if(cb.isSelected())
-                {
+            for (JCheckBox cb : cheeseCheckBoxes) {
+                if (cb.isSelected()) {
                     hasCheese = true;
                     toppings.add(cb.getText());
                 }
             }
             boolean hasToppings = false;
-            for(JCheckBox cb: toppingCheckBoxes)
-            {
-                if(cb.isSelected())
-                {
+            for (JCheckBox cb : toppingCheckBoxes) {
+                if (cb.isSelected()) {
                     hasToppings = true;
                     toppings.add(cb.getText());
                 }
             }
             boolean hasSauce = false;
-            for(JCheckBox cb: sauceCheckBoxes)
-            {
-                if(cb.isSelected())
-                {
+            for (JCheckBox cb : sauceCheckBoxes) {
+                if (cb.isSelected()) {
                     hasSauce = true;
                     toppings.add(cb.getText());
                 }
             }
-
-            Sandwich sandwich = new Sandwich(selectedSize,selectedBread,isToasted,toppings);
+            boolean hasSides = false;
+            for (JCheckBox cb : sidesCheckBoxes) {
+                if (cb.isSelected()) {
+                    hasSides = true;
+                    toppings.add(cb.getText());
+                }
+            }
+            for (String i : toppings) {
+                if (Toppings.getToppings().contains(i)) {
+                    actualToppings.add(new Toppings(i));
+                }
+                if (Toppings.getSideToppings().contains(i)) {
+                    actualToppings.add(new Toppings(i));
+                }
+                if (Toppings.getSauceToppings().contains(i)) {
+                    actualToppings.add(new Toppings(i));
+                }
+                if (PremiumToppings.getCheeseToppings().contains(i)) {
+                    if (i.equals("extra cheese")) {
+                        actualToppings.add(new PremiumToppings(i, true));
+                    } else {
+                        actualToppings.add(new PremiumToppings(i, false));
+                    }
+                }
+                if (PremiumToppings.getMeatToppings().contains(i)) {
+                    if (i.equals("extra meat")) {
+                        actualToppings.add(new PremiumToppings(i, true));
+                    } else {
+                        actualToppings.add(new PremiumToppings(i, false));
+                    }
+                }
+            }
+            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings);
             currentOrder.add(sandwich);
-            if(!hasMeats)
-            {
+            if (!hasMeats) {
                 JOptionPane.showMessageDialog(mainFrame, "Your order has no meats!", "No Meats", JOptionPane.INFORMATION_MESSAGE);
             }
-            if(!hasCheese)
-            {
+            if (!hasCheese) {
                 JOptionPane.showMessageDialog(mainFrame, "Your order has no cheeses!", "No Cheeses", JOptionPane.INFORMATION_MESSAGE);
             }
-            if(!hasToppings)
-            {
+            if (!hasToppings) {
                 JOptionPane.showMessageDialog(mainFrame, "Your order has no toppings!", "No Toppings", JOptionPane.INFORMATION_MESSAGE);
             }
-            if(!hasSauce)
-            {
+            if (!hasSauce) {
                 JOptionPane.showMessageDialog(mainFrame, "Your order has no sauces!", "No Sauces", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (!hasSides) {
+                JOptionPane.showMessageDialog(mainFrame, "Your order has no sides!", "No Sauces", JOptionPane.INFORMATION_MESSAGE);
             }
             JOptionPane.showMessageDialog(mainFrame, "Order was added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             newinitMainMenu();
@@ -488,7 +455,7 @@ public class UserInterface {
 
         //cancelling the order
         cancelOrderButton.addActionListener(e -> {
-           newinitMainMenu();
+            newinitMainMenu();
         });
         int maxWidth = Math.max(addToCartButton.getPreferredSize().width, cancelOrderButton.getPreferredSize().width);
         int maxHeight = Math.max(addToCartButton.getPreferredSize().height, cancelOrderButton.getPreferredSize().height);
@@ -508,13 +475,11 @@ public class UserInterface {
         mainFrame.repaint();
     }
 
-    public void addChipsMenu()
-    {
+    public void addChipsMenu() {
         //TODO
     }
 
-    public void addDrinksMenu()
-    {
+    public void addDrinksMenu() {
         //TODO
     }
 
@@ -532,22 +497,16 @@ public class UserInterface {
         cartTextArea.setEditable(false);
         cartTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
-        if (currentOrder.isEmpty())
-        {
+        if (currentOrder.isEmpty()) {
             cartTextArea.setText("Your cart is empty.");
-        }
-        else
-        {
+        } else {
             boolean sandwhichLabelPrinted = false;
             boolean drinkLabelPrinted = false;
             boolean chipLabelPrinted = false;
             int count = 1;
-            for(Product item: currentOrder)
-            {
-                if(item instanceof Sandwich)
-                {
-                    if(!sandwhichLabelPrinted)
-                    {
+            for (Product item : currentOrder) {
+                if (item instanceof Sandwich) {
+                    if (!sandwhichLabelPrinted) {
                         cartTextArea.setText("----------Sandwichs----------");
                         cartTextArea.setText("\n");
                         sandwhichLabelPrinted = true;
@@ -557,30 +516,31 @@ public class UserInterface {
                     stringBuilder.append("-------------------").append("\n");
                     stringBuilder.append("Size: " + ((Sandwich) item).getChoosenSize()).append("'").append("\n");
                     stringBuilder.append("Bread: " + ((Sandwich) item).getChoosenBreadType()).append("\n");
-                    if(((Sandwich) item).isToasted())
-                    {
-                        stringBuilder.append("- is Toasted").append("\n");
+                    if (((Sandwich) item).isToasted()) {
+                        stringBuilder.append(" * is Toasted").append("\n");
                     }
-                    stringBuilder.append("Toppings").append("\n").append("-------------------").append("\n");
-                    for(String toppings: ((Sandwich) item).getToppings())
-                    {
-                        stringBuilder.append("- " + toppings).append("\n");
+                    stringBuilder.append("Toppings").append("\n").append("===================").append("\n");
+                    for (Topping toppings : ((Sandwich) item).getToppings()) {
+                        if (toppings.getName().equals("extra meat")) {
+                            stringBuilder.append(" * " + toppings.getName()).append("\n");
+                        } else if (toppings.getName().equals("extra cheese")) {
+                            stringBuilder.append(" * " + toppings.getName()).append("\n");
+                        } else {
+                            stringBuilder.append("- " + toppings.getName()).append("\n");
+                        }
                     }
+                    stringBuilder.append("-------------------").append("\n").append("\n");
                     cartTextArea.append(stringBuilder.toString());
                     count++;
                 }
             }
-            for(Product item: currentOrder)
-            {
-                if(item instanceof Drinks)
-                {
+            for (Product item : currentOrder) {
+                if (item instanceof Drinks) {
                     //TODO
                 }
             }
-            for(Product item: currentOrder)
-            {
-                if(item instanceof Chips)
-                {
+            for (Product item : currentOrder) {
+                if (item instanceof Chips) {
                     //TODO
                 }
             }
@@ -597,11 +557,15 @@ public class UserInterface {
         JButton btnClearCart = new JButton("Clear Cart");
         btnClearCart.addActionListener(e -> {
             currentOrder.clear();
-            showViewCartMenu(); // Refresh the screen
+            showViewCartMenu();
         });
+
+        JButton btnCheckOut = new JButton("Checkout");
+        btnCheckOut.addActionListener(e -> checkOutMenu());
 
         buttonPanel.add(btnBack);
         buttonPanel.add(btnClearCart);
+        buttonPanel.add(btnCheckOut);
 
         cartPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -610,8 +574,7 @@ public class UserInterface {
         mainFrame.repaint();
     }
 
-    public void checkOutMenu()
-    {
+    public static void checkOutMenu() {
 
     }
 }

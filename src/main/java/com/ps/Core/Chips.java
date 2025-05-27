@@ -15,12 +15,12 @@ public class Chips implements Product{
         add("Kettle Cooked");
         add("Spicy Nacho");
     }};
-    private String choosenChip;
+    private String chosenChip;
     private final double price = 1.50;
     private int amountOfChips;
 
-    public Chips(String choosenChip,int amountOfChips) {
-        this.choosenChip = choosenChip;
+    public Chips(String chosenChip,int amountOfChips) {
+        this.chosenChip = chosenChip;
         this.amountOfChips = amountOfChips;
     }
 
@@ -32,8 +32,8 @@ public class Chips implements Product{
         }
     }
 
-    public String getChoosenChip() {
-        return choosenChip;
+    public String getChosenChip() {
+        return chosenChip;
     }
 
     public int getAmountOfChips() {
@@ -44,5 +44,17 @@ public class Chips implements Product{
     public double getPrice()
     {
         return this.price * getAmountOfChips();
+    }
+
+    public ArrayList<String> getChipOptions() {
+        return chipOptions;
+    }
+
+    public void setChosenChip(String chosenChip) {
+        this.chosenChip = chosenChip;
+    }
+
+    public void setAmountOfChips(int amountOfChips) {
+        this.amountOfChips = amountOfChips;
     }
 }

@@ -1,51 +1,42 @@
 package com.ps.Core;
 
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public abstract class Toppings{
-    private final static ArrayList<Integer> sizes = new ArrayList<>(List.of(4, 8, 12));
-    private final static ArrayList<String> toppings = new ArrayList<>(List.of(
-            "lettuce",
-            "peppers",
-            "onions",
-            "tomatoes",
-            "jalapenos",
-            "cucumbers",
-            "pickles",
-            "guacamole",
-            "mushrooms"
+public class Toppings extends Topping {
+    private static final ArrayList<String> regularToppings = new ArrayList<>(Arrays.asList(
+            "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños",
+            "Cucumbers", "Pickles", "Guacamole", "Mushrooms"
     ));
-    private final static ArrayList<String> sauces = new ArrayList<>(List.of(
-            "mayo",
-            "mustard",
-            "ketchup",
-            "ranch",
-            "thousand isl",
-            "vinaigrette"
-    ));
-    private int choosenSize;
-    private ArrayList<String> choosenToppings;
-    private ArrayList<String> choosenSauces;
 
-    public Toppings(int choosenSize, ArrayList<String> choosenToppings, ArrayList<String> choosenSauces) {
-        this.choosenSize = choosenSize;
-        this.choosenToppings = choosenToppings;
-        this.choosenSauces = choosenSauces;
+    private static final ArrayList<String> sauceToppings = new ArrayList<>(Arrays.asList(
+            "Mayo", "Mustard", "Ketchup", "Ranch", "Thousand Isl", "Vinaigrette"
+    ));
+
+    private static final ArrayList<String> sideToppings = new ArrayList<>(Arrays.asList(
+            "Au Jus", "Sauce"
+    ));
+
+
+    public Toppings(String name) {
+        super(name, false);
     }
 
-    public int getChoosenSize() {
-        return choosenSize;
+    @Override
+    public double getPrice(int sandwichSize) {
+        return 0.0;
     }
-
-    public abstract double getTotalPrice();
 
     public static ArrayList<String> getToppings() {
-        return toppings;
+        return regularToppings;
     }
 
     public static ArrayList<String> getSauceToppings() {
-        return sauces;
+        return sauceToppings;
     }
 
+    public static ArrayList<String> getSideToppings() {
+        return sideToppings;
+    }
 }
