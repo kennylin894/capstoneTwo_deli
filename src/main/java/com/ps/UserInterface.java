@@ -14,7 +14,7 @@ public class UserInterface {
     private static final ArrayList<Product> currentOrder = new ArrayList<>();
 
     private UserInterface() {
-        System.out.println("Object be created.");
+        System.out.println("Object cant be created.");
     }
 
     public static void mainMenuBluePrint() {
@@ -45,12 +45,12 @@ public class UserInterface {
         mainFrame.add(leftPanel, BorderLayout.WEST);
 
         //Buttons
-        JButton menuButton = new JButton("\uD83D\uDCCB View Menu");
-        JButton orderYourOwnSandwichButton = new JButton("\uD83C\uDF5E BYO Sandwich");
-        JButton orderPreMadeSandwich = new JButton("🥙 Order Sandwiches");
-        JButton orderChipsButton = new JButton("\uD83C\uDF5F Order Chips");
-        JButton orderDrinksButton = new JButton("🥤 Order Drinks");
-        JButton viewCheckoutCartButton = new JButton("\uD83D\uDED2 View Cart/Checkout");
+        JButton menuButton = new JButton("\uD83D\uDCCB  View Menu");
+        JButton orderYourOwnSandwichButton = new JButton("\uD83C\uDF5E  BYO Sandwich");
+        JButton orderPreMadeSandwich = new JButton("🥙  Order Sandwiches");
+        JButton orderChipsButton = new JButton("🍿 Order Chips");
+        JButton orderDrinksButton = new JButton("☕  Order Drinks");
+        JButton viewCheckoutCartButton = new JButton("\uD83D\uDED2  View Cart/Checkout");
         JButton exitButton = new JButton("Exit");
         Font menuFont = new Font("SansSerif", Font.BOLD, 13);
 
@@ -73,17 +73,12 @@ public class UserInterface {
         //TODO : premade sandwiches (BONUS)
         menuPanel.add(orderPreMadeSandwich);
 
-        //TODO: needs to be able to order chips, more than 1 chip if needed.
         menuPanel.add(orderChipsButton);
         orderChipsButton.addActionListener(e -> showOrderChipsScreen());
 
-        //TODO order drinks (more than 1)
         menuPanel.add(orderDrinksButton);
         orderDrinksButton.addActionListener(e -> showOrderDrinksScreen());
 
-        //TODO: user can view the cart, and remove a sandwich if wanted
-        //maybe edit a order, dont know how hard thatll be.
-        // TODO: prints reciept and checkout
         menuPanel.add(viewCheckoutCartButton);
         viewCheckoutCartButton.addActionListener(e -> showViewCartMenu());
 
@@ -94,7 +89,7 @@ public class UserInterface {
     }
 
     public static void initMainMenu() {
-        mainFrame = new JFrame("DELI-cious - Main menu");
+        mainFrame = new JFrame("DELI-cious - Main menu [By: Kenny Lin]");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainMenuBluePrint();
     }
@@ -789,7 +784,6 @@ public class UserInterface {
                 cartTextArea.append("╚═════════════════════════╝\n");
             }
         }
-
         JScrollPane scrollPane = new JScrollPane(cartTextArea);
         JPanel centerPanel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel(new BorderLayout());
@@ -836,14 +830,11 @@ public class UserInterface {
                 itemDropdown.addItem(stringBuilder.toString());
                 itemIndex++;
             }
-        }
-        else
-        {
+        } else {
             itemDropdown.addItem("Your cart is empty.");
         }
         removePanel.add(itemDropdown);
         removePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-
         JButton removeButton = new JButton("Remove Selected Item");
         removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeButton.setBackground(new Color(255, 100, 100));
@@ -879,7 +870,6 @@ public class UserInterface {
             currentOrder.clear();
             showViewCartMenu();
         });
-
         JButton btnCheckOut = new JButton("Checkout");
         btnCheckOut.addActionListener(e -> checkOutMenu());
 
@@ -906,6 +896,58 @@ public class UserInterface {
     }
 
     public static void checkOutMenu() {
+        mainFrame.getContentPane().removeAll();
+        JPanel checkoutPanel = new JPanel(new BorderLayout());
+        checkoutPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        checkoutPanel.setBackground(Color.WHITE);
+        JLabel checkoutTitle = new JLabel("Order Summary", SwingConstants.CENTER);
+        checkoutTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        checkoutTitle.setBorder(new EmptyBorder(5, 0, 15, 0));
+        checkoutPanel.add(checkoutTitle, BorderLayout.NORTH);
 
+        //order summary
+        JTextArea summaryTextArea = new JTextArea();
+        summaryTextArea.setEditable(false);
+        summaryTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        double totalPrice = FileManager.populateOrderSummary(summaryTextArea, currentOrder);
+        JScrollPane scrollPane = new JScrollPane(summaryTextArea);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Final Order"));
+        checkoutPanel.add(scrollPane, BorderLayout.CENTER);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 10));
+        buttonPanel.setBackground(Color.WHITE);
+
+        JButton confirmButton = new JButton("✅ Confirm Order");
+        JButton cancelButton = new JButton("❌ Cancel Order");
+
+        //confirm, then generates file
+        confirmButton.addActionListener(e -> {
+            if (currentOrder.isEmpty()) {
+                JOptionPane.showMessageDialog(mainFrame,
+                        "You have nothing in your cart.\nPlease add items.",
+                        "Order Failed", JOptionPane.INFORMATION_MESSAGE);
+                newinitMainMenu();
+            } else {
+                FileManager.generateReceipt(totalPrice, currentOrder);
+                currentOrder.clear();
+                JOptionPane.showMessageDialog(mainFrame,
+                        "Order confirmed! Receipt saved.\nThank you for your order!",
+                        "Order Complete", JOptionPane.INFORMATION_MESSAGE);
+                newinitMainMenu();
+            }
+        });
+        //cancel the checkout
+        cancelButton.addActionListener(e -> showViewCartMenu());
+        confirmButton.setBackground(new Color(0, 255, 0));
+        confirmButton.setForeground(Color.WHITE);
+        cancelButton.setBackground(new Color(255, 0, 0));
+        cancelButton.setForeground(Color.WHITE);
+        buttonPanel.add(confirmButton);
+        buttonPanel.add(cancelButton);
+        checkoutPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        mainFrame.add(checkoutPanel);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 }
