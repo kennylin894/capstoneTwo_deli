@@ -20,79 +20,82 @@ public class FileManager {
             textArea.setText("No items in order.");
             return 0.0;
         }
-        StringBuilder summary = new StringBuilder();
-        summary.append("═══════════════════════════════════════\n");
-        summary.append("           DELI-cious Receipt           \n");
-        summary.append("═══════════════════════════════════════\n\n");
-        boolean sandwichLabelPrinted = false;
-        boolean drinkLabelPrinted = false;
-        boolean chipLabelPrinted = false;
-        int sandwichCount = 1;
+        else
+        {
+            StringBuilder summary = new StringBuilder();
+            summary.append("═══════════════════════════════════════\n");
+            summary.append("           DELI-cious Receipt           \n");
+            summary.append("═══════════════════════════════════════\n\n");
+            boolean sandwichLabelPrinted = false;
+            boolean drinkLabelPrinted = false;
+            boolean chipLabelPrinted = false;
+            int sandwichCount = 1;
 
-        for (Product item : currentOrder) {
-            if (item instanceof Sandwich) {
-                if (!sandwichLabelPrinted) {
-                    summary.append("-----SANDWICHES-----\n");
-                    sandwichLabelPrinted = true;
-                }
-                summary.append("Sandwich #").append(sandwichCount).append("\n");
-                summary.append("-------------------\n");
-                summary.append("Size: ").append(((Sandwich) item).getChoosenSize()).append("\"\n");
-                summary.append("Bread: ").append(((Sandwich) item).getChoosenBreadType()).append("\n");
-                if (((Sandwich) item).isToasted()) {
-                    summary.append(" * Toasted\n");
-                }
-                summary.append("Toppings:\n");
-                for (Topping topping : ((Sandwich) item).getToppings()) {
-                    if (topping.getName().equals("extra meat")) {
-                        summary.append(" * Extra Meat\n");
-                    } else if (topping.getName().equals("extra cheese")) {
-                        summary.append(" * Extra Cheese\n");
-                    } else {
-                        summary.append("- ").append(topping.getName()).append("\n");
+            for (Product item : currentOrder) {
+                if (item instanceof Sandwich) {
+                    if (!sandwichLabelPrinted) {
+                        summary.append("-----SANDWICHES-----\n");
+                        sandwichLabelPrinted = true;
                     }
+                    summary.append("Sandwich #").append(sandwichCount).append("\n");
+                    summary.append("-------------------\n");
+                    summary.append("Size: ").append(((Sandwich) item).getChoosenSize()).append("\"\n");
+                    summary.append("Bread: ").append(((Sandwich) item).getChoosenBreadType()).append("\n");
+                    if (((Sandwich) item).isToasted()) {
+                        summary.append(" * Toasted\n");
+                    }
+                    summary.append("Toppings:\n");
+                    for (Topping topping : ((Sandwich) item).getToppings()) {
+                        if (topping.getName().equals("extra meat")) {
+                            summary.append(" * Extra Meat\n");
+                        } else if (topping.getName().equals("extra cheese")) {
+                            summary.append(" * Extra Cheese\n");
+                        } else {
+                            summary.append("- ").append(topping.getName()).append("\n");
+                        }
+                    }
+                    summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
+                    sandwichCount++;
+                    totalPrice += item.getPrice();
                 }
-                summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
-                sandwichCount++;
-                totalPrice += item.getPrice();
             }
-        }
-        for (Product item : currentOrder) {
-            if (item instanceof Drinks) {
-                if (!drinkLabelPrinted) {
-                    summary.append("-----DRINKS-----\n");
-                    drinkLabelPrinted = true;
+            for (Product item : currentOrder) {
+                if (item instanceof Drinks) {
+                    if (!drinkLabelPrinted) {
+                        summary.append("-----DRINKS-----\n");
+                        drinkLabelPrinted = true;
+                    }
+                    summary.append("Drink Order\n");
+                    summary.append("-------------------\n");
+                    summary.append("Flavor: ").append(((Drinks) item).getSelectedFlavor()).append("\n");
+                    summary.append("Size: ").append(((Drinks) item).getSelectedSize()).append("\n");
+                    summary.append("Quantity: ").append(((Drinks) item).getAmountOfDrinks()).append("\n");
+                    summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
+                    totalPrice += item.getPrice();
                 }
-                summary.append("Drink Order\n");
-                summary.append("-------------------\n");
-                summary.append("Flavor: ").append(((Drinks) item).getSelectedFlavor()).append("\n");
-                summary.append("Size: ").append(((Drinks) item).getSelectedSize()).append("\n");
-                summary.append("Quantity: ").append(((Drinks) item).getAmountOfDrinks()).append("\n");
-                summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
-                totalPrice += item.getPrice();
             }
-        }
-        for (Product item : currentOrder) {
-            if (item instanceof Chips) {
-                if (!chipLabelPrinted) {
-                    summary.append("-----CHIPS-----\n");
-                    chipLabelPrinted = true;
+            for (Product item : currentOrder) {
+                if (item instanceof Chips) {
+                    if (!chipLabelPrinted) {
+                        summary.append("-----CHIPS-----\n");
+                        chipLabelPrinted = true;
+                    }
+                    summary.append("Chips Order\n");
+                    summary.append("-------------------\n");
+                    summary.append("Flavor: ").append(((Chips) item).getChosenChip()).append("\n");
+                    summary.append("Quantity: ").append(((Chips) item).getAmountOfChips()).append("\n");
+                    summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
+                    totalPrice += item.getPrice();
                 }
-                summary.append("Chips Order\n");
-                summary.append("-------------------\n");
-                summary.append("Flavor: ").append(((Chips) item).getChosenChip()).append("\n");
-                summary.append("Quantity: ").append(((Chips) item).getAmountOfChips()).append("\n");
-                summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
-                totalPrice += item.getPrice();
             }
-        }
-        summary.append("═══════════════════════════════════════\n");
-        summary.append(String.format("TOTAL: $%.2f\n", totalPrice));
-        summary.append("═══════════════════════════════════════\n");
-        summary.append("Thank you for your order!\n");
+            summary.append("═══════════════════════════════════════\n");
+            summary.append(String.format("TOTAL: $%.2f\n", totalPrice));
+            summary.append("═══════════════════════════════════════\n");
+            summary.append("Thank you for your order!\n");
 
-        textArea.setText(summary.toString());
-        return totalPrice;
+            textArea.setText(summary.toString());
+            return totalPrice;
+        }
     }
 
     public static void generateReceipt(double totalPrice, ArrayList<Product> currentOrder) {
@@ -179,7 +182,6 @@ public class FileManager {
                     bufferedWriter.newLine();
                 }
             }
-
             for (Product item : currentOrder) {
                 if (item instanceof Chips) {
                     if (!chipLabelPrinted) {
@@ -209,7 +211,6 @@ public class FileManager {
             bufferedWriter.newLine();
             bufferedWriter.write("Thank you for choosing DELI-cious!");
             bufferedWriter.newLine();
-
             bufferedWriter.close();
 
         } catch (IOException e) {
