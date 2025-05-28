@@ -416,17 +416,40 @@ public class UserInterface {
             ArrayList<String> toppings = new ArrayList<>();
             ArrayList<Topping> actualToppings = new ArrayList<>();
             boolean hasMeats = false;
+            boolean hasExtraMeats = false;
+            boolean hasExtraCheese = false;
+            //check if extra meat is checked first
             for (JCheckBox cb : meatCheckBoxes) {
-                if (cb.isSelected()) {
-                    hasMeats = true;
-                    toppings.add(cb.getText());
+                if (cb.getText().equals("extra meat")) {
+                    if (cb.isSelected()) {
+                        hasExtraMeats = true;
+                        hasMeats = true;
+                    }
+                }
+                else
+                {
+                    if(cb.isSelected())
+                    {
+                        toppings.add(cb.getText());
+                        hasMeats = true;
+                    }
                 }
             }
             boolean hasCheese = false;
             for (JCheckBox cb : cheeseCheckBoxes) {
-                if (cb.isSelected()) {
-                    hasCheese = true;
-                    toppings.add(cb.getText());
+                if (cb.getText().equals("extra cheese")) {
+                    if (cb.isSelected()) {
+                        hasExtraCheese = true;
+                        hasCheese = true;
+                    }
+                }
+                else
+                {
+                    if(cb.isSelected())
+                    {
+                        toppings.add(cb.getText());
+                        hasCheese = true;
+                    }
                 }
             }
             boolean hasToppings = false;
@@ -461,14 +484,14 @@ public class UserInterface {
                     actualToppings.add(new Toppings(i));
                 }
                 if (PremiumToppings.getCheeseToppings().contains(i)) {
-                    if (i.equals("extra cheese")) {
+                    if (hasExtraCheese && !i.equals("extra cheese")) {
                         actualToppings.add(new PremiumToppings(i, true));
                     } else {
                         actualToppings.add(new PremiumToppings(i, false));
                     }
                 }
                 if (PremiumToppings.getMeatToppings().contains(i)) {
-                    if (i.equals("extra meat")) {
+                    if (hasExtraMeats && !i.equals("extra meats")) {
                         actualToppings.add(new PremiumToppings(i, true));
                     } else {
                         actualToppings.add(new PremiumToppings(i, false));
@@ -799,11 +822,20 @@ public class UserInterface {
                     }
                     stringBuilder.append("Toppings").append("\n").append("===================").append("\n");
                     for (Topping toppings : ((Sandwich) item).getToppings()) {
-                        if (toppings.getName().equals("extra meat")) {
-                            stringBuilder.append(" * " + "extra meat(s)").append("\n");
-                        } else if (toppings.getName().equals("extra cheese")) {
-                            stringBuilder.append(" * " + ("extra cheese(s)")).append("\n");
-                        } else {
+                        if (toppings instanceof PremiumToppings) {
+                            if (((PremiumToppings) toppings).isExtraMeat() && !toppings.getName().equals("extra meat")) {
+                                stringBuilder.append(toppings.getName()).append("\n");
+                                stringBuilder.append(" * " + "extra meat(s)").append("\n");
+                            }
+                            else
+                            {
+                                if (((PremiumToppings) toppings).isExtraCheese() && !toppings.getName().equals("extra cheese")) {
+                                    stringBuilder.append(toppings.getName()).append("\n");
+                                    stringBuilder.append(" * " + ("extra cheese(s)")).append("\n");
+                                }
+                            }
+                        }
+                        else {
                             stringBuilder.append("- " + toppings.getName()).append("\n");
                         }
                     }
@@ -977,8 +1009,7 @@ public class UserInterface {
                             showViewCartMenu();
                         } else {
                             chips.setAmountOfChips(chips.getAmountOfChips() - numToRemove);
-                            if(chips.getAmountOfChips() == 0)
-                            {
+                            if (chips.getAmountOfChips() == 0) {
                                 currentOrder.remove(chips);
                             }
                             JOptionPane.showMessageDialog(mainFrame,
@@ -987,9 +1018,7 @@ public class UserInterface {
                             showViewCartMenu();
                         }
                     }
-                }
-                else if (product instanceof Drinks)
-                {
+                } else if (product instanceof Drinks) {
                     Drinks drinks = (Drinks) product;
                     if (drinks.getAmountOfDrinks() == 1) {
                         if (numToRemove > drinks.getAmountOfDrinks()) {
@@ -1000,7 +1029,7 @@ public class UserInterface {
                         } else {
                             currentOrder.remove(drinks);
                             JOptionPane.showMessageDialog(mainFrame,
-                                    numToRemove + "x of "+ drinks.getSelectedFlavor() + " removed from cart!",
+                                    numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
                                     "Item Removed", JOptionPane.INFORMATION_MESSAGE);
                             showViewCartMenu();
                         }
@@ -1012,8 +1041,7 @@ public class UserInterface {
                             showViewCartMenu();
                         } else {
                             drinks.setAmountOfDrinks(drinks.getAmountOfDrinks() - numToRemove);
-                            if(drinks.getAmountOfDrinks() == 0)
-                            {
+                            if (drinks.getAmountOfDrinks() == 0) {
                                 currentOrder.remove(drinks);
                             }
                             JOptionPane.showMessageDialog(mainFrame,
@@ -1022,9 +1050,7 @@ public class UserInterface {
                             showViewCartMenu();
                         }
                     }
-                }
-                else if(product instanceof Sandwich)
-                {
+                } else if (product instanceof Sandwich) {
                     JOptionPane.showMessageDialog(mainFrame,
                             "Sandwiches cannot have partial quantities removed.",
                             "Cannot Remove", JOptionPane.WARNING_MESSAGE);
@@ -1052,16 +1078,13 @@ public class UserInterface {
                     JOptionPane.WARNING_MESSAGE);
 
             if (result == JOptionPane.YES_OPTION) {
-                if(currentOrder.isEmpty())
-                {
+                if (currentOrder.isEmpty()) {
                     JOptionPane.showMessageDialog(mainFrame,
                             "Your Cart is already Empty.",
                             "Cart Cleared",
                             JOptionPane.WARNING_MESSAGE);
                     showViewCartMenu();
-                }
-                else
-                {
+                } else {
                     currentOrder.clear();
                     JOptionPane.showMessageDialog(mainFrame,
                             "Cart cleared successfully!",
