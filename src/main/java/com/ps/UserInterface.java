@@ -369,7 +369,7 @@ public class UserInterface {
 
         //sides
         JPanel sidesPanel = new JPanel();
-        sidesPanel.setLayout(new BoxLayout(sidesPanel, BoxLayout.Y_AXIS)); // Fixed: changed saucesPanel to sidesPanel
+        sidesPanel.setLayout(new BoxLayout(sidesPanel, BoxLayout.Y_AXIS));
         sidesPanel.setBackground(Color.WHITE);
         sidesPanel.setBorder(BorderFactory.createTitledBorder("Sides"));
         for (String sides : Toppings.getSideToppings()) {
@@ -405,8 +405,8 @@ public class UserInterface {
 
         //cancel order and add buttons
         int buttonSpacing = 15;
-        JButton addToCartButton = new JButton("Add to Cart");
-        JButton cancelOrderButton = new JButton("Cancel Order");
+        JButton addToCartButton = new JButton("🛒  Add to Cart");
+        JButton cancelOrderButton = new JButton("❌  Cancel Order");
 
         //adding to cart
         addToCartButton.addActionListener(e -> {
@@ -571,8 +571,8 @@ public class UserInterface {
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
         buttonsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton addToCartButton = new JButton("Add to Cart");
-        JButton cancelOrderButton = new JButton("Cancel Order");
+        JButton addToCartButton = new JButton("🛒  Add to Cart");
+        JButton cancelOrderButton = new JButton("❌  Cancel Order");
 
         //adding to cart
         addToCartButton.addActionListener(e -> {
@@ -699,8 +699,8 @@ public class UserInterface {
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
         buttonsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton addToCartButton = new JButton("Add to Cart");
-        JButton cancelOrderButton = new JButton("Cancel Order");
+        JButton addToCartButton = new JButton("🛒  Add to Cart");
+        JButton cancelOrderButton = new JButton("❌  Cancel Order");
 
         //adding to cart
         addToCartButton.addActionListener(e -> {
@@ -1040,15 +1040,38 @@ public class UserInterface {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 10));
         buttonPanel.setBackground(Color.WHITE);
 
-        JButton btnBack = new JButton("Back to Main Menu");
+        JButton btnBack = new JButton("⬅️  Back to Main Menu");
         btnBack.addActionListener(e -> newinitMainMenu());
 
-        JButton btnClearCart = new JButton("Clear Cart");
+        JButton btnClearCart = new JButton("❌ Clear Cart");
         btnClearCart.addActionListener(e -> {
-            currentOrder.clear();
-            showViewCartMenu();
+            int result = JOptionPane.showConfirmDialog(mainFrame,
+                    "Are you sure you want to clear all items from your cart?",
+                    "Clear Cart",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+
+            if (result == JOptionPane.YES_OPTION) {
+                if(currentOrder.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(mainFrame,
+                            "Your Cart is already Empty.",
+                            "Cart Cleared",
+                            JOptionPane.WARNING_MESSAGE);
+                    showViewCartMenu();
+                }
+                else
+                {
+                    currentOrder.clear();
+                    JOptionPane.showMessageDialog(mainFrame,
+                            "Cart cleared successfully!",
+                            "Cart Cleared",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    showViewCartMenu();
+                }
+            }
         });
-        JButton btnCheckOut = new JButton("Checkout");
+        JButton btnCheckOut = new JButton("💳  Checkout");
         btnCheckOut.addActionListener(e -> checkOutMenu());
 
         int maxWidth = Math.max(btnBack.getPreferredSize().width,
@@ -1116,9 +1139,9 @@ public class UserInterface {
         });
         //cancel the checkout
         cancelButton.addActionListener(e -> showViewCartMenu());
-        confirmButton.setBackground(new Color(0, 255, 0));
+        confirmButton.setBackground(new Color(34, 139, 34));
         confirmButton.setForeground(Color.WHITE);
-        cancelButton.setBackground(new Color(255, 0, 0));
+        cancelButton.setBackground(new Color(220, 20, 60));
         cancelButton.setForeground(Color.WHITE);
         buttonPanel.add(confirmButton);
         buttonPanel.add(cancelButton);
