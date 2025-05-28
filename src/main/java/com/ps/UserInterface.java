@@ -1369,7 +1369,7 @@ public class UserInterface {
                 FileManager.generateReceipt(totalPrice, currentOrder);
                 currentOrder.clear();
                 JOptionPane.showMessageDialog(mainFrame,
-                        "Order confirmed! Receipt saved.\nThank you for your order!",
+                        "Order confirmed! Receipt saved.\n    Thank you for your order!",
                         "Order Complete", JOptionPane.INFORMATION_MESSAGE);
                 newinitMainMenu();
             }
