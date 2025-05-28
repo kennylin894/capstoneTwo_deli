@@ -211,7 +211,7 @@ public class UserInterface {
                 | Sides (Free)     | Au Jus           |          |          |          |
                 |                  | Sauce            |          |          |          |
                 +------------------+------------------+----------+----------+----------+
-                |                            Drinks                                    |
+                |                   Drinks                                             |
                 +------------------+------------------+----------+----------+----------+
                 | Sizes            |                  | Small    | Medium   | Large    |
                 +------------------+------------------+----------+----------+----------+
@@ -226,19 +226,19 @@ public class UserInterface {
                 | Ginger Ale       |                  |  $2.00   |  $2.50   |  $3.00   |
                 | Water            |                  |  $2.00   |  $2.50   |  $3.00   |
                 +------------------+------------------+----------+----------+----------+
-                |                            Chips                                     |
-                +-------------------+------------------+----------+----------+---------+
-                | Original          |                  |  $1.50   |          |         |
-                | BBQ               |                  |  $1.50   |          |         |
-                | Sour Cream & Onion|                  |  $1.50   |          |         |
-                | Salt & Vinegar    |                  |  $1.50   |          |         |
-                | Jalapeño          |                  |  $1.50   |          |         |
-                | Cheddar Cheese    |                  |  $1.50   |          |         |
-                | Lime              |                  |  $1.50   |          |         |
-                | Sea Salt          |                  |  $1.50   |          |         |
-                | Kettle Cooked     |                  |  $1.50   |          |         |
-                | Spicy Nacho       |                  |  $1.50   |          |         |
-                +------------------+-------------------+----------+----------+---------+
+                |                   Chips                                             |
+                +------------------+------------------+----------+----------+---------+
+                | Original         |                  |  $1.50   |          |         |
+                | BBQ              |                  |  $1.50   |          |         |
+                | Sour Creamn Onion|                  |  $1.50   |          |         |
+                | Salt & Vinegar   |                  |  $1.50   |          |         |
+                | Jalapeño         |                  |  $1.50   |          |         |
+                | Cheddar Cheese   |                  |  $1.50   |          |         |
+                | Lime             |                  |  $1.50   |          |         |
+                | Sea Salt         |                  |  $1.50   |          |         |
+                | Kettle Cooked    |                  |  $1.50   |          |         |
+                | Spicy Nacho      |                  |  $1.50   |          |         |
+                +------------------+------------------+----------+----------+---------+
                 """);
         JScrollPane scrollPane = new JScrollPane(menuTextArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -853,7 +853,7 @@ public class UserInterface {
                         cartTextArea.append("------Drinks-------\n");
                         drinkLabelPrinted = true;
                     }
-                    String stringBuilder = "Drink Order" + "\n" +
+                    String stringBuilder = "Drinks" + "\n" +
                             "-------------------" + "\n" +
                             "Flavor: " + ((Drinks) item).getSelectedFlavor() + "\n" +
                             "Size: " + ((Drinks) item).getSelectedSize() + "\n" +
@@ -870,7 +870,7 @@ public class UserInterface {
                         cartTextArea.append("-------Chips-------\n");
                         chipLabelPrinted = true;
                     }
-                    String stringBuilder = "Chips Order" + "\n" +
+                    String stringBuilder = "Chips" + "\n" +
                             "-------------------" + "\n" +
                             "Flavor: " + ((Chips) item).getChosenChip() + "\n" +
                             "Quantity: " + ((Chips) item).getAmountOfChips() + "\n" +
@@ -945,22 +945,32 @@ public class UserInterface {
         removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeButton.setBackground(new Color(255, 100, 100));
         removeButton.addActionListener(e -> {
-            if (itemDropdown.getSelectedIndex() >= 0 && !currentOrder.isEmpty()) {
-                int selectedIndex = itemDropdown.getSelectedIndex();
-                Product removedItem = currentOrder.get(selectedIndex);
-                currentOrder.remove(selectedIndex);
-                String itemType = "";
-                if (removedItem instanceof Sandwich) {
-                    itemType = "Sandwich";
-                } else if (removedItem instanceof Drinks) {
-                    itemType = "Drink";
-                } else if (removedItem instanceof Chips) {
-                    itemType = "Chips";
-                }
+            if(currentOrder.isEmpty())
+            {
                 JOptionPane.showMessageDialog(mainFrame,
-                        itemType + " removed from cart!",
-                        "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                        "        Your Cart is Empty",
+                        "Error", JOptionPane.WARNING_MESSAGE);
                 showViewCartMenu();
+            }
+            else
+            {
+                if (itemDropdown.getSelectedIndex() >= 0 && !currentOrder.isEmpty()) {
+                    int selectedIndex = itemDropdown.getSelectedIndex();
+                    Product removedItem = currentOrder.get(selectedIndex);
+                    currentOrder.remove(selectedIndex);
+                    String itemType = "";
+                    if (removedItem instanceof Sandwich) {
+                        itemType = "Sandwich";
+                    } else if (removedItem instanceof Drinks) {
+                        itemType = "Drink";
+                    } else if (removedItem instanceof Chips) {
+                        itemType = "Chips";
+                    }
+                    JOptionPane.showMessageDialog(mainFrame,
+                            itemType + " removed from cart!",
+                            "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                    showViewCartMenu();
+                }
             }
         });
         removePanel.add(removeButton);
@@ -981,79 +991,88 @@ public class UserInterface {
         removeQuantityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeQuantityButton.setBackground(new Color(255, 100, 100));
         removeQuantityButton.addActionListener(e -> {
-            // TODO: Add quantity removal logic here
-            int selectedIndex = itemDropdown.getSelectedIndex();
-            Product product = currentOrder.get(selectedIndex);
-            int numToRemove = quantityDropdown.getSelectedIndex() + 1;
-            if (selectedIndex >= 0 && !currentOrder.isEmpty()) {
-                if (product instanceof Chips) {
-                    Chips chips = (Chips) product;
-                    if (chips.getAmountOfChips() == 1) {
-                        if (numToRemove > chips.getAmountOfChips()) {
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
-                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
-                            showViewCartMenu();
-                        } else {
-                            currentOrder.remove(chips);
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
-                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-                            showViewCartMenu();
-                        }
-                    } else {
-                        if (numToRemove > chips.getAmountOfChips()) {
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
-                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
-                            showViewCartMenu();
-                        } else {
-                            chips.setAmountOfChips(chips.getAmountOfChips() - numToRemove);
-                            if (chips.getAmountOfChips() == 0) {
+            if(currentOrder.isEmpty())
+            {
+                JOptionPane.showMessageDialog(mainFrame,
+                        "        Your Cart is Empty",
+                        "Error", JOptionPane.WARNING_MESSAGE);
+                showViewCartMenu();
+            }
+            else
+            {
+                int selectedIndex = itemDropdown.getSelectedIndex();
+                Product product = currentOrder.get(selectedIndex);
+                int numToRemove = quantityDropdown.getSelectedIndex() + 1;
+                if (selectedIndex >= 0 && !currentOrder.isEmpty()) {
+                    if (product instanceof Chips) {
+                        Chips chips = (Chips) product;
+                        if (chips.getAmountOfChips() == 1) {
+                            if (numToRemove > chips.getAmountOfChips()) {
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
+                                        "Cannot Remove", JOptionPane.WARNING_MESSAGE);
+                                showViewCartMenu();
+                            } else {
                                 currentOrder.remove(chips);
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
+                                        "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                                showViewCartMenu();
                             }
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
-                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-                            showViewCartMenu();
-                        }
-                    }
-                } else if (product instanceof Drinks) {
-                    Drinks drinks = (Drinks) product;
-                    if (drinks.getAmountOfDrinks() == 1) {
-                        if (numToRemove > drinks.getAmountOfDrinks()) {
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
-                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
-                            showViewCartMenu();
                         } else {
-                            currentOrder.remove(drinks);
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
-                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-                            showViewCartMenu();
+                            if (numToRemove > chips.getAmountOfChips()) {
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
+                                        "Cannot Remove", JOptionPane.WARNING_MESSAGE);
+                                showViewCartMenu();
+                            } else {
+                                chips.setAmountOfChips(chips.getAmountOfChips() - numToRemove);
+                                if (chips.getAmountOfChips() == 0) {
+                                    currentOrder.remove(chips);
+                                }
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
+                                        "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                                showViewCartMenu();
+                            }
                         }
-                    } else {
-                        if (numToRemove > drinks.getAmountOfDrinks()) {
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
-                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
-                            showViewCartMenu();
-                        } else {
-                            drinks.setAmountOfDrinks(drinks.getAmountOfDrinks() - numToRemove);
-                            if (drinks.getAmountOfDrinks() == 0) {
+                    } else if (product instanceof Drinks) {
+                        Drinks drinks = (Drinks) product;
+                        if (drinks.getAmountOfDrinks() == 1) {
+                            if (numToRemove > drinks.getAmountOfDrinks()) {
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
+                                        "Cannot Remove", JOptionPane.WARNING_MESSAGE);
+                                showViewCartMenu();
+                            } else {
                                 currentOrder.remove(drinks);
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
+                                        "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                                showViewCartMenu();
                             }
-                            JOptionPane.showMessageDialog(mainFrame,
-                                    numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
-                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-                            showViewCartMenu();
+                        } else {
+                            if (numToRemove > drinks.getAmountOfDrinks()) {
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
+                                        "Cannot Remove", JOptionPane.WARNING_MESSAGE);
+                                showViewCartMenu();
+                            } else {
+                                drinks.setAmountOfDrinks(drinks.getAmountOfDrinks() - numToRemove);
+                                if (drinks.getAmountOfDrinks() == 0) {
+                                    currentOrder.remove(drinks);
+                                }
+                                JOptionPane.showMessageDialog(mainFrame,
+                                        numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
+                                        "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                                showViewCartMenu();
+                            }
                         }
+                    } else if (product instanceof Sandwich) {
+                        JOptionPane.showMessageDialog(mainFrame,
+                                "Sandwiches cannot have partial quantities removed.",
+                                "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                     }
-                } else if (product instanceof Sandwich) {
-                    JOptionPane.showMessageDialog(mainFrame,
-                            "Sandwiches cannot have partial quantities removed.",
-                            "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -1148,7 +1167,7 @@ public class UserInterface {
         confirmButton.addActionListener(e -> {
             if (currentOrder.isEmpty()) {
                 JOptionPane.showMessageDialog(mainFrame,
-                        "You have nothing in your cart.\nPlease add items.",
+                        "You have nothing in your cart.\n        Please add items.",
                         "Order Failed", JOptionPane.INFORMATION_MESSAGE);
                 newinitMainMenu();
             } else {
