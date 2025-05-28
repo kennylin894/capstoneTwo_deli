@@ -1179,7 +1179,7 @@ public class UserInterface {
         quantityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         removePanel.add(quantityLabel);
         removePanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        Integer[] removeAmount = {1, 2, 3, 4, 5};
+        Integer[] removeAmount = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         JComboBox<Integer> quantityDropdown = new JComboBox<>(removeAmount);
         quantityDropdown.setMaximumSize(new Dimension(100, 30));
         quantityDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
