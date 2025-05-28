@@ -708,10 +708,22 @@ public class UserInterface {
             String selectedSize = (String) sizeOptionsBox.getSelectedItem();
             Integer selectedQuantity = (Integer) quantityBox.getSelectedItem();
 
-            //create new drink and add to cart
-            Drinks drink = new Drinks(selectedSize, selectedQuantity, selectedFlavor);
-            currentOrder.add(drink);
-
+            boolean found = false;
+            for(Product product : currentOrder) {
+                if(product instanceof Drinks) {
+                    Drinks existingDrinks = (Drinks) product;
+                    if(existingDrinks.getSelectedFlavor().equals(selectedFlavor) && existingDrinks.getSelectedSize().equals(selectedSize)) {
+                        int newQuantity = existingDrinks.getAmountOfDrinks() + selectedQuantity;
+                        existingDrinks.setAmountOfDrinks(newQuantity);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(!found) {
+                Drinks drinks = new Drinks(selectedSize,selectedQuantity, selectedFlavor);
+                currentOrder.add(drinks);
+            }
             JOptionPane.showMessageDialog(mainFrame, String.format("Added %d %s %s drink(s) to cart!",
                             selectedQuantity, selectedSize, selectedFlavor),
                     "Success", JOptionPane.INFORMATION_MESSAGE);

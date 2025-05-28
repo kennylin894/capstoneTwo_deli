@@ -62,4 +62,8 @@ public class Drinks implements Product {
     public static ArrayList<String> getAllFlavors() {
         return flavors;
     }
+
+    public void setAmountOfDrinks(int amountOfDrinks) {
+        this.amountOfDrinks = amountOfDrinks;
+    }
 }
