@@ -17,6 +17,16 @@ public class Drinks implements Product {
         add("Fruit Punch");
         add("Ginger Ale");
         add("Water");
+        add("Thai Tea");
+        add("Taro Boba");
+        add("Matcha Latte");
+        add("Coffee");
+        add("Iced Coffee");
+        add("Green Tea");
+        add("Jasmine Tea");
+        add("Mango Smoothie");
+        add("Strawberry Smoothie");
+        add("Hot Chocolate");
     }};
     private String selectedFlavor;
 
