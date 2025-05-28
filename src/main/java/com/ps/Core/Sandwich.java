@@ -2,8 +2,6 @@ package com.ps.Core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 public class Sandwich implements Product{
     private final static ArrayList<Integer> sizes = new ArrayList<>(Arrays.asList(4, 8, 12));
@@ -12,9 +10,9 @@ public class Sandwich implements Product{
     private final static ArrayList<String> breadTypes = new ArrayList<>(Arrays.asList("white", "wheat", "rye", "wrap","italian"));
     private String choosenBreadType;
     private boolean isToasted;
-    private ArrayList<Topping> toppings;
+    private ArrayList<Toppings> toppings;
 
-    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<Topping> toppings) {
+    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<Toppings> toppings) {
         this.choosenSize = choosenSize;
         this.choosenBreadType = choosenBreadType;
         this.isToasted = isToasted;
@@ -55,14 +53,14 @@ public class Sandwich implements Product{
         return 0.0;
     }
 
-    public ArrayList<Topping> getToppings() {
+    public ArrayList<Toppings> getToppings() {
         return toppings;
     }
 
     public double getAllToppingsPrice()
     {
         double topppingTotal = 0.0;
-        for(Topping toppings1: toppings)
+        for(Toppings toppings1: toppings)
         {
             topppingTotal += toppings1.getPrice(getChoosenSize());
         }
@@ -90,7 +88,7 @@ public class Sandwich implements Product{
         isToasted = toasted;
     }
 
-    public void setToppings(ArrayList<Topping> toppings) {
+    public void setToppings(ArrayList<Toppings> toppings) {
         this.toppings = toppings;
     }
 }

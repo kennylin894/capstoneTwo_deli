@@ -3,7 +3,7 @@ package com.ps.Core;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class PremiumToppings extends Topping {
+public class PremiumToppings extends Toppings {
     private static final ArrayList<String> meatToppings = new ArrayList<>(Arrays.asList(
             "Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon", "extra meat"
     ));

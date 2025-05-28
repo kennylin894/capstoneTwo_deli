@@ -1,42 +1,21 @@
 package com.ps.Core;
 
+public abstract class Toppings {
+    protected String name;
+    protected boolean isPremium;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-public class Toppings extends Topping {
-    private static final ArrayList<String> regularToppings = new ArrayList<>(Arrays.asList(
-            "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños",
-            "Cucumbers", "Pickles", "Guacamole", "Mushrooms"
-    ));
-
-    private static final ArrayList<String> sauceToppings = new ArrayList<>(Arrays.asList(
-            "Mayo", "Mustard", "Ketchup", "Ranch", "Thousand Isl", "Vinaigrette"
-    ));
-
-    private static final ArrayList<String> sideToppings = new ArrayList<>(Arrays.asList(
-            "Au Jus", "Sauce"
-    ));
-
-
-    public Toppings(String name) {
-        super(name, false);
+    public Toppings(String name, boolean isPremium) {
+        this.name = name;
+        this.isPremium = isPremium;
     }
 
-    @Override
-    public double getPrice(int sandwichSize) {
-        return 0.0;
+    public abstract double getPrice(int sandwichSize);
+
+    public String getName() {
+        return name;
     }
 
-    public static ArrayList<String> getToppings() {
-        return regularToppings;
-    }
-
-    public static ArrayList<String> getSauceToppings() {
-        return sauceToppings;
-    }
-
-    public static ArrayList<String> getSideToppings() {
-        return sideToppings;
+    public boolean isPremium() {
+        return isPremium;
     }
 }

@@ -45,13 +45,13 @@ public class FileManager {
                         summary.append(" * Toasted\n");
                     }
                     summary.append("Toppings:\n");
-                    for (Topping topping : ((Sandwich) item).getToppings()) {
-                        if (topping.getName().equals("extra meat")) {
+                    for (Toppings toppings : ((Sandwich) item).getToppings()) {
+                        if (toppings.getName().equals("extra meat")) {
                             summary.append(" * Extra Meat\n");
-                        } else if (topping.getName().equals("extra cheese")) {
+                        } else if (toppings.getName().equals("extra cheese")) {
                             summary.append(" * Extra Cheese\n");
                         } else {
-                            summary.append("- ").append(topping.getName()).append("\n");
+                            summary.append("- ").append(toppings.getName()).append("\n");
                         }
                     }
                     summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n\n");
@@ -142,15 +142,15 @@ public class FileManager {
                     }
                     bufferedWriter.write("Toppings:");
                     bufferedWriter.newLine();
-                    for (Topping topping : ((Sandwich) item).getToppings()) {
-                        if (topping.getName().equals("extra meat")) {
+                    for (Toppings toppings : ((Sandwich) item).getToppings()) {
+                        if (toppings.getName().equals("extra meat")) {
                             bufferedWriter.write(" * Extra Meat");
                             bufferedWriter.newLine();
-                        } else if (topping.getName().equals("extra cheese")) {
+                        } else if (toppings.getName().equals("extra cheese")) {
                             bufferedWriter.write(" * Extra Cheese");
                             bufferedWriter.newLine();
                         } else {
-                            bufferedWriter.write("- " + topping.getName());
+                            bufferedWriter.write("- " + toppings.getName());
                             bufferedWriter.newLine();
                         }
                     }
