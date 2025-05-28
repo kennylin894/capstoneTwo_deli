@@ -492,7 +492,7 @@ public class UserInterface {
                     }
                 }
             }
-            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings);
+            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings,"custom");
             currentOrder.add(sandwich);
             if (!hasMeats) {
                 JOptionPane.showMessageDialog(mainFrame, "Your order has no meats!", "No Meats", JOptionPane.INFORMATION_MESSAGE);
@@ -561,7 +561,7 @@ public class UserInterface {
             bltToppings.add(new Freetoppings("Tomatoes"));
             bltToppings.add(new Freetoppings("Mayo"));
 
-            Sandwich blt = new Sandwich(8, "white", true, bltToppings);
+            Sandwich blt = new Sandwich(8, "white", true, bltToppings,"BLT - Classic");
             createSandwich(blt,"BLT - Classic");
         });
 
@@ -577,7 +577,7 @@ public class UserInterface {
             phillyToppings.add(new Freetoppings("Peppers"));
             phillyToppings.add(new Freetoppings("Onions"));
 
-            Sandwich philly = new Sandwich(8, "white", true, phillyToppings);
+            Sandwich philly = new Sandwich(8, "white", true, phillyToppings,"Philly Cheese Steak");
             createSandwich(philly, "Philly Cheese Steak");
         });
 
@@ -596,7 +596,7 @@ public class UserInterface {
             italianToppings.add(new Freetoppings("Onions"));
             italianToppings.add(new Freetoppings("Vinaigrette"));
 
-            Sandwich italian = new Sandwich(8, "italian", true, italianToppings);
+            Sandwich italian = new Sandwich(8, "italian", true, italianToppings,"Italian Sub");
             createSandwich(italian, "Italian Sub");
         });
 
@@ -614,7 +614,7 @@ public class UserInterface {
             chickenClubToppings.add(new Freetoppings("Tomatoes"));
             chickenClubToppings.add(new Freetoppings("Mayo"));
 
-            Sandwich chickenClub = new Sandwich(8, "white", true, chickenClubToppings);
+            Sandwich chickenClub = new Sandwich(8, "white", true, chickenClubToppings,"Chicken Club");
             createSandwich(chickenClub, "Chicken Club");
         });
 
@@ -634,10 +634,8 @@ public class UserInterface {
             veggieToppings.add(new Freetoppings("Mushrooms"));
             veggieToppings.add(new Freetoppings("Mayo"));
 
-            Sandwich veggie = new Sandwich(8, "wheat", true, veggieToppings);
-            createSandwich(veggie, "Veggie");
-            JOptionPane.showMessageDialog(mainFrame, "Veggie Supreme added to cart!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            newinitMainMenu();
+            Sandwich veggie = new Sandwich(8, "wheat", true, veggieToppings,"Veggie Supreme");
+            createSandwich(veggie, "Veggie Supreme");
         });
 
         //roast beef deluxe
@@ -655,7 +653,7 @@ public class UserInterface {
             roastBeefToppings.add(new Freetoppings("Pickles"));
             roastBeefToppings.add(new Freetoppings("Mustard"));
 
-            Sandwich roastBeefDeluxe = new Sandwich(8, "rye", true, roastBeefToppings);
+            Sandwich roastBeefDeluxe = new Sandwich(8, "rye", true, roastBeefToppings,"Roast Beef Deluxe");
             createSandwich(roastBeefDeluxe, "Roast Beef Deluxe");
         });
 
@@ -672,7 +670,7 @@ public class UserInterface {
             hamSwissToppings.add(new Freetoppings("Tomatoes"));
             hamSwissToppings.add(new Freetoppings("Mustard"));
 
-            Sandwich hamSwiss = new Sandwich(8, "rye", true, hamSwissToppings);
+            Sandwich hamSwiss = new Sandwich(8, "rye", true, hamSwissToppings,"Ham & Swiss Classic");
             createSandwich(hamSwiss, "Ham & Swiss Classic");
         });
 
@@ -690,7 +688,7 @@ public class UserInterface {
             salamiToppings.add(new Freetoppings("Jalapeños"));
             salamiToppings.add(new Freetoppings("Mustard"));
 
-            Sandwich salami = new Sandwich(8, "italian", true, salamiToppings);
+            Sandwich salami = new Sandwich(8, "italian", true, salamiToppings,"Spicy Salami Supreme");
             createSandwich(salami, "Spicy Salami Supreme");
         });
 
@@ -708,7 +706,7 @@ public class UserInterface {
             chickenWrapToppings.add(new Freetoppings("Guacamole"));
             chickenWrapToppings.add(new Freetoppings("Ranch"));
 
-            Sandwich chickenWrap = new Sandwich(8, "wrap", false, chickenWrapToppings);
+            Sandwich chickenWrap = new Sandwich(8, "wrap", false, chickenWrapToppings,"Chicken Avocado Wrap");
             createSandwich(chickenWrap, "Chicken Avocado Wrap");
         });
 
@@ -1014,7 +1012,14 @@ public class UserInterface {
                         sandwichLabelPrinted = true;
                     }
                     StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("Sandwich #" + count).append("\n");
+                    if(((Sandwich) item).getSandwichName().equals("custom"))
+                    {
+                        stringBuilder.append("Sandwich #" + count).append("\n");
+                    }
+                    else
+                    {
+                        stringBuilder.append(((Sandwich) item).getSandwichName()).append("\n");
+                    }
                     stringBuilder.append("-------------------").append("\n");
                     stringBuilder.append("Size: " + ((Sandwich) item).getChoosenSize()).append("'").append("\n");
                     stringBuilder.append("Bread: " + ((Sandwich) item).getChoosenBreadType()).append("\n");
@@ -1638,7 +1643,7 @@ public class UserInterface {
                     }
                 }
             }
-            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings);
+            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings,itemName);
             currentOrder.add(sandwich);
             JOptionPane.showMessageDialog(mainFrame, itemName + " added to cart!", "Success", JOptionPane.INFORMATION_MESSAGE);
             newinitMainMenu();

@@ -11,12 +11,22 @@ public class Sandwich implements Product{
     private String choosenBreadType;
     private boolean isToasted;
     private ArrayList<Toppings> toppings;
+    private String sandwichName;
 
-    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<Toppings> toppings) {
+    public Sandwich(int choosenSize, String choosenBreadType, boolean isToasted, ArrayList<Toppings> toppings, String sandwichName) {
         this.choosenSize = choosenSize;
         this.choosenBreadType = choosenBreadType;
         this.isToasted = isToasted;
         this.toppings = toppings;
+        this.sandwichName = sandwichName;
+    }
+
+    public String getSandwichName() {
+        return sandwichName;
+    }
+
+    public void setSandwichName(String sandwichName) {
+        this.sandwichName = sandwichName;
     }
 
     public static ArrayList<String> getAllBreadTypes()
