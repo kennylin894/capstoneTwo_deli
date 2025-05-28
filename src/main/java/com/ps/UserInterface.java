@@ -918,9 +918,17 @@ public class UserInterface {
                 Product removedItem = currentOrder.get(selectedIndex);
                 currentOrder.remove(selectedIndex);
                 String itemType = "";
-                if (removedItem instanceof Sandwich) itemType = "Sandwich";
-                else if (removedItem instanceof Drinks) itemType = "Drink";
-                else if (removedItem instanceof Chips) itemType = "Chips";
+                if (removedItem instanceof Sandwich) {
+                    itemType = "Sandwich";
+                }
+                else if (removedItem instanceof Drinks)
+                {
+                    itemType = "Drink";
+                }
+                else if (removedItem instanceof Chips)
+                {
+                    itemType = "Chips";
+                }
                 JOptionPane.showMessageDialog(mainFrame,
                         itemType + " removed from cart!",
                         "Item Removed", JOptionPane.INFORMATION_MESSAGE);
@@ -929,6 +937,26 @@ public class UserInterface {
         });
         removePanel.add(removeButton);
 
+        //removing a certain amount of an item
+        removePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        JLabel quantityLabel = new JLabel("Quantity to remove:");
+        quantityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        removePanel.add(quantityLabel);
+        removePanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        Integer[] removeAmount = {1, 2, 3, 4, 5};
+        JComboBox<Integer> quantityDropdown = new JComboBox<>(removeAmount);
+        quantityDropdown.setMaximumSize(new Dimension(100, 30));
+        quantityDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
+        removePanel.add(quantityDropdown);
+        removePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        JButton removeQuantityButton = new JButton("Remove Quantity");
+        removeQuantityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        removeQuantityButton.setBackground(new Color(255, 100, 100));
+        removeQuantityButton.addActionListener(e -> {
+            // TODO: Add quantity removal logic here
+        });
+
+        removePanel.add(removeQuantityButton);
         centerPanel.add(leftPanel, BorderLayout.CENTER);
         centerPanel.add(removePanel, BorderLayout.EAST);
         cartPanel.add(centerPanel, BorderLayout.CENTER);
