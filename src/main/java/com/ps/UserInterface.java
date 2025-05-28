@@ -121,7 +121,7 @@ public class UserInterface {
                 +------------------+------------------+----------+----------+----------+
                 | Sandwich         | Ingredients      |   4"     |   8"     |   12"    |
                 +------------------+------------------+----------+----------+----------+
-                | BLT Classic      | White Bread      |  $8.00   |  $10.25  |  $12.50  |
+                | BLT Classic      | White Bread      |  $7.25   | $10.50   | $13.75   |
                 | (Toasted)        | Toasted          |          |          |          |
                 |                  | Bacon            |          |          |          |
                 |                  | American Cheese  |          |          |          |
@@ -129,15 +129,15 @@ public class UserInterface {
                 |                  | Tomato           |          |          |          |
                 |                  | Mayo             |          |          |          |
                 +------------------+------------------+----------+----------+----------+
-                | Philly Steak     | White Bread      |  $8.25   |  $10.50  |  $12.75  |
+                | Philly Steak     | White Bread      |  $7.25   | $10.50   | $13.75   |
                 | (Toasted)        | Toasted          |          |          |          |
                 |                  | Steak            |          |          |          |
-                |                  | American Cheese  |          |          |          |
+                |                  | Provolone        |          |          |          |
                 |                  | Peppers          |          |          |          |
                 |                  | Onions           |          |          |          |
-                |                  | Mayo             |          |          |          |
                 +------------------+------------------+----------+----------+----------+
-                | Italian Sub      | White Bread      | $10.50   | $13.25   | $15.25   |
+                | Italian Sub      | White Bread      |  $9.75   | $14.00   | $18.25   |
+                | (Toasted)        | Toasted          |          |          |          |
                 |                  | Ham              |          |          |          |
                 |                  | Salami           |          |          |          |
                 |                  | Provolone        |          |          |          |
@@ -146,24 +146,60 @@ public class UserInterface {
                 |                  | Onion            |          |          |          |
                 |                  | Vinaigrette      |          |          |          |
                 +------------------+------------------+----------+----------+----------+
-                | Turkey Club      | Wheat Bread      |  $9.75   | $12.25   | $14.50   |
+                | Chicken Club     | White Bread      |  $9.25   | $13.50   | $17.75   |
                 | (Toasted)        | Toasted          |          |          |          |
                 |                  | Chicken          |          |          |          |
                 |                  | Bacon            |          |          |          |
-                |                  | Swiss Cheese     |          |          |          |
+                |                  | American Cheese  |          |          |          |
                 |                  | Lettuce          |          |          |          |
                 |                  | Tomato           |          |          |          |
-                |                  | Ranch            |          |          |          |
+                |                  | Mayo             |          |          |          |
                 +------------------+------------------+----------+----------+----------+
-                | Veggie Supreme   | Rye Bread        |  $7.75   | $10.00   | $12.25   |
-                |                  | Cheddar Cheese   |          |          |          |
-                |                  | Swiss Cheese     |          |          |          |
+                | Veggie Supreme   | Wheat Bread      |  $6.25   |  $8.50   | $10.75   |
+                | (Toasted)        | Toasted          |          |          |          |
+                |                  | American Cheese  |          |          |          |
                 |                  | Lettuce          |          |          |          |
                 |                  | Tomato           |          |          |          |
                 |                  | Peppers          |          |          |          |
                 |                  | Onions           |          |          |          |
                 |                  | Cucumbers        |          |          |          |
                 |                  | Mushrooms        |          |          |          |
+                |                  | Mayo             |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Roast Beef       | Rye Bread        |  $7.25   | $10.50   | $13.75   |
+                | Deluxe (Toasted) | Toasted          |          |          |          |
+                |                  | Roast Beef       |          |          |          |
+                |                  | Swiss Cheese     |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Onions           |          |          |          |
+                |                  | Pickles          |          |          |          |
+                |                  | Mustard          |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Ham & Swiss      | Rye Bread        |  $7.25   | $10.50   | $13.75   |
+                | Classic (Toasted)| Toasted          |          |          |          |
+                |                  | Ham              |          |          |          |
+                |                  | Swiss Cheese     |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Mustard          |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Spicy Salami     | Italian Bread    |  $7.25   | $10.50   | $13.75   |
+                | Supreme (Toasted)| Toasted          |          |          |          |
+                |                  | Salami           |          |          |          |
+                |                  | Cheddar Cheese   |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Onions           |          |          |          |
+                |                  | Jalapeños        |          |          |          |
+                |                  | Mustard          |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Chicken Avocado  | Wrap             |  $7.25   | $10.50   | $13.75   |
+                | Wrap             |                  |          |          |          |
+                |                  | Chicken          |          |          |          |
+                |                  | Provolone        |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Guacamole        |          |          |          |
                 |                  | Ranch            |          |          |          |
                 +------------------+------------------+----------+----------+----------+
                 |                   BUILD YOUR OWN SANDWICH                            |
@@ -211,7 +247,7 @@ public class UserInterface {
                 | Sides (Free)     | Au Jus           |          |          |          |
                 |                  | Sauce            |          |          |          |
                 +------------------+------------------+----------+----------+----------+
-                |                   Drinks                                             |
+                |                               DRINKS                                 |
                 +------------------+------------------+----------+----------+----------+
                 | Sizes            |                  | Small    | Medium   | Large    |
                 +------------------+------------------+----------+----------+----------+
@@ -225,12 +261,23 @@ public class UserInterface {
                 | Fruit Punch      |                  |  $2.00   |  $2.50   |  $3.00   |
                 | Ginger Ale       |                  |  $2.00   |  $2.50   |  $3.00   |
                 | Water            |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Thai Tea         |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Taro Boba        |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Matcha Latte     |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Coffee           |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Iced Coffee      |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Green Tea        |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Jasmine Tea      |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Mango Smoothie   |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Strawberry       |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Smoothie         |                  |          |          |          |
+                | Hot Chocolate    |                  |  $2.00   |  $2.50   |  $3.00   |
                 +------------------+------------------+----------+----------+----------+
-                |                   Chips                                             |
+                |                              SNACKS                                 |
                 +------------------+------------------+----------+----------+---------+
                 | Original         |                  |  $1.50   |          |         |
                 | BBQ              |                  |  $1.50   |          |         |
-                | Sour Creamn Onion|                  |  $1.50   |          |         |
+                | Sour Cream Onion |                  |  $1.50   |          |         |
                 | Salt & Vinegar   |                  |  $1.50   |          |         |
                 | Jalapeño         |                  |  $1.50   |          |         |
                 | Cheddar Cheese   |                  |  $1.50   |          |         |
@@ -238,6 +285,20 @@ public class UserInterface {
                 | Sea Salt         |                  |  $1.50   |          |         |
                 | Kettle Cooked    |                  |  $1.50   |          |         |
                 | Spicy Nacho      |                  |  $1.50   |          |         |
+                | Flamin' Hot      |                  |  $1.50   |          |         |
+                | Cool Ranch       |                  |  $1.50   |          |         |
+                | Honey BBQ        |                  |  $1.50   |          |         |
+                | Dill Pickle      |                  |  $1.50   |          |         |
+                | Sweet Chili      |                  |  $1.50   |          |         |
+                | Buffalo          |                  |  $1.50   |          |         |
+                | Pretzels         |                  |  $1.50   |          |         |
+                | Popcorn          |                  |  $1.50   |          |         |
+                | Trail Mix        |                  |  $1.50   |          |         |
+                | Granola Bar      |                  |  $1.50   |          |         |
+                | Cookies          |                  |  $1.50   |          |         |
+                | Crackers         |                  |  $1.50   |          |         |
+                | Peanuts          |                  |  $1.50   |          |         |
+                | Mixed Nuts       |                  |  $1.50   |          |         |
                 +------------------+------------------+----------+----------+---------+
                 """);
         JScrollPane scrollPane = new JScrollPane(menuTextArea);
@@ -251,6 +312,7 @@ public class UserInterface {
         bottomPanel.setBackground(Color.WHITE);
         bottomPanel.add(backButton);
         foodMenuScreen.add(bottomPanel, BorderLayout.SOUTH);
+        menuTextArea.setCaretPosition(0);
         mainFrame.getContentPane().add(foodMenuScreen);
         mainFrame.revalidate();
         mainFrame.repaint();
@@ -1120,10 +1182,14 @@ public class UserInterface {
             for (Product item : currentOrder) {
                 StringBuilder stringBuilder = new StringBuilder();
                 if (item instanceof Sandwich) {
-                    stringBuilder.append("Sandwich #").append(itemIndex)
-                            .append(" (").append(((Sandwich) item).getChoosenSize()).append("\", ")
-                            .append(((Sandwich) item).getChoosenBreadType()).append(") - $")
-                            .append(String.format("%.2f", item.getPrice()));
+                    if(((Sandwich) item).getSandwichName().equals("custom"))
+                    {
+                        stringBuilder.append("Sandwich #" + itemIndex).append("\n");
+                    }
+                    else
+                    {
+                        stringBuilder.append(((Sandwich) item).getSandwichName()).append("\n");
+                    }
                 } else if (item instanceof Drinks) {
                     stringBuilder.append("Drink (").append(((Drinks) item).getSelectedSize())
                             .append(" ").append(((Drinks) item).getSelectedFlavor())
