@@ -579,10 +579,23 @@ public class UserInterface {
             String selectedFlavor = (String) flavorOptionsBox.getSelectedItem();
             Integer selectedQuantity = (Integer) quantityBox.getSelectedItem();
 
-            //create new chips and add to cart
-            Chips chips = new Chips(selectedFlavor, selectedQuantity);
-            currentOrder.add(chips);
+            boolean found = false;
 
+            for(Product product : currentOrder) {
+                if(product instanceof Chips) {
+                    Chips existingChips = (Chips) product;
+                    if(existingChips.getChosenChip().equals(selectedFlavor)) {
+                        int newQuantity = existingChips.getAmountOfChips() + selectedQuantity;
+                        existingChips.setAmountOfChips(newQuantity);
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(!found) {
+                Chips chips = new Chips(selectedFlavor, selectedQuantity);
+                currentOrder.add(chips);
+            }
             JOptionPane.showMessageDialog(mainFrame, String.format("Added %d %s chip(s) to cart!",
                             selectedQuantity, selectedFlavor),
                     "Success", JOptionPane.INFORMATION_MESSAGE);
