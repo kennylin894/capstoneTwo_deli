@@ -32,7 +32,7 @@ public class UserInterface {
         menuPanel.setLayout(new GridLayout(7, 1, 10, 20));
         menuPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // DELI logo image
+        //DELI logo image
         ImageIcon icon = new ImageIcon("src/main/resources/images/logo.png");
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
@@ -909,7 +909,7 @@ public class UserInterface {
         }
         removePanel.add(itemDropdown);
         removePanel.add(Box.createRigidArea(new Dimension(0, 15)));
-        JButton removeButton = new JButton("Remove Selected Item");
+        JButton removeButton = new JButton("\uD83D\uDEAE  Remove Selected Item");
         removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeButton.setBackground(new Color(255, 100, 100));
         removeButton.addActionListener(e -> {
@@ -945,7 +945,7 @@ public class UserInterface {
         quantityDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
         removePanel.add(quantityDropdown);
         removePanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        JButton removeQuantityButton = new JButton("Remove Quantity");
+        JButton removeQuantityButton = new JButton("\uD83D\uDEAE  Remove Quantity");
         removeQuantityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeQuantityButton.setBackground(new Color(255, 100, 100));
         removeQuantityButton.addActionListener(e -> {
