@@ -116,130 +116,130 @@ public class UserInterface {
         menuTextArea.setEditable(false);
         menuTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         menuTextArea.setText("""
-        +----------------------------------------------------------------------+
-        |                    SIGNATURE SANDWICHES                              |
-        +------------------+------------------+----------+----------+----------+
-        | Sandwich         | Ingredients      |   4"     |   8"     |   12"    |
-        +------------------+------------------+----------+----------+----------+
-        | BLT Classic      | White Bread      |  $8.00   |  $10.25  |  $12.50  |
-        | (Toasted)        | Toasted          |          |          |          |
-        |                  | Bacon            |          |          |          |
-        |                  | American Cheese  |          |          |          |
-        |                  | Lettuce          |          |          |          |
-        |                  | Tomato           |          |          |          |
-        |                  | Mayo             |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Philly Steak     | White Bread      |  $8.25   |  $10.50  |  $12.75  |
-        | (Toasted)        | Toasted          |          |          |          |
-        |                  | Steak            |          |          |          |
-        |                  | American Cheese  |          |          |          |
-        |                  | Peppers          |          |          |          |
-        |                  | Onions           |          |          |          |
-        |                  | Mayo             |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Italian Sub      | White Bread      | $10.50   | $13.25   | $15.25   |
-        |                  | Ham              |          |          |          |
-        |                  | Salami           |          |          |          |
-        |                  | Provolone        |          |          |          |
-        |                  | Lettuce          |          |          |          |
-        |                  | Tomato           |          |          |          |
-        |                  | Onion            |          |          |          |
-        |                  | Vinaigrette      |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Turkey Club      | Wheat Bread      |  $9.75   | $12.25   | $14.50   |
-        | (Toasted)        | Toasted          |          |          |          |
-        |                  | Chicken          |          |          |          |
-        |                  | Bacon            |          |          |          |
-        |                  | Swiss Cheese     |          |          |          |
-        |                  | Lettuce          |          |          |          |
-        |                  | Tomato           |          |          |          |
-        |                  | Ranch            |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Veggie Supreme   | Rye Bread        |  $7.75   | $10.00   | $12.25   |
-        |                  | Cheddar Cheese   |          |          |          |
-        |                  | Swiss Cheese     |          |          |          |
-        |                  | Lettuce          |          |          |          |
-        |                  | Tomato           |          |          |          |
-        |                  | Peppers          |          |          |          |
-        |                  | Onions           |          |          |          |
-        |                  | Cucumbers        |          |          |          |
-        |                  | Mushrooms        |          |          |          |
-        |                  | Ranch            |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        |                   BUILD YOUR OWN SANDWICH                            |
-        +------------------+------------------+----------+----------+----------+
-        | Category         | Item             |   4"     |   8"     |   12"    |
-        +------------------+------------------+----------+----------+----------+
-        | Base Sandwich    |                  |  $5.50   |  $7.00   |  $8.50   |
-        +------------------+------------------+----------+----------+----------+
-        | Bread Choices    | White            |          |          |          |
-        |                  | Wheat            |          |          |          |
-        |                  | Rye              |          |          |          |
-        |                  | Wrap             |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Meats            | Steak            |  $1.00   |  $2.00   |  $3.00   |
-        |                  | Ham              |  $1.00   |  $2.00   |  $3.00   |
-        |                  | Salami           |  $1.00   |  $2.00   |  $3.00   |
-        |                  | Roast Beef       |  $1.00   |  $2.00   |  $3.00   |
-        |                  | Chicken          |  $1.00   |  $2.00   |  $3.00   |
-        |                  | Bacon            |  $1.00   |  $2.00   |  $3.00   |
-        | Extra Meat       | +                |  $0.50   |  $1.00   |  $1.50   |
-        +------------------+------------------+----------+----------+----------+
-        | Cheese           | American         |  $0.75   |  $1.50   |  $2.25   |
-        |                  | Provolone        |  $0.75   |  $1.50   |  $2.25   |
-        |                  | Cheddar          |  $0.75   |  $1.50   |  $2.25   |
-        |                  | Swiss            |  $0.75   |  $1.50   |  $2.25   |
-        | Extra Cheese     | +                |  $0.30   |  $0.60   |  $0.90   |
-        +------------------+------------------+----------+----------+----------+
-        | Toppings (Free)  | Lettuce          |          |          |          |
-        |                  | Peppers          |          |          |          |
-        |                  | Onions           |          |          |          |
-        |                  | Tomatoes         |          |          |          |
-        |                  | Jalapeños        |          |          |          |
-        |                  | Cucumbers        |          |          |          |
-        |                  | Pickles          |          |          |          |
-        |                  | Guacamole        |          |          |          |
-        |                  | Mushrooms        |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Sauces (Free)    | Mayo             |          |          |          |
-        |                  | Mustard          |          |          |          |
-        |                  | Ketchup          |          |          |          |
-        |                  | Ranch            |          |          |          |
-        |                  | Thousand Islands |          |          |          |
-        |                  | Vinaigrette      |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        | Sides (Free)     | Au Jus           |          |          |          |
-        |                  | Sauce            |          |          |          |
-        +------------------+------------------+----------+----------+----------+
-        |                            Drinks                                    |
-        +------------------+------------------+----------+----------+----------+
-        | Sizes            |                  | Small    | Medium   | Large    |
-        +------------------+------------------+----------+----------+----------+
-        | Cola             |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Diet Cola        |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Root Beer        |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Lemon-Lime       |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Orange Soda      |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Iced Tea         |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Lemonade         |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Fruit Punch      |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Ginger Ale       |                  |  $2.00   |  $2.50   |  $3.00   |
-        | Water            |                  |  $2.00   |  $2.50   |  $3.00   |
-        +------------------+------------------+----------+----------+----------+
-        |                            Chips                                     |
-        +-------------------+------------------+----------+----------+---------+
-        | Original          |                  |  $1.50   |          |         |
-        | BBQ               |                  |  $1.50   |          |         |
-        | Sour Cream & Onion|                  |  $1.50   |          |         |
-        | Salt & Vinegar    |                  |  $1.50   |          |         |
-        | Jalapeño          |                  |  $1.50   |          |         |
-        | Cheddar Cheese    |                  |  $1.50   |          |         |
-        | Lime              |                  |  $1.50   |          |         |
-        | Sea Salt          |                  |  $1.50   |          |         |
-        | Kettle Cooked     |                  |  $1.50   |          |         |
-        | Spicy Nacho       |                  |  $1.50   |          |         |
-        +------------------+-------------------+----------+----------+---------+
-        """);
+                +----------------------------------------------------------------------+
+                |                    SIGNATURE SANDWICHES                              |
+                +------------------+------------------+----------+----------+----------+
+                | Sandwich         | Ingredients      |   4"     |   8"     |   12"    |
+                +------------------+------------------+----------+----------+----------+
+                | BLT Classic      | White Bread      |  $8.00   |  $10.25  |  $12.50  |
+                | (Toasted)        | Toasted          |          |          |          |
+                |                  | Bacon            |          |          |          |
+                |                  | American Cheese  |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Mayo             |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Philly Steak     | White Bread      |  $8.25   |  $10.50  |  $12.75  |
+                | (Toasted)        | Toasted          |          |          |          |
+                |                  | Steak            |          |          |          |
+                |                  | American Cheese  |          |          |          |
+                |                  | Peppers          |          |          |          |
+                |                  | Onions           |          |          |          |
+                |                  | Mayo             |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Italian Sub      | White Bread      | $10.50   | $13.25   | $15.25   |
+                |                  | Ham              |          |          |          |
+                |                  | Salami           |          |          |          |
+                |                  | Provolone        |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Onion            |          |          |          |
+                |                  | Vinaigrette      |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Turkey Club      | Wheat Bread      |  $9.75   | $12.25   | $14.50   |
+                | (Toasted)        | Toasted          |          |          |          |
+                |                  | Chicken          |          |          |          |
+                |                  | Bacon            |          |          |          |
+                |                  | Swiss Cheese     |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Ranch            |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Veggie Supreme   | Rye Bread        |  $7.75   | $10.00   | $12.25   |
+                |                  | Cheddar Cheese   |          |          |          |
+                |                  | Swiss Cheese     |          |          |          |
+                |                  | Lettuce          |          |          |          |
+                |                  | Tomato           |          |          |          |
+                |                  | Peppers          |          |          |          |
+                |                  | Onions           |          |          |          |
+                |                  | Cucumbers        |          |          |          |
+                |                  | Mushrooms        |          |          |          |
+                |                  | Ranch            |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                |                   BUILD YOUR OWN SANDWICH                            |
+                +------------------+------------------+----------+----------+----------+
+                | Category         | Item             |   4"     |   8"     |   12"    |
+                +------------------+------------------+----------+----------+----------+
+                | Base Sandwich    |                  |  $5.50   |  $7.00   |  $8.50   |
+                +------------------+------------------+----------+----------+----------+
+                | Bread Choices    | White            |          |          |          |
+                |                  | Wheat            |          |          |          |
+                |                  | Rye              |          |          |          |
+                |                  | Wrap             |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Meats            | Steak            |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Ham              |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Salami           |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Roast Beef       |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Chicken          |  $1.00   |  $2.00   |  $3.00   |
+                |                  | Bacon            |  $1.00   |  $2.00   |  $3.00   |
+                | Extra Meat       | +                |  $0.50   |  $1.00   |  $1.50   |
+                +------------------+------------------+----------+----------+----------+
+                | Cheese           | American         |  $0.75   |  $1.50   |  $2.25   |
+                |                  | Provolone        |  $0.75   |  $1.50   |  $2.25   |
+                |                  | Cheddar          |  $0.75   |  $1.50   |  $2.25   |
+                |                  | Swiss            |  $0.75   |  $1.50   |  $2.25   |
+                | Extra Cheese     | +                |  $0.30   |  $0.60   |  $0.90   |
+                +------------------+------------------+----------+----------+----------+
+                | Toppings (Free)  | Lettuce          |          |          |          |
+                |                  | Peppers          |          |          |          |
+                |                  | Onions           |          |          |          |
+                |                  | Tomatoes         |          |          |          |
+                |                  | Jalapeños        |          |          |          |
+                |                  | Cucumbers        |          |          |          |
+                |                  | Pickles          |          |          |          |
+                |                  | Guacamole        |          |          |          |
+                |                  | Mushrooms        |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Sauces (Free)    | Mayo             |          |          |          |
+                |                  | Mustard          |          |          |          |
+                |                  | Ketchup          |          |          |          |
+                |                  | Ranch            |          |          |          |
+                |                  | Thousand Islands |          |          |          |
+                |                  | Vinaigrette      |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                | Sides (Free)     | Au Jus           |          |          |          |
+                |                  | Sauce            |          |          |          |
+                +------------------+------------------+----------+----------+----------+
+                |                            Drinks                                    |
+                +------------------+------------------+----------+----------+----------+
+                | Sizes            |                  | Small    | Medium   | Large    |
+                +------------------+------------------+----------+----------+----------+
+                | Cola             |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Diet Cola        |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Root Beer        |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Lemon-Lime       |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Orange Soda      |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Iced Tea         |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Lemonade         |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Fruit Punch      |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Ginger Ale       |                  |  $2.00   |  $2.50   |  $3.00   |
+                | Water            |                  |  $2.00   |  $2.50   |  $3.00   |
+                +------------------+------------------+----------+----------+----------+
+                |                            Chips                                     |
+                +-------------------+------------------+----------+----------+---------+
+                | Original          |                  |  $1.50   |          |         |
+                | BBQ               |                  |  $1.50   |          |         |
+                | Sour Cream & Onion|                  |  $1.50   |          |         |
+                | Salt & Vinegar    |                  |  $1.50   |          |         |
+                | Jalapeño          |                  |  $1.50   |          |         |
+                | Cheddar Cheese    |                  |  $1.50   |          |         |
+                | Lime              |                  |  $1.50   |          |         |
+                | Sea Salt          |                  |  $1.50   |          |         |
+                | Kettle Cooked     |                  |  $1.50   |          |         |
+                | Spicy Nacho       |                  |  $1.50   |          |         |
+                +------------------+-------------------+----------+----------+---------+
+                """);
         JScrollPane scrollPane = new JScrollPane(menuTextArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -581,10 +581,10 @@ public class UserInterface {
 
             boolean found = false;
 
-            for(Product product : currentOrder) {
-                if(product instanceof Chips) {
+            for (Product product : currentOrder) {
+                if (product instanceof Chips) {
                     Chips existingChips = (Chips) product;
-                    if(existingChips.getChosenChip().equals(selectedFlavor)) {
+                    if (existingChips.getChosenChip().equals(selectedFlavor)) {
                         int newQuantity = existingChips.getAmountOfChips() + selectedQuantity;
                         existingChips.setAmountOfChips(newQuantity);
                         found = true;
@@ -592,7 +592,7 @@ public class UserInterface {
                     }
                 }
             }
-            if(!found) {
+            if (!found) {
                 Chips chips = new Chips(selectedFlavor, selectedQuantity);
                 currentOrder.add(chips);
             }
@@ -709,10 +709,10 @@ public class UserInterface {
             Integer selectedQuantity = (Integer) quantityBox.getSelectedItem();
 
             boolean found = false;
-            for(Product product : currentOrder) {
-                if(product instanceof Drinks) {
+            for (Product product : currentOrder) {
+                if (product instanceof Drinks) {
                     Drinks existingDrinks = (Drinks) product;
-                    if(existingDrinks.getSelectedFlavor().equals(selectedFlavor) && existingDrinks.getSelectedSize().equals(selectedSize)) {
+                    if (existingDrinks.getSelectedFlavor().equals(selectedFlavor) && existingDrinks.getSelectedSize().equals(selectedSize)) {
                         int newQuantity = existingDrinks.getAmountOfDrinks() + selectedQuantity;
                         existingDrinks.setAmountOfDrinks(newQuantity);
                         found = true;
@@ -720,8 +720,8 @@ public class UserInterface {
                     }
                 }
             }
-            if(!found) {
-                Drinks drinks = new Drinks(selectedSize,selectedQuantity, selectedFlavor);
+            if (!found) {
+                Drinks drinks = new Drinks(selectedSize, selectedQuantity, selectedFlavor);
                 currentOrder.add(drinks);
             }
             JOptionPane.showMessageDialog(mainFrame, String.format("Added %d %s %s drink(s) to cart!",
@@ -920,13 +920,9 @@ public class UserInterface {
                 String itemType = "";
                 if (removedItem instanceof Sandwich) {
                     itemType = "Sandwich";
-                }
-                else if (removedItem instanceof Drinks)
-                {
+                } else if (removedItem instanceof Drinks) {
                     itemType = "Drink";
-                }
-                else if (removedItem instanceof Chips)
-                {
+                } else if (removedItem instanceof Chips) {
                     itemType = "Chips";
                 }
                 JOptionPane.showMessageDialog(mainFrame,
@@ -954,6 +950,70 @@ public class UserInterface {
         removeQuantityButton.setBackground(new Color(255, 100, 100));
         removeQuantityButton.addActionListener(e -> {
             // TODO: Add quantity removal logic here
+            int selectedIndex = itemDropdown.getSelectedIndex();
+            Product product = currentOrder.get(selectedIndex);
+            int numToRemove = quantityDropdown.getSelectedIndex() + 1;
+            if (selectedIndex >= 0 && !currentOrder.isEmpty()) {
+                if (product instanceof Chips) {
+                    Chips chips = (Chips) product;
+                    if (chips.getAmountOfChips() == 1) {
+                        if (numToRemove > chips.getAmountOfChips()) {
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
+                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        } else {
+                            currentOrder.remove(chips);
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
+                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        }
+                    } else {
+                        if (numToRemove > chips.getAmountOfChips()) {
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
+                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        } else {
+                            chips.setAmountOfChips(chips.getAmountOfChips() - numToRemove);
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
+                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        }
+                    }
+                } else if (product instanceof Drinks) {
+                    Drinks drinks = (Drinks) product;
+                    if (drinks.getAmountOfDrinks() == 1) {
+                        if (numToRemove > drinks.getAmountOfDrinks()) {
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
+                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        } else {
+                            currentOrder.remove(drinks);
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    numToRemove + "x of "+ drinks.getSelectedFlavor() + " removed from cart!",
+                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        }
+                    } else {
+                        if (numToRemove > drinks.getAmountOfDrinks()) {
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
+                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        } else {
+                            drinks.setAmountOfDrinks(drinks.getAmountOfDrinks() - numToRemove);
+                            JOptionPane.showMessageDialog(mainFrame,
+                                    numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
+                                    "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                            showViewCartMenu();
+                        }
+                    }
+                }
+            }
         });
 
         removePanel.add(removeQuantityButton);
