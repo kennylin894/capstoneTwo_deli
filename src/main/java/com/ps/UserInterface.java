@@ -70,8 +70,8 @@ public class UserInterface {
         menuPanel.add(orderYourOwnSandwichButton);
         orderYourOwnSandwichButton.addActionListener(e -> showOrderSandwichScreen());
 
-        //TODO : premade sandwiches (BONUS)
         menuPanel.add(orderPreMadeSandwich);
+        orderPreMadeSandwich.addActionListener(e -> showOrderSignatureSandwichScreen());
 
         menuPanel.add(orderChipsButton);
         orderChipsButton.addActionListener(e -> showOrderChipsScreen());
@@ -111,7 +111,7 @@ public class UserInterface {
         menuTitle.setFont(new Font("SansSerif", Font.BOLD, 24));
         foodMenuScreen.add(menuTitle, BorderLayout.NORTH);
 
-        // Scrollable text area
+        //scrollable text area
         JTextArea menuTextArea = new JTextArea();
         menuTextArea.setEditable(false);
         menuTextArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
@@ -319,7 +319,7 @@ public class UserInterface {
         ArrayList<JCheckBox> sauceCheckBoxes = new ArrayList<>();
         ArrayList<JCheckBox> sidesCheckBoxes = new ArrayList<>();
 
-        //Meats
+        //meats
         JPanel meatsPanel = new JPanel();
         meatsPanel.setLayout(new BoxLayout(meatsPanel, BoxLayout.Y_AXIS));
         meatsPanel.setBackground(Color.WHITE);
@@ -425,11 +425,8 @@ public class UserInterface {
                         hasExtraMeats = true;
                         hasMeats = true;
                     }
-                }
-                else
-                {
-                    if(cb.isSelected())
-                    {
+                } else {
+                    if (cb.isSelected()) {
                         toppings.add(cb.getText());
                         hasMeats = true;
                     }
@@ -442,11 +439,8 @@ public class UserInterface {
                         hasExtraCheese = true;
                         hasCheese = true;
                     }
-                }
-                else
-                {
-                    if(cb.isSelected())
-                    {
+                } else {
+                    if (cb.isSelected()) {
                         toppings.add(cb.getText());
                         hasCheese = true;
                     }
@@ -541,6 +535,213 @@ public class UserInterface {
         mainFrame.repaint();
     }
 
+    private static void showOrderSignatureSandwichScreen() {
+        mainFrame.getContentPane().removeAll();
+        JPanel signatureScreen = new JPanel();
+        signatureScreen.setLayout(new BoxLayout(signatureScreen, BoxLayout.Y_AXIS));
+        signatureScreen.setBackground(Color.WHITE);
+        signatureScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel titleLabel = new JLabel("Choose a Signature Sandwich");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 17));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        signatureScreen.add(titleLabel);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        //blt
+        JButton bltButton = new JButton("🥓  BLT Classic - $10.50");
+        bltButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bltButton.setMaximumSize(new Dimension(350, 40));
+        bltButton.setBackground(new Color(173, 216, 230));
+        bltButton.addActionListener(e -> {
+            ArrayList<Topping> bltToppings = new ArrayList<>();
+            bltToppings.add(new PremiumToppings("Bacon", false));
+            bltToppings.add(new PremiumToppings("American", false));
+            bltToppings.add(new Toppings("Lettuce"));
+            bltToppings.add(new Toppings("Tomatoes"));
+            bltToppings.add(new Toppings("Mayo"));
+
+            Sandwich blt = new Sandwich(8, "white", true, bltToppings);
+            createSandwich(blt,"BLT - Classic");
+        });
+
+        //phillycheese steak
+        JButton phillyButton = new JButton("🧀  Philly Cheese Steak - $10.50");
+        phillyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        phillyButton.setMaximumSize(new Dimension(350, 40));
+        phillyButton.setBackground(new Color(173, 216, 230));
+        phillyButton.addActionListener(e -> {
+            ArrayList<Topping> phillyToppings = new ArrayList<>();
+            phillyToppings.add(new PremiumToppings("Steak", false));
+            phillyToppings.add(new PremiumToppings("Provolone", false));
+            phillyToppings.add(new Toppings("Peppers"));
+            phillyToppings.add(new Toppings("Onions"));
+
+            Sandwich philly = new Sandwich(8, "white", true, phillyToppings);
+            createSandwich(philly, "Philly Cheese Steak");
+        });
+
+        //italian
+        JButton italianButton = new JButton("🍞  Italian Sub - $12.50");
+        italianButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        italianButton.setMaximumSize(new Dimension(350, 40));
+        italianButton.setBackground(new Color(173, 216, 230));
+        italianButton.addActionListener(e -> {
+            ArrayList<Topping> italianToppings = new ArrayList<>();
+            italianToppings.add(new PremiumToppings("Ham", false));
+            italianToppings.add(new PremiumToppings("Salami", false));
+            italianToppings.add(new PremiumToppings("Provolone", false));
+            italianToppings.add(new Toppings("Lettuce"));
+            italianToppings.add(new Toppings("Tomatoes"));
+            italianToppings.add(new Toppings("Onions"));
+            italianToppings.add(new Toppings("Vinaigrette"));
+
+            Sandwich italian = new Sandwich(8, "italian", true, italianToppings);
+            createSandwich(italian, "Italian Sub");
+        });
+
+        //chicken
+        JButton chickenButton = new JButton("🐔  Chicken Club - $12.50");
+        chickenButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        chickenButton.setMaximumSize(new Dimension(350, 40));
+        chickenButton.setBackground(new Color(173, 216, 230));
+        chickenButton.addActionListener(e -> {
+            ArrayList<Topping> chickenClubToppings = new ArrayList<>();
+            chickenClubToppings.add(new PremiumToppings("Chicken", false));
+            chickenClubToppings.add(new PremiumToppings("Bacon", false));
+            chickenClubToppings.add(new PremiumToppings("American", false));
+            chickenClubToppings.add(new Toppings("Lettuce"));
+            chickenClubToppings.add(new Toppings("Tomatoes"));
+            chickenClubToppings.add(new Toppings("Mayo"));
+
+            Sandwich chickenClub = new Sandwich(8, "white", true, chickenClubToppings);
+            createSandwich(chickenClub, "Chicken Club");
+        });
+
+        //veggie
+        JButton veggieButton = new JButton("🥒  Veggie Supreme - $8.50");
+        veggieButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        veggieButton.setMaximumSize(new Dimension(350, 40));
+        veggieButton.setBackground(new Color(173, 216, 230));
+        veggieButton.addActionListener(e -> {
+            ArrayList<Topping> veggieToppings = new ArrayList<>();
+            veggieToppings.add(new PremiumToppings("American", false));
+            veggieToppings.add(new Toppings("Lettuce"));
+            veggieToppings.add(new Toppings("Tomatoes"));
+            veggieToppings.add(new Toppings("Peppers"));
+            veggieToppings.add(new Toppings("Onions"));
+            veggieToppings.add(new Toppings("Cucumbers"));
+            veggieToppings.add(new Toppings("Mushrooms"));
+            veggieToppings.add(new Toppings("Mayo"));
+
+            Sandwich veggie = new Sandwich(8, "wheat", true, veggieToppings);
+            createSandwich(veggie, "Veggie");
+            JOptionPane.showMessageDialog(mainFrame, "Veggie Supreme added to cart!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            newinitMainMenu();
+        });
+
+        //roast beef deluxe
+        JButton roastBeefButton = new JButton("🍖  Roast Beef Deluxe - $11.25");
+        roastBeefButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        roastBeefButton.setMaximumSize(new Dimension(350, 40));
+        roastBeefButton.setBackground(new Color(173, 216, 230));
+        roastBeefButton.addActionListener(e -> {
+            ArrayList<Topping> roastBeefToppings = new ArrayList<>();
+            roastBeefToppings.add(new PremiumToppings("Roast Beef", false));
+            roastBeefToppings.add(new PremiumToppings("Swiss", false));
+            roastBeefToppings.add(new Toppings("Lettuce"));
+            roastBeefToppings.add(new Toppings("Tomatoes"));
+            roastBeefToppings.add(new Toppings("Onions"));
+            roastBeefToppings.add(new Toppings("Pickles"));
+            roastBeefToppings.add(new Toppings("Mustard"));
+
+            Sandwich roastBeefDeluxe = new Sandwich(8, "rye", true, roastBeefToppings);
+            createSandwich(roastBeefDeluxe, "Roast Beef Deluxe");
+        });
+
+        //ham and swiss classic
+        JButton hamSwissButton = new JButton("🍞  Ham & Swiss Classic - $10.50");
+        hamSwissButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        hamSwissButton.setMaximumSize(new Dimension(350, 40));
+        hamSwissButton.setBackground(new Color(173, 216, 230));
+        hamSwissButton.addActionListener(e -> {
+            ArrayList<Topping> hamSwissToppings = new ArrayList<>();
+            hamSwissToppings.add(new PremiumToppings("Ham", false));
+            hamSwissToppings.add(new PremiumToppings("Swiss", false));
+            hamSwissToppings.add(new Toppings("Lettuce"));
+            hamSwissToppings.add(new Toppings("Tomatoes"));
+            hamSwissToppings.add(new Toppings("Mustard"));
+
+            Sandwich hamSwiss = new Sandwich(8, "rye", true, hamSwissToppings);
+            createSandwich(hamSwiss, "Ham & Swiss Classic");
+        });
+
+        //spicy salami supreme
+        JButton salamiButton = new JButton("🌶️  Spicy Salami Supreme - $11.75");
+        salamiButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        salamiButton.setMaximumSize(new Dimension(350, 40));
+        salamiButton.setBackground(new Color(173, 216, 230));
+        salamiButton.addActionListener(e -> {
+            ArrayList<Topping> salamiToppings = new ArrayList<>();
+            salamiToppings.add(new PremiumToppings("Salami", false));
+            salamiToppings.add(new PremiumToppings("Cheddar", false));
+            salamiToppings.add(new Toppings("Lettuce"));
+            salamiToppings.add(new Toppings("Onions"));
+            salamiToppings.add(new Toppings("Jalapeños"));
+            salamiToppings.add(new Toppings("Mustard"));
+
+            Sandwich salami = new Sandwich(8, "italian", true, salamiToppings);
+            createSandwich(salami, "Spicy Salami Supreme");
+        });
+
+        //chicken avocado wrap
+        JButton chickenWrapButton = new JButton("🌯  Chicken Avocado Wrap - $11.25");
+        chickenWrapButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        chickenWrapButton.setMaximumSize(new Dimension(350, 40));
+        chickenWrapButton.setBackground(new Color(173, 216, 230));
+        chickenWrapButton.addActionListener(e -> {
+            ArrayList<Topping> chickenWrapToppings = new ArrayList<>();
+            chickenWrapToppings.add(new PremiumToppings("Chicken", false));
+            chickenWrapToppings.add(new PremiumToppings("Provolone", false));
+            chickenWrapToppings.add(new Toppings("Lettuce"));
+            chickenWrapToppings.add(new Toppings("Tomatoes"));
+            chickenWrapToppings.add(new Toppings("Guacamole"));
+            chickenWrapToppings.add(new Toppings("Ranch"));
+
+            Sandwich chickenWrap = new Sandwich(8, "wrap", false, chickenWrapToppings);
+            createSandwich(chickenWrap, "Chicken Avocado Wrap");
+        });
+
+        signatureScreen.add(bltButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(phillyButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(italianButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(chickenButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(veggieButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(roastBeefButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(hamSwissButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(salamiButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        signatureScreen.add(chickenWrapButton);
+        signatureScreen.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        JButton backButton = new JButton("⬅️  Back to Main Menu");
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.setBackground(new Color(173, 216, 230));
+        backButton.addActionListener(e -> newinitMainMenu());
+        signatureScreen.add(backButton);
+
+        mainFrame.getContentPane().add(signatureScreen);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
     private static void showOrderChipsScreen() {
         mainFrame.getContentPane().removeAll();
         JPanel orderChipsScreen = new JPanel();
@@ -554,7 +755,7 @@ public class UserInterface {
         orderChipsScreen.add(titleLabel);
         orderChipsScreen.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Chip flavor selection dropdown UI
+        //chip flavor selection dropdown UI
         JPanel flavorPanel = new JPanel();
         flavorPanel.setLayout(new BoxLayout(flavorPanel, BoxLayout.Y_AXIS));
         flavorPanel.setBackground(Color.WHITE);
@@ -664,7 +865,7 @@ public class UserInterface {
         orderDrinksScreen.add(titleLabel);
         orderDrinksScreen.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Drink flavor selection dropdown UI
+        //drink flavor selection dropdown UI
         JPanel flavorPanel = new JPanel();
         flavorPanel.setLayout(new BoxLayout(flavorPanel, BoxLayout.Y_AXIS));
         flavorPanel.setBackground(Color.WHITE);
@@ -823,19 +1024,14 @@ public class UserInterface {
                     stringBuilder.append("Toppings").append("\n").append("===================").append("\n");
                     for (Topping toppings : ((Sandwich) item).getToppings()) {
                         if (toppings instanceof PremiumToppings) {
-                            if (((PremiumToppings) toppings).isExtraMeat() && !toppings.getName().equals("extra meat")) {
-                                stringBuilder.append(toppings.getName()).append("\n");
-                                stringBuilder.append(" * " + "extra meat(s)").append("\n");
+                            stringBuilder.append("- ").append(toppings.getName()).append("\n");
+                            if (((PremiumToppings) toppings).isExtraMeat()) {
+                                stringBuilder.append(" * extra meat(s)").append("\n");
                             }
-                            else
-                            {
-                                if (((PremiumToppings) toppings).isExtraCheese() && !toppings.getName().equals("extra cheese")) {
-                                    stringBuilder.append(toppings.getName()).append("\n");
-                                    stringBuilder.append(" * " + ("extra cheese(s)")).append("\n");
-                                }
+                            if (((PremiumToppings) toppings).isExtraCheese()) {
+                                stringBuilder.append(" * extra cheese(s)").append("\n");
                             }
-                        }
-                        else {
+                        } else {
                             stringBuilder.append("- " + toppings.getName()).append("\n");
                         }
                     }
@@ -908,7 +1104,7 @@ public class UserInterface {
         removePanel.add(removeLabel);
         removePanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Create dropdown with cart items
+        //create dropdown with cart items
         JComboBox<String> itemDropdown = new JComboBox<>();
         itemDropdown.setMaximumSize(new Dimension(250, 30));
         itemDropdown.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -945,15 +1141,12 @@ public class UserInterface {
         removeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeButton.setBackground(new Color(255, 100, 100));
         removeButton.addActionListener(e -> {
-            if(currentOrder.isEmpty())
-            {
+            if (currentOrder.isEmpty()) {
                 JOptionPane.showMessageDialog(mainFrame,
                         "        Your Cart is Empty",
                         "Error", JOptionPane.WARNING_MESSAGE);
                 showViewCartMenu();
-            }
-            else
-            {
+            } else {
                 if (itemDropdown.getSelectedIndex() >= 0 && !currentOrder.isEmpty()) {
                     int selectedIndex = itemDropdown.getSelectedIndex();
                     Product removedItem = currentOrder.get(selectedIndex);
@@ -991,15 +1184,12 @@ public class UserInterface {
         removeQuantityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         removeQuantityButton.setBackground(new Color(255, 100, 100));
         removeQuantityButton.addActionListener(e -> {
-            if(currentOrder.isEmpty())
-            {
+            if (currentOrder.isEmpty()) {
                 JOptionPane.showMessageDialog(mainFrame,
                         "        Your Cart is Empty",
                         "Error", JOptionPane.WARNING_MESSAGE);
                 showViewCartMenu();
-            }
-            else
-            {
+            } else {
                 int selectedIndex = itemDropdown.getSelectedIndex();
                 Product product = currentOrder.get(selectedIndex);
                 int numToRemove = quantityDropdown.getSelectedIndex() + 1;
@@ -1190,6 +1380,289 @@ public class UserInterface {
         checkoutPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         mainFrame.add(checkoutPanel);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
+    private static void createSandwich(Sandwich signatureSandwich, String itemName) {
+        mainFrame.getContentPane().removeAll();
+        JPanel orderSandwichScreen = new JPanel();
+        orderSandwichScreen.setLayout(new BoxLayout(orderSandwichScreen, BoxLayout.Y_AXIS));
+        orderSandwichScreen.setBackground(Color.WHITE);
+        orderSandwichScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel titleLabel = new JLabel("Customize: " + itemName);
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 17));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        orderSandwichScreen.add(titleLabel);
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        //sandwich size option dropdown UI
+        JPanel sizePanel = new JPanel();
+        sizePanel.setLayout(new BoxLayout(sizePanel, BoxLayout.Y_AXIS));
+        sizePanel.setBackground(Color.WHITE);
+        sizePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel sizeOptionsLabel = new JLabel("Choose Size (inches):");
+        sizeOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JComboBox<Integer> sizeOptionsBox = new JComboBox<>(Sandwich.getAllSizes().toArray(new Integer[0]));
+        sizeOptionsBox.setSelectedItem(8);
+        sizeOptionsBox.setMaximumSize(new Dimension(300, 30));
+        sizeOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sizePanel.add(sizeOptionsLabel);
+        sizePanel.add(sizeOptionsBox);
+        sizePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderSandwichScreen.add(sizePanel);
+
+        //bread option dropdown UI
+        JPanel breadPanel = new JPanel();
+        breadPanel.setLayout(new BoxLayout(breadPanel, BoxLayout.Y_AXIS));
+        breadPanel.setBackground(Color.WHITE);
+        breadPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel breadOptionsLabel = new JLabel("Choose Bread:");
+        breadOptionsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JComboBox breadOptionsBox = new JComboBox<>(Sandwich.getAllBreadTypes().toArray(new String[0]));
+        breadOptionsBox.setSelectedItem(signatureSandwich.getChoosenBreadType());
+        breadOptionsBox.setMaximumSize(new Dimension(300, 30));
+        breadOptionsBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        breadPanel.add(breadOptionsLabel);
+        breadPanel.add(breadOptionsBox);
+
+        JCheckBox toastedCheckBox = new JCheckBox("Is Toasted");
+        toastedCheckBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        toastedCheckBox.setOpaque(false);
+        toastedCheckBox.setSelected(signatureSandwich.isToasted());
+        breadPanel.add(toastedCheckBox);
+        breadPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderSandwichScreen.add(breadPanel);
+
+        //add 5 columns
+        JPanel toppingsPanel = new JPanel();
+        toppingsPanel.setLayout(new GridLayout(1, 5, 10, 0));
+
+        ArrayList<JCheckBox> meatCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> cheeseCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> toppingCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> sauceCheckBoxes = new ArrayList<>();
+        ArrayList<JCheckBox> sidesCheckBoxes = new ArrayList<>();
+
+        //meats
+        JPanel meatsPanel = new JPanel();
+        meatsPanel.setLayout(new BoxLayout(meatsPanel, BoxLayout.Y_AXIS));
+        meatsPanel.setBackground(Color.WHITE);
+        meatsPanel.setBorder(BorderFactory.createTitledBorder("Meats"));
+        ArrayList<String> signatureSandwichToppings = new ArrayList<>();
+        for(Topping topping: signatureSandwich.getToppings())
+        {
+            signatureSandwichToppings.add(topping.getName());
+        }
+        for (String meat : PremiumToppings.getMeatToppings()) {
+            JCheckBox cb = new JCheckBox(meat);
+            cb.setOpaque(false);
+            if (signatureSandwichToppings.contains(meat)) {
+                cb.setSelected(true);
+            }
+            meatsPanel.add(cb);
+            meatCheckBoxes.add(cb);
+        }
+
+        //cheese
+        JPanel cheesesPanel = new JPanel();
+        cheesesPanel.setLayout(new BoxLayout(cheesesPanel, BoxLayout.Y_AXIS));
+        cheesesPanel.setBackground(Color.WHITE);
+        cheesesPanel.setBorder(BorderFactory.createTitledBorder("Cheeses"));
+        for (String cheese : PremiumToppings.getCheeseToppings()) {
+            JCheckBox cb = new JCheckBox(cheese);
+            cb.setOpaque(false);
+            if (signatureSandwichToppings.contains(cheese)) {
+                cb.setSelected(true);
+            }
+            cheesesPanel.add(cb);
+            cheeseCheckBoxes.add(cb);
+        }
+
+        //normal toppings
+        JPanel normalToppingsPanel = new JPanel();
+        normalToppingsPanel.setLayout(new BoxLayout(normalToppingsPanel, BoxLayout.Y_AXIS));
+        normalToppingsPanel.setBackground(Color.WHITE);
+        normalToppingsPanel.setBorder(BorderFactory.createTitledBorder("Toppings"));
+        for (String topping : Toppings.getToppings()) {
+            JCheckBox cb = new JCheckBox(topping);
+            cb.setOpaque(false);
+            if (signatureSandwichToppings.contains(topping)) {
+                cb.setSelected(true);
+            }
+            normalToppingsPanel.add(cb);
+            toppingCheckBoxes.add(cb);
+        }
+
+        //sauces
+        JPanel saucesPanel = new JPanel();
+        saucesPanel.setLayout(new BoxLayout(saucesPanel, BoxLayout.Y_AXIS));
+        saucesPanel.setBackground(Color.WHITE);
+        saucesPanel.setBorder(BorderFactory.createTitledBorder("Sauces"));
+        for (String sauce : Toppings.getSauceToppings()) {
+            JCheckBox cb = new JCheckBox(sauce);
+            cb.setOpaque(false);
+            if (signatureSandwichToppings.contains(sauce)) {
+                cb.setSelected(true);
+            }
+            saucesPanel.add(cb);
+            sauceCheckBoxes.add(cb);
+        }
+
+        //sides
+        JPanel sidesPanel = new JPanel();
+        sidesPanel.setLayout(new BoxLayout(sidesPanel, BoxLayout.Y_AXIS));
+        sidesPanel.setBackground(Color.WHITE);
+        sidesPanel.setBorder(BorderFactory.createTitledBorder("Sides"));
+        for (String sides : Toppings.getSideToppings()) {
+            JCheckBox cb = new JCheckBox(sides);
+            cb.setOpaque(false);
+            if (signatureSandwichToppings.contains(sides)) {
+                cb.setSelected(true);
+            }
+            sidesPanel.add(cb);
+            sidesCheckBoxes.add(cb);
+        }
+
+        toppingsPanel.add(meatsPanel);
+        toppingsPanel.add(cheesesPanel);
+        toppingsPanel.add(normalToppingsPanel);
+        toppingsPanel.add(saucesPanel);
+        toppingsPanel.add(sidesPanel);
+
+        meatsPanel.setOpaque(false);
+        cheesesPanel.setOpaque(false);
+        toppingsPanel.setOpaque(false);
+        saucesPanel.setOpaque(false);
+        sidesPanel.setOpaque(false);
+
+        //fixed very long vertical columns
+        toppingsPanel.setMaximumSize(toppingsPanel.getPreferredSize());
+
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+        orderSandwichScreen.add(toppingsPanel);
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setBackground(Color.WHITE);
+        buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
+        buttonsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //cancel order and add buttons
+        int buttonSpacing = 15;
+        JButton addToCartButton = new JButton("🛒 Add to Cart");
+        JButton cancelOrderButton = new JButton("❌ Cancel Order");
+
+        //adding to cart
+        addToCartButton.addActionListener(e -> {
+            Integer selectedSize = (Integer) sizeOptionsBox.getSelectedItem();
+            String selectedBread = (String) breadOptionsBox.getSelectedItem();
+            boolean isToasted = toastedCheckBox.isSelected();
+            ArrayList<String> toppings = new ArrayList<>();
+            ArrayList<Topping> actualToppings = new ArrayList<>();
+            boolean hasMeats = false;
+            boolean hasExtraMeats = false;
+            boolean hasExtraCheese = false;
+            //check if extra meat is checked first
+            for (JCheckBox cb : meatCheckBoxes) {
+                if (cb.getText().equals("extra meat")) {
+                    if (cb.isSelected()) {
+                        hasExtraMeats = true;
+                        hasMeats = true;
+                    }
+                } else {
+                    if (cb.isSelected()) {
+                        toppings.add(cb.getText());
+                        hasMeats = true;
+                    }
+                }
+            }
+            boolean hasCheese = false;
+            for (JCheckBox cb : cheeseCheckBoxes) {
+                if (cb.getText().equals("extra cheese")) {
+                    if (cb.isSelected()) {
+                        hasExtraCheese = true;
+                        hasCheese = true;
+                    }
+                } else {
+                    if (cb.isSelected()) {
+                        toppings.add(cb.getText());
+                        hasCheese = true;
+                    }
+                }
+            }
+            boolean hasToppings = false;
+            for (JCheckBox cb : toppingCheckBoxes) {
+                if (cb.isSelected()) {
+                    hasToppings = true;
+                    toppings.add(cb.getText());
+                }
+            }
+            boolean hasSauce = false;
+            for (JCheckBox cb : sauceCheckBoxes) {
+                if (cb.isSelected()) {
+                    hasSauce = true;
+                    toppings.add(cb.getText());
+                }
+            }
+            boolean hasSides = false;
+            for (JCheckBox cb : sidesCheckBoxes) {
+                if (cb.isSelected()) {
+                    hasSides = true;
+                    toppings.add(cb.getText());
+                }
+            }
+            for (String i : toppings) {
+                if (Toppings.getToppings().contains(i)) {
+                    actualToppings.add(new Toppings(i));
+                }
+                if (Toppings.getSideToppings().contains(i)) {
+                    actualToppings.add(new Toppings(i));
+                }
+                if (Toppings.getSauceToppings().contains(i)) {
+                    actualToppings.add(new Toppings(i));
+                }
+                if (PremiumToppings.getCheeseToppings().contains(i)) {
+                    if (hasExtraCheese && !i.equals("extra cheese")) {
+                        actualToppings.add(new PremiumToppings(i, true));
+                    } else {
+                        actualToppings.add(new PremiumToppings(i, false));
+                    }
+                }
+                if (PremiumToppings.getMeatToppings().contains(i)) {
+                    if (hasExtraMeats && !i.equals("extra meats")) {
+                        actualToppings.add(new PremiumToppings(i, true));
+                    } else {
+                        actualToppings.add(new PremiumToppings(i, false));
+                    }
+                }
+            }
+            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings);
+            currentOrder.add(sandwich);
+            JOptionPane.showMessageDialog(mainFrame, itemName + " added to cart!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            newinitMainMenu();
+        });
+
+        //cancelling the order
+        cancelOrderButton.addActionListener(e -> {
+            newinitMainMenu();
+        });
+
+        int maxWidth = Math.max(addToCartButton.getPreferredSize().width, cancelOrderButton.getPreferredSize().width);
+        int maxHeight = Math.max(addToCartButton.getPreferredSize().height, cancelOrderButton.getPreferredSize().height);
+        Dimension maxSize = new Dimension(maxWidth, maxHeight);
+        addToCartButton.setMaximumSize(maxSize);
+        cancelOrderButton.setMaximumSize(maxSize);
+        buttonsPanel.add(addToCartButton);
+        buttonsPanel.add(Box.createRigidArea(new Dimension(0, buttonSpacing)));
+        buttonsPanel.add(cancelOrderButton);
+
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 15)));
+        orderSandwichScreen.add(buttonsPanel);
+        orderSandwichScreen.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        mainFrame.getContentPane().add(orderSandwichScreen);
         mainFrame.revalidate();
         mainFrame.repaint();
     }
