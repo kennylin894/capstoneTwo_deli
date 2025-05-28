@@ -960,7 +960,7 @@ public class UserInterface {
                         if (numToRemove > chips.getAmountOfChips()) {
                             JOptionPane.showMessageDialog(mainFrame,
                                     "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
-                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                             showViewCartMenu();
                         } else {
                             currentOrder.remove(chips);
@@ -973,23 +973,29 @@ public class UserInterface {
                         if (numToRemove > chips.getAmountOfChips()) {
                             JOptionPane.showMessageDialog(mainFrame,
                                     "There are only " + chips.getAmountOfChips() + "x of " + chips.getChosenChip() + ".",
-                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                             showViewCartMenu();
                         } else {
                             chips.setAmountOfChips(chips.getAmountOfChips() - numToRemove);
+                            if(chips.getAmountOfChips() == 0)
+                            {
+                                currentOrder.remove(chips);
+                            }
                             JOptionPane.showMessageDialog(mainFrame,
                                     numToRemove + "x of " + chips.getChosenChip() + " removed from cart!",
                                     "Item Removed", JOptionPane.INFORMATION_MESSAGE);
                             showViewCartMenu();
                         }
                     }
-                } else if (product instanceof Drinks) {
+                }
+                else if (product instanceof Drinks)
+                {
                     Drinks drinks = (Drinks) product;
                     if (drinks.getAmountOfDrinks() == 1) {
                         if (numToRemove > drinks.getAmountOfDrinks()) {
                             JOptionPane.showMessageDialog(mainFrame,
                                     "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
-                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                             showViewCartMenu();
                         } else {
                             currentOrder.remove(drinks);
@@ -1002,16 +1008,26 @@ public class UserInterface {
                         if (numToRemove > drinks.getAmountOfDrinks()) {
                             JOptionPane.showMessageDialog(mainFrame,
                                     "There are only " + drinks.getAmountOfDrinks() + "x of " + drinks.getSelectedFlavor() + ".",
-                                    "Cannot Remove", JOptionPane.INFORMATION_MESSAGE);
+                                    "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                             showViewCartMenu();
                         } else {
                             drinks.setAmountOfDrinks(drinks.getAmountOfDrinks() - numToRemove);
+                            if(drinks.getAmountOfDrinks() == 0)
+                            {
+                                currentOrder.remove(drinks);
+                            }
                             JOptionPane.showMessageDialog(mainFrame,
                                     numToRemove + "x of " + drinks.getSelectedFlavor() + " removed from cart!",
                                     "Item Removed", JOptionPane.INFORMATION_MESSAGE);
                             showViewCartMenu();
                         }
                     }
+                }
+                else if(product instanceof Sandwich)
+                {
+                    JOptionPane.showMessageDialog(mainFrame,
+                            "Sandwiches cannot have partial quantities removed.",
+                            "Cannot Remove", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
