@@ -89,7 +89,7 @@ Below are the main screens available in the DELI-cious application. Each section
 ### Full Application Demo
 *Click the thumbnail below to watch the complete DELI-cious application demonstration*
 
-[![DELI-cious Demo Video](https://img.youtube.com/vi/a5Al-NZIL9I/maxresdefault.jpg)](https://youtu.be/a5Al-NZIL9I)
+[![DELI-cious Demo Video](images/img.png)](https://youtu.be/a5Al-NZIL9I)
 
 **What you'll see in the demo:**
 - 🏠 Main menu navigation
