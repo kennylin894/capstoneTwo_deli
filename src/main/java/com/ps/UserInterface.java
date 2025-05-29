@@ -273,33 +273,33 @@ public class UserInterface {
                 | Smoothie         |                  |          |          |          |
                 | Hot Chocolate    |                  |  $2.00   |  $2.50   |  $3.00   |
                 +------------------+------------------+----------+----------+----------+
-                |                              SNACKS                                 |
-                +------------------+------------------+----------+----------+---------+
-                | Original         |                  |  $1.50   |          |         |
-                | BBQ              |                  |  $1.50   |          |         |
-                | Sour Cream Onion |                  |  $1.50   |          |         |
-                | Salt & Vinegar   |                  |  $1.50   |          |         |
-                | Jalapeño         |                  |  $1.50   |          |         |
-                | Cheddar Cheese   |                  |  $1.50   |          |         |
-                | Lime             |                  |  $1.50   |          |         |
-                | Sea Salt         |                  |  $1.50   |          |         |
-                | Kettle Cooked    |                  |  $1.50   |          |         |
-                | Spicy Nacho      |                  |  $1.50   |          |         |
-                | Flamin' Hot      |                  |  $1.50   |          |         |
-                | Cool Ranch       |                  |  $1.50   |          |         |
-                | Honey BBQ        |                  |  $1.50   |          |         |
-                | Dill Pickle      |                  |  $1.50   |          |         |
-                | Sweet Chili      |                  |  $1.50   |          |         |
-                | Buffalo          |                  |  $1.50   |          |         |
-                | Pretzels         |                  |  $1.50   |          |         |
-                | Popcorn          |                  |  $1.50   |          |         |
-                | Trail Mix        |                  |  $1.50   |          |         |
-                | Granola Bar      |                  |  $1.50   |          |         |
-                | Cookies          |                  |  $1.50   |          |         |
-                | Crackers         |                  |  $1.50   |          |         |
-                | Peanuts          |                  |  $1.50   |          |         |
-                | Mixed Nuts       |                  |  $1.50   |          |         |
-                +------------------+------------------+----------+----------+---------+
+                |                              Chips                                   |
+                +------------------+------------------+----------+----------+----------+
+                | Original         |                  |  $1.50   |          |          |
+                | BBQ              |                  |  $1.50   |          |          |
+                | Sour Cream Onion |                  |  $1.50   |          |          |
+                | Salt & Vinegar   |                  |  $1.50   |          |          |
+                | Jalapeño         |                  |  $1.50   |          |          |
+                | Cheddar Cheese   |                  |  $1.50   |          |          |
+                | Lime             |                  |  $1.50   |          |          |
+                | Sea Salt         |                  |  $1.50   |          |          |
+                | Kettle Cooked    |                  |  $1.50   |          |          |
+                | Spicy Nacho      |                  |  $1.50   |          |          |
+                | Flamin' Hot      |                  |  $1.50   |          |          |
+                | Cool Ranch       |                  |  $1.50   |          |          |
+                | Honey BBQ        |                  |  $1.50   |          |          |
+                | Dill Pickle      |                  |  $1.50   |          |          |
+                | Sweet Chili      |                  |  $1.50   |          |          |
+                | Buffalo          |                  |  $1.50   |          |          |
+                | Pretzels         |                  |  $1.50   |          |          |
+                | Popcorn          |                  |  $1.50   |          |          |
+                | Trail Mix        |                  |  $1.50   |          |          |
+                | Granola Bar      |                  |  $1.50   |          |          |
+                | Cookies          |                  |  $1.50   |          |          |
+                | Crackers         |                  |  $1.50   |          |          |
+                | Peanuts          |                  |  $1.50   |          |          |
+                | Mixed Nuts       |                  |  $1.50   |          |          |
+                +------------------+------------------+----------+----------+----------+
                 """);
         JScrollPane scrollPane = new JScrollPane(menuTextArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -1301,7 +1301,9 @@ public class UserInterface {
                                 showViewCartMenu();
                             }
                         }
-                    } else if (product instanceof Drinks) {
+                    }
+                    else if (product instanceof Drinks)
+                    {
                         Drinks drinks = (Drinks) product;
                         if (drinks.getAmountOfDrinks() == 1) {
                             if (numToRemove > drinks.getAmountOfDrinks()) {
@@ -1333,7 +1335,8 @@ public class UserInterface {
                                 showViewCartMenu();
                             }
                         }
-                    } else if (product instanceof Sandwich) {
+                    }
+                    else if (product instanceof Sandwich) {
                         JOptionPane.showMessageDialog(mainFrame,
                                 "Sandwiches cannot have partial quantities removed.",
                                 "Cannot Remove", JOptionPane.WARNING_MESSAGE);
@@ -1397,7 +1400,6 @@ public class UserInterface {
 
         cartPanel.add(buttonPanel, BorderLayout.SOUTH);
         cartPanel.setBackground(Color.WHITE);
-
 
         mainFrame.add(cartPanel);
         mainFrame.revalidate();
