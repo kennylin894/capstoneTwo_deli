@@ -4,7 +4,7 @@ package com.ps.Core;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Freetoppings extends Toppings {
+public class FreeToppings extends Toppings {
     private static final ArrayList<String> regularToppings = new ArrayList<>(Arrays.asList(
             "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños",
             "Cucumbers", "Pickles", "Guacamole", "Mushrooms"
@@ -19,7 +19,7 @@ public class Freetoppings extends Toppings {
     ));
 
 
-    public Freetoppings(String name) {
+    public FreeToppings(String name) {
         super(name, false);
     }
 

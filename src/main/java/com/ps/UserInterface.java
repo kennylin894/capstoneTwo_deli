@@ -410,7 +410,7 @@ public class UserInterface {
         normalToppingsPanel.setLayout(new BoxLayout(normalToppingsPanel, BoxLayout.Y_AXIS));
         normalToppingsPanel.setBackground(Color.WHITE);
         normalToppingsPanel.setBorder(BorderFactory.createTitledBorder("Toppings"));
-        for (String topping : Freetoppings.getToppings()) {
+        for (String topping : FreeToppings.getToppings()) {
             JCheckBox cb = new JCheckBox(topping);
             cb.setOpaque(false);
             normalToppingsPanel.add(cb);
@@ -422,7 +422,7 @@ public class UserInterface {
         saucesPanel.setLayout(new BoxLayout(saucesPanel, BoxLayout.Y_AXIS));
         saucesPanel.setBackground(Color.WHITE);
         saucesPanel.setBorder(BorderFactory.createTitledBorder("Sauces"));
-        for (String sauce : Freetoppings.getSauceToppings()) {
+        for (String sauce : FreeToppings.getSauceToppings()) {
             JCheckBox cb = new JCheckBox(sauce);
             cb.setOpaque(false);
             saucesPanel.add(cb);
@@ -434,7 +434,7 @@ public class UserInterface {
         sidesPanel.setLayout(new BoxLayout(sidesPanel, BoxLayout.Y_AXIS));
         sidesPanel.setBackground(Color.WHITE);
         sidesPanel.setBorder(BorderFactory.createTitledBorder("Sides"));
-        for (String sides : Freetoppings.getSideToppings()) {
+        for (String sides : FreeToppings.getSideToppings()) {
             JCheckBox cb = new JCheckBox(sides);
             cb.setOpaque(false);
             sidesPanel.add(cb);
@@ -530,14 +530,14 @@ public class UserInterface {
                 }
             }
             for (String i : toppings) {
-                if (Freetoppings.getToppings().contains(i)) {
-                    actualToppings.add(new Freetoppings(i));
+                if (FreeToppings.getToppings().contains(i)) {
+                    actualToppings.add(new FreeToppings(i));
                 }
-                if (Freetoppings.getSideToppings().contains(i)) {
-                    actualToppings.add(new Freetoppings(i));
+                if (FreeToppings.getSideToppings().contains(i)) {
+                    actualToppings.add(new FreeToppings(i));
                 }
-                if (Freetoppings.getSauceToppings().contains(i)) {
-                    actualToppings.add(new Freetoppings(i));
+                if (FreeToppings.getSauceToppings().contains(i)) {
+                    actualToppings.add(new FreeToppings(i));
                 }
                 if (PremiumToppings.getCheeseToppings().contains(i)) {
                     if (hasExtraCheese && !i.equals("extra cheese")) {
@@ -619,9 +619,9 @@ public class UserInterface {
             ArrayList<Toppings> bltToppings = new ArrayList<>();
             bltToppings.add(new PremiumToppings("Bacon", false));
             bltToppings.add(new PremiumToppings("American", false));
-            bltToppings.add(new Freetoppings("Lettuce"));
-            bltToppings.add(new Freetoppings("Tomatoes"));
-            bltToppings.add(new Freetoppings("Mayo"));
+            bltToppings.add(new FreeToppings("Lettuce"));
+            bltToppings.add(new FreeToppings("Tomatoes"));
+            bltToppings.add(new FreeToppings("Mayo"));
 
             Sandwich blt = new Sandwich(8, "white", true, bltToppings,"BLT - Classic");
             createSandwich(blt,"BLT - Classic");
@@ -636,8 +636,8 @@ public class UserInterface {
             ArrayList<Toppings> phillyToppings = new ArrayList<>();
             phillyToppings.add(new PremiumToppings("Steak", false));
             phillyToppings.add(new PremiumToppings("Provolone", false));
-            phillyToppings.add(new Freetoppings("Peppers"));
-            phillyToppings.add(new Freetoppings("Onions"));
+            phillyToppings.add(new FreeToppings("Peppers"));
+            phillyToppings.add(new FreeToppings("Onions"));
 
             Sandwich philly = new Sandwich(8, "white", true, phillyToppings,"Philly Cheese Steak");
             createSandwich(philly, "Philly Cheese Steak");
@@ -653,10 +653,10 @@ public class UserInterface {
             italianToppings.add(new PremiumToppings("Ham", false));
             italianToppings.add(new PremiumToppings("Salami", false));
             italianToppings.add(new PremiumToppings("Provolone", false));
-            italianToppings.add(new Freetoppings("Lettuce"));
-            italianToppings.add(new Freetoppings("Tomatoes"));
-            italianToppings.add(new Freetoppings("Onions"));
-            italianToppings.add(new Freetoppings("Vinaigrette"));
+            italianToppings.add(new FreeToppings("Lettuce"));
+            italianToppings.add(new FreeToppings("Tomatoes"));
+            italianToppings.add(new FreeToppings("Onions"));
+            italianToppings.add(new FreeToppings("Vinaigrette"));
 
             Sandwich italian = new Sandwich(8, "italian", true, italianToppings,"Italian Sub");
             createSandwich(italian, "Italian Sub");
@@ -672,9 +672,9 @@ public class UserInterface {
             chickenClubToppings.add(new PremiumToppings("Chicken", false));
             chickenClubToppings.add(new PremiumToppings("Bacon", false));
             chickenClubToppings.add(new PremiumToppings("American", false));
-            chickenClubToppings.add(new Freetoppings("Lettuce"));
-            chickenClubToppings.add(new Freetoppings("Tomatoes"));
-            chickenClubToppings.add(new Freetoppings("Mayo"));
+            chickenClubToppings.add(new FreeToppings("Lettuce"));
+            chickenClubToppings.add(new FreeToppings("Tomatoes"));
+            chickenClubToppings.add(new FreeToppings("Mayo"));
 
             Sandwich chickenClub = new Sandwich(8, "white", true, chickenClubToppings,"Chicken Club");
             createSandwich(chickenClub, "Chicken Club");
@@ -688,13 +688,13 @@ public class UserInterface {
         veggieButton.addActionListener(e -> {
             ArrayList<Toppings> veggieToppings = new ArrayList<>();
             veggieToppings.add(new PremiumToppings("American", false));
-            veggieToppings.add(new Freetoppings("Lettuce"));
-            veggieToppings.add(new Freetoppings("Tomatoes"));
-            veggieToppings.add(new Freetoppings("Peppers"));
-            veggieToppings.add(new Freetoppings("Onions"));
-            veggieToppings.add(new Freetoppings("Cucumbers"));
-            veggieToppings.add(new Freetoppings("Mushrooms"));
-            veggieToppings.add(new Freetoppings("Mayo"));
+            veggieToppings.add(new FreeToppings("Lettuce"));
+            veggieToppings.add(new FreeToppings("Tomatoes"));
+            veggieToppings.add(new FreeToppings("Peppers"));
+            veggieToppings.add(new FreeToppings("Onions"));
+            veggieToppings.add(new FreeToppings("Cucumbers"));
+            veggieToppings.add(new FreeToppings("Mushrooms"));
+            veggieToppings.add(new FreeToppings("Mayo"));
 
             Sandwich veggie = new Sandwich(8, "wheat", true, veggieToppings,"Veggie Supreme");
             createSandwich(veggie, "Veggie Supreme");
@@ -709,11 +709,11 @@ public class UserInterface {
             ArrayList<Toppings> roastBeefToppings = new ArrayList<>();
             roastBeefToppings.add(new PremiumToppings("Roast Beef", false));
             roastBeefToppings.add(new PremiumToppings("Swiss", false));
-            roastBeefToppings.add(new Freetoppings("Lettuce"));
-            roastBeefToppings.add(new Freetoppings("Tomatoes"));
-            roastBeefToppings.add(new Freetoppings("Onions"));
-            roastBeefToppings.add(new Freetoppings("Pickles"));
-            roastBeefToppings.add(new Freetoppings("Mustard"));
+            roastBeefToppings.add(new FreeToppings("Lettuce"));
+            roastBeefToppings.add(new FreeToppings("Tomatoes"));
+            roastBeefToppings.add(new FreeToppings("Onions"));
+            roastBeefToppings.add(new FreeToppings("Pickles"));
+            roastBeefToppings.add(new FreeToppings("Mustard"));
 
             Sandwich roastBeefDeluxe = new Sandwich(8, "rye", true, roastBeefToppings,"Roast Beef Deluxe");
             createSandwich(roastBeefDeluxe, "Roast Beef Deluxe");
@@ -728,9 +728,9 @@ public class UserInterface {
             ArrayList<Toppings> hamSwissToppings = new ArrayList<>();
             hamSwissToppings.add(new PremiumToppings("Ham", false));
             hamSwissToppings.add(new PremiumToppings("Swiss", false));
-            hamSwissToppings.add(new Freetoppings("Lettuce"));
-            hamSwissToppings.add(new Freetoppings("Tomatoes"));
-            hamSwissToppings.add(new Freetoppings("Mustard"));
+            hamSwissToppings.add(new FreeToppings("Lettuce"));
+            hamSwissToppings.add(new FreeToppings("Tomatoes"));
+            hamSwissToppings.add(new FreeToppings("Mustard"));
 
             Sandwich hamSwiss = new Sandwich(8, "rye", true, hamSwissToppings,"Ham & Swiss Classic");
             createSandwich(hamSwiss, "Ham & Swiss Classic");
@@ -745,10 +745,10 @@ public class UserInterface {
             ArrayList<Toppings> salamiToppings = new ArrayList<>();
             salamiToppings.add(new PremiumToppings("Salami", false));
             salamiToppings.add(new PremiumToppings("Cheddar", false));
-            salamiToppings.add(new Freetoppings("Lettuce"));
-            salamiToppings.add(new Freetoppings("Onions"));
-            salamiToppings.add(new Freetoppings("Jalapeños"));
-            salamiToppings.add(new Freetoppings("Mustard"));
+            salamiToppings.add(new FreeToppings("Lettuce"));
+            salamiToppings.add(new FreeToppings("Onions"));
+            salamiToppings.add(new FreeToppings("Jalapeños"));
+            salamiToppings.add(new FreeToppings("Mustard"));
 
             Sandwich salami = new Sandwich(8, "italian", true, salamiToppings,"Spicy Salami Supreme");
             createSandwich(salami, "Spicy Salami Supreme");
@@ -763,10 +763,10 @@ public class UserInterface {
             ArrayList<Toppings> chickenWrapToppings = new ArrayList<>();
             chickenWrapToppings.add(new PremiumToppings("Chicken", false));
             chickenWrapToppings.add(new PremiumToppings("Provolone", false));
-            chickenWrapToppings.add(new Freetoppings("Lettuce"));
-            chickenWrapToppings.add(new Freetoppings("Tomatoes"));
-            chickenWrapToppings.add(new Freetoppings("Guacamole"));
-            chickenWrapToppings.add(new Freetoppings("Ranch"));
+            chickenWrapToppings.add(new FreeToppings("Lettuce"));
+            chickenWrapToppings.add(new FreeToppings("Tomatoes"));
+            chickenWrapToppings.add(new FreeToppings("Guacamole"));
+            chickenWrapToppings.add(new FreeToppings("Ranch"));
 
             Sandwich chickenWrap = new Sandwich(8, "wrap", false, chickenWrapToppings,"Chicken Avocado Wrap");
             createSandwich(chickenWrap, "Chicken Avocado Wrap");
@@ -1571,7 +1571,7 @@ public class UserInterface {
         normalToppingsPanel.setLayout(new BoxLayout(normalToppingsPanel, BoxLayout.Y_AXIS));
         normalToppingsPanel.setBackground(Color.WHITE);
         normalToppingsPanel.setBorder(BorderFactory.createTitledBorder("Toppings"));
-        for (String topping : Freetoppings.getToppings()) {
+        for (String topping : FreeToppings.getToppings()) {
             JCheckBox cb = new JCheckBox(topping);
             cb.setOpaque(false);
             if (signatureSandwichToppings.contains(topping)) {
@@ -1586,7 +1586,7 @@ public class UserInterface {
         saucesPanel.setLayout(new BoxLayout(saucesPanel, BoxLayout.Y_AXIS));
         saucesPanel.setBackground(Color.WHITE);
         saucesPanel.setBorder(BorderFactory.createTitledBorder("Sauces"));
-        for (String sauce : Freetoppings.getSauceToppings()) {
+        for (String sauce : FreeToppings.getSauceToppings()) {
             JCheckBox cb = new JCheckBox(sauce);
             cb.setOpaque(false);
             if (signatureSandwichToppings.contains(sauce)) {
@@ -1601,7 +1601,7 @@ public class UserInterface {
         sidesPanel.setLayout(new BoxLayout(sidesPanel, BoxLayout.Y_AXIS));
         sidesPanel.setBackground(Color.WHITE);
         sidesPanel.setBorder(BorderFactory.createTitledBorder("Sides"));
-        for (String sides : Freetoppings.getSideToppings()) {
+        for (String sides : FreeToppings.getSideToppings()) {
             JCheckBox cb = new JCheckBox(sides);
             cb.setOpaque(false);
             if (signatureSandwichToppings.contains(sides)) {
@@ -1700,14 +1700,14 @@ public class UserInterface {
                 }
             }
             for (String i : toppings) {
-                if (Freetoppings.getToppings().contains(i)) {
-                    actualToppings.add(new Freetoppings(i));
+                if (FreeToppings.getToppings().contains(i)) {
+                    actualToppings.add(new FreeToppings(i));
                 }
-                if (Freetoppings.getSideToppings().contains(i)) {
-                    actualToppings.add(new Freetoppings(i));
+                if (FreeToppings.getSideToppings().contains(i)) {
+                    actualToppings.add(new FreeToppings(i));
                 }
-                if (Freetoppings.getSauceToppings().contains(i)) {
-                    actualToppings.add(new Freetoppings(i));
+                if (FreeToppings.getSauceToppings().contains(i)) {
+                    actualToppings.add(new FreeToppings(i));
                 }
                 if (PremiumToppings.getCheeseToppings().contains(i)) {
                     if (hasExtraCheese && !i.equals("extra cheese")) {
