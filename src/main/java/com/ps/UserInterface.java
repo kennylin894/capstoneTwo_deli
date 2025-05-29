@@ -1154,6 +1154,10 @@ public class UserInterface {
             }
         }
         JScrollPane scrollPane = new JScrollPane(cartTextArea);
+        SwingUtilities.invokeLater(() -> {
+            cartTextArea.setCaretPosition(0);
+            scrollPane.getVerticalScrollBar().setValue(0);
+        });
         JPanel centerPanel = new JPanel(new BorderLayout());
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.setBorder(BorderFactory.createTitledBorder("Cart"));
@@ -1394,6 +1398,7 @@ public class UserInterface {
         cartPanel.add(buttonPanel, BorderLayout.SOUTH);
         cartPanel.setBackground(Color.WHITE);
 
+
         mainFrame.add(cartPanel);
         mainFrame.revalidate();
         mainFrame.repaint();
@@ -1416,6 +1421,10 @@ public class UserInterface {
 
         double totalPrice = FileManager.populateOrderSummary(summaryTextArea, currentOrder);
         JScrollPane scrollPane = new JScrollPane(summaryTextArea);
+        SwingUtilities.invokeLater(() -> {
+            summaryTextArea.setCaretPosition(0);
+            scrollPane.getVerticalScrollBar().setValue(0);
+        });
         scrollPane.setBorder(BorderFactory.createTitledBorder("Final Order"));
         checkoutPanel.add(scrollPane, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 10));
