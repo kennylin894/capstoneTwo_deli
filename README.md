@@ -16,19 +16,19 @@
 ## 🌟 Features
 
 ✅ **Interactive GUI** - User-friendly Swing interface with modern design  
+📋 **Comprehensive Menu** - View all available options with detailed pricing  
 🥪 **Custom Sandwich Builder** - Create sandwiches with multiple sizes, breads, and toppings  
 🍽️ **Signature Sandwiches** - Pre-made sandwiches with customization options  
 🍟 **Sides & Drinks** - Add chips and beverages to complete your order  
 🛒 **Smart Cart Management** - Add, remove, and modify quantities with ease  
 💰 **Dynamic Pricing** - Real-time price calculations based on selections  
-🧾 **Receipt Generation** - Automatic receipt creation with timestamp naming  
-📋 **Comprehensive Menu** - View all available options with detailed pricing
+🧾 **Receipt Generation** - Automatic receipt creation with timestamp naming
 
 ---
 
 ## 📋 Main Menu - Display
 
-![img.png](img.png)
+![img.png](src/main/resources/images/img.png)
 
 ---
 
@@ -40,41 +40,67 @@ Below are the main screens available in the DELI-cious application. Each section
 
 *This screen displays the complete menu with pricing for all sandwiches, drinks, and chips. (scrollable)*
 
-
+![img_2.png](src/main/resources/images/img_2.png)
 
 ### 2. **🥪 Build Your Own Sandwich**
 
 *The sandwich builder allows customers to fully customize their sandwich with size, bread, and toppings.*
 
-
+![img_3.png](src/main/resources/images/img_3.png)
 
 ### 3. **🍽️ Signature Sandwiches**
 
 *Pre-designed sandwiches that customers can order as-is and customize to their preferences.*
 
-
+![img_4.png](src/main/resources/images/img_4.png)
 
 *ex. user chooses BLT as the sandwich they want (user can customize everything to their liking.)*
 
-
+![img_5.png](src/main/resources/images/img_5.png)
 
 ### 4. **🍟 Order Chips**
 
 *Simple interface for selecting chip/snacks flavors and quantities.*
 
-
+![img_6.png](src/main/resources/images/img_6.png)
 
 ### 5. **🥤 Order Drinks**
 
 *Drink selection with multiple sizes and flavors available.*
 
-
+![img_7.png](src/main/resources/images/img_7.png)
 
 ### 6. **🛒 Shopping Cart & Checkout**
 
 *Review your order, modify quantities, and complete your purchase.*
 
-*[Screenshot of cart and checkout will be displayed here]*
+![img_8.png](src/main/resources/images/img_8.png)
+
+*Confirming Purchase*
+
+![img_9.png](src/main/resources/images/img_9.png)
+
+---
+
+---
+
+## 🎥 Video Demo
+
+Watch a complete walkthrough of the DELI-cious application in action:
+
+### Full Application Demo
+*Complete demonstration showing all features and functionality*
+
+![DELI-cious Demo](src/main/resources/videos/deli_demo.mp4)
+
+**What you'll see in the demo:**
+- 🏠 Main menu navigation
+- 🥪 Custom sandwich building process
+- 🍽️ Signature sandwich selection and customization
+- 🍟 Adding chips and drinks to orders
+- 🛒 Cart management and item removal
+- 💳 Complete checkout process
+- 🧾 Receipt generation
 
 ---
 
@@ -105,7 +131,7 @@ This application demonstrates advanced **Object-Oriented Programming** principle
 1. **Clone the repository**
 
    ```bash
-   git clone [your-repository-url-here]
+   git clone https://github.com/kennylin894/capstoneTwo_deli.git
    ```
 
 2. **Navigate to the project directory**
@@ -143,27 +169,25 @@ for(Toppings toppings : signatureSandwich.getToppings()) {
 JCheckBox cb = new JCheckBox(meat);
    cb.setOpaque(false);
    if (signatureSandwichToppings.contains(meat)) {
-        cb.setSelected(true); // Pre-select if part of signature recipe
+        cb.setSelected(true);
    }
            meatsPanel.add(cb);
    meatCheckBoxes.add(cb);
 }
-
         for (String cheese : PremiumToppings.getCheeseToppings()) {
 JCheckBox cb = new JCheckBox(cheese);
    cb.setOpaque(false);
    if (signatureSandwichToppings.contains(cheese)) {
-        cb.setSelected(true); // Pre-select if part of signature recipe
+        cb.setSelected(true);
    }
            cheesesPanel.add(cb);
    cheeseCheckBoxes.add(cb);
 }
-
         for (String topping : Freetoppings.getToppings()) {
 JCheckBox cb = new JCheckBox(topping);
    cb.setOpaque(false);
    if (signatureSandwichToppings.contains(topping)) {
-        cb.setSelected(true); // Pre-select if part of signature recipe
+        cb.setSelected(true);
    }
            normalToppingsPanel.add(cb);
    toppingCheckBoxes.add(cb);
