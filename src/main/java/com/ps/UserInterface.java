@@ -1665,24 +1665,18 @@ public class UserInterface {
                     }
                 }
             }
-            boolean hasToppings = false;
             for (JCheckBox cb : toppingCheckBoxes) {
                 if (cb.isSelected()) {
-                    hasToppings = true;
                     toppings.add(cb.getText());
                 }
             }
-            boolean hasSauce = false;
             for (JCheckBox cb : sauceCheckBoxes) {
                 if (cb.isSelected()) {
-                    hasSauce = true;
                     toppings.add(cb.getText());
                 }
             }
-            boolean hasSides = false;
             for (JCheckBox cb : sidesCheckBoxes) {
                 if (cb.isSelected()) {
-                    hasSides = true;
                     toppings.add(cb.getText());
                 }
             }
