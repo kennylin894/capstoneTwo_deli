@@ -91,7 +91,7 @@ Watch a complete walkthrough of the DELI-cious application in action:
 ### Full Application Demo
 *Complete demonstration showing all features and functionality*
 
-![DELI-cious Demo](src/main/resources/videos/deli_demo.mp4)
+![DELI-cious Demo](resources/videos/deli_demo.mp4)
 
 **What you'll see in the demo:**
 - 🏠 Main menu navigation
