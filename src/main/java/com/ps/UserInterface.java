@@ -51,7 +51,7 @@ public class UserInterface {
         JButton orderChipsButton = new JButton("🍿 Order Chips");
         JButton orderDrinksButton = new JButton("☕  Order Drinks");
         JButton viewCheckoutCartButton = new JButton("\uD83D\uDED2  View Cart/Checkout");
-        JButton exitButton = new JButton("Exit");
+        JButton exitButton = new JButton("\uD83D\uDEAA  Exit");
         Font menuFont = new Font("SansSerif", Font.BOLD, 13);
 
         JButton[] buttons = {
@@ -305,7 +305,7 @@ public class UserInterface {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         foodMenuScreen.add(scrollPane, BorderLayout.CENTER);
-        JButton backButton = new JButton("Back");
+        JButton backButton = new JButton("⬅️  Back");
         backButton.setBackground(new Color(173, 216, 230));
         backButton.addActionListener(e -> newinitMainMenu());
         JPanel bottomPanel = new JPanel();
