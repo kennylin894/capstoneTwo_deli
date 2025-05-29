@@ -1065,81 +1065,85 @@ public class UserInterface {
             boolean sandwichLabelPrinted = false;
             boolean drinkLabelPrinted = false;
             boolean chipLabelPrinted = false;
-            int count = 1;
+            int sandwichCount = 1;
+            int drinkCount = 1;
+            int chipCount = 1;
             //very bad way for sorting (displaying) sandwiches first etc sandwichs -> drinks -> chips
             for (Product item : currentOrder) {
                 if (item instanceof Sandwich) {
                     if (!sandwichLabelPrinted) {
-                        cartTextArea.setText("-----Sandwiches-----\n");
+                        cartTextArea.setText("---------Sandwiches-------\n");
                         sandwichLabelPrinted = true;
                     }
                     StringBuilder stringBuilder = new StringBuilder();
                     if(((Sandwich) item).getSandwichName().equals("custom"))
                     {
-                        stringBuilder.append("Sandwich #" + count).append("\n");
+                        stringBuilder.append("Sandwich #" + sandwichCount).append("\n");
                     }
                     else
                     {
                         stringBuilder.append(((Sandwich) item).getSandwichName()).append("\n");
                     }
-                    stringBuilder.append("-------------------").append("\n");
-                    stringBuilder.append("Size: " + ((Sandwich) item).getChoosenSize()).append("'").append("\n");
+                    stringBuilder.append("--------------------------\n");
+                    stringBuilder.append("Size: " + ((Sandwich) item).getChoosenSize()).append("'\n");
                     stringBuilder.append("Bread: " + ((Sandwich) item).getChoosenBreadType()).append("\n");
                     if (((Sandwich) item).isToasted()) {
-                        stringBuilder.append(" * is Toasted").append("\n");
+                        stringBuilder.append(" * is Toasted\n");
                     }
-                    stringBuilder.append("Toppings").append("\n").append("===================").append("\n");
+                    stringBuilder.append("Toppings").append("\n").append("==========================\n");
                     for (Toppings toppings : ((Sandwich) item).getToppings()) {
                         if (toppings instanceof PremiumToppings) {
                             stringBuilder.append("- ").append(toppings.getName()).append("\n");
                             if (((PremiumToppings) toppings).isExtraMeat()) {
-                                stringBuilder.append(" * extra meat(s)").append("\n");
+                                stringBuilder.append(" * extra meat(s)\n");
                             }
                             if (((PremiumToppings) toppings).isExtraCheese()) {
-                                stringBuilder.append(" * extra cheese(s)").append("\n");
+                                stringBuilder.append(" * extra cheese(s)\n");
                             }
                         } else {
                             stringBuilder.append("- " + toppings.getName()).append("\n");
                         }
                     }
-                    stringBuilder.append("-------------------").append("\n");
+                    stringBuilder.append("--------------------------\n");
                     stringBuilder.append("Price : $").append(item.getPrice()).append("\n");
-                    stringBuilder.append("-------------------").append("\n");
+                    stringBuilder.append("--------------------------\n");
                     cartTextArea.append(stringBuilder.toString());
-                    count++;
+                    sandwichCount++;
                     totalPrice += item.getPrice();
                 }
             }
             for (Product item : currentOrder) {
                 if (item instanceof Drinks) {
                     if (!drinkLabelPrinted) {
-                        cartTextArea.append("------Drinks-------\n");
+                        cartTextArea.append("---------Drinks---------\n");
                         drinkLabelPrinted = true;
                     }
-                    String stringBuilder = "Drinks" + "\n" +
-                            "-------------------" + "\n" +
+                    String stringBuilder = "Drinks #" + drinkCount + "\n" +
+                            "--------------------------" + "\n" +
                             "Flavor: " + ((Drinks) item).getSelectedFlavor() + "\n" +
                             "Size: " + ((Drinks) item).getSelectedSize() + "\n" +
                             "Quantity: " + ((Drinks) item).getAmountOfDrinks() + "\n" +
                             "Price: $" + String.format("%.2f", item.getPrice()) + "\n" +
-                            "-------------------" + "\n";
+                            "--------------------------" + "\n";
                     cartTextArea.append(stringBuilder);
+                    drinkCount++;
                     totalPrice += item.getPrice();
                 }
             }
             for (Product item : currentOrder) {
                 if (item instanceof Chips) {
                     if (!chipLabelPrinted) {
-                        cartTextArea.append("-------Chips-------\n");
+                        cartTextArea.append("----------Chips----------\n");
                         chipLabelPrinted = true;
                     }
-                    String stringBuilder = "Chips" + "\n" +
-                            "-------------------" + "\n" +
+                    String stringBuilder = "Chips #" + chipCount + "\n" +
+                            "--------------------------" + "\n" +
                             "Flavor: " + ((Chips) item).getChosenChip() + "\n" +
                             "Quantity: " + ((Chips) item).getAmountOfChips() + "\n" +
                             "Price: $" + String.format("%.2f", item.getPrice()) + "\n" +
-                            "-------------------" + "\n";
+                            "--------------------------" + "\n";
                     cartTextArea.append(stringBuilder);
+                    chipCount++;
                     totalPrice += item.getPrice();
                 }
             }

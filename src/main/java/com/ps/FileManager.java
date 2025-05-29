@@ -23,18 +23,19 @@ public class FileManager {
         else
         {
             StringBuilder summary = new StringBuilder();
-            summary.append("═══════════════════════════════════════\n");
-            summary.append("           DELI-cious Receipt           \n");
-            summary.append("═══════════════════════════════════════\n\n");
+            summary.append("═══════════════════════════\n");
+            summary.append("    DELI-cious Receipt     \n");
+            summary.append("═══════════════════════════\n");
             boolean sandwichLabelPrinted = false;
             boolean drinkLabelPrinted = false;
             boolean chipLabelPrinted = false;
             int sandwichCount = 1;
-
+            int drinkCount = 1;
+            int chipCount = 1;
             for (Product item : currentOrder) {
                 if (item instanceof Sandwich) {
                     if (!sandwichLabelPrinted) {
-                        summary.append("-----Sandwiches-----\n");
+                        summary.append("--------Sandwiches------\n");
                         sandwichLabelPrinted = true;
                     }
                     if(((Sandwich) item).getSandwichName().equals("custom"))
@@ -45,14 +46,14 @@ public class FileManager {
                     {
                         summary.append(((Sandwich) item).getSandwichName()).append("\n");
                     }
-                    summary.append("-------------------\n");
+                    summary.append("------------------------\n");
                     summary.append("Size: ").append(((Sandwich) item).getChoosenSize()).append("'\n");
                     summary.append("Bread: ").append(((Sandwich) item).getChoosenBreadType()).append("\n");
                     if (((Sandwich) item).isToasted()) {
                         summary.append(" * is Toasted\n");
                     }
                     summary.append("Toppings\n");
-                    summary.append("===================\n");
+                    summary.append("========================\n");
                     for (Toppings toppings : ((Sandwich) item).getToppings()) {
                         if (toppings instanceof PremiumToppings) {
                             summary.append("- ").append(toppings.getName()).append("\n");
@@ -66,9 +67,9 @@ public class FileManager {
                             summary.append("- " + toppings.getName()).append("\n");
                         }
                     }
-                    summary.append("-------------------\n");
+                    summary.append("------------------------\n");
                     summary.append("Price : $").append(String.format("%.2f", item.getPrice())).append("\n");
-                    summary.append("-------------------\n");
+                    summary.append("------------------------\n");
                     sandwichCount++;
                     totalPrice += item.getPrice();
                 }
@@ -76,31 +77,33 @@ public class FileManager {
             for (Product item : currentOrder) {
                 if (item instanceof Drinks) {
                     if (!drinkLabelPrinted) {
-                        summary.append("------Drinks-------\n");
+                        summary.append("----------Drinks--------\n");
                         drinkLabelPrinted = true;
                     }
-                    summary.append("Drinks\n");
-                    summary.append("-------------------\n");
+                    summary.append("Drink #" + drinkCount + "\n");
+                    summary.append("------------------------\n");
                     summary.append("Flavor: ").append(((Drinks) item).getSelectedFlavor()).append("\n");
                     summary.append("Size: ").append(((Drinks) item).getSelectedSize()).append("\n");
                     summary.append("Quantity: ").append(((Drinks) item).getAmountOfDrinks()).append("\n");
                     summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n");
-                    summary.append("-------------------\n");
+                    summary.append("------------------------\n");
+                    drinkCount++;
                     totalPrice += item.getPrice();
                 }
             }
             for (Product item : currentOrder) {
                 if (item instanceof Chips) {
                     if (!chipLabelPrinted) {
-                        summary.append("-------Chips-------\n");
+                        summary.append("-----------Chips--------\n");
                         chipLabelPrinted = true;
                     }
-                    summary.append("Chips\n");
-                    summary.append("-------------------\n");
+                    summary.append("Chip #" + chipCount + "\n");
+                    summary.append("------------------------\n");
                     summary.append("Flavor: ").append(((Chips) item).getChosenChip()).append("\n");
                     summary.append("Quantity: ").append(((Chips) item).getAmountOfChips()).append("\n");
                     summary.append("Price: $").append(String.format("%.2f", item.getPrice())).append("\n");
-                    summary.append("-------------------\n");
+                    summary.append("------------------------\n");
+                    chipCount++;
                     totalPrice += item.getPrice();
                 }
             }
@@ -130,24 +133,29 @@ public class FileManager {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
             String filename = "receipts/" + now.format(formatter) + ".txt";
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
-            bufferedWriter.write("═══════════════════════════════════════");
+            bufferedWriter.write("══════════════════════════\n");
             bufferedWriter.newLine();
-            bufferedWriter.write("           DELI-cious Receipt           ");
+            bufferedWriter.write("     DELI-cious Receipt   \n");
             bufferedWriter.newLine();
-            bufferedWriter.write("═══════════════════════════════════════");
-            bufferedWriter.newLine();
+            bufferedWriter.write("══════════════════════════\n");
+//            bufferedWriter.newLine();
+//            bufferedWriter.newLine();
             bufferedWriter.write("Date: " + now.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss")));
-            bufferedWriter.newLine();
-            bufferedWriter.newLine();
+//            bufferedWriter.newLine();
+//            bufferedWriter.newLine();
             boolean sandwichLabelPrinted = false;
             boolean drinkLabelPrinted = false;
             boolean chipLabelPrinted = false;
             int sandwichCount = 1;
-
+            int drinkCount = 1;
+            int chipCount = 1;
             for (Product item : currentOrder) {
                 if (item instanceof Sandwich) {
                     if (!sandwichLabelPrinted) {
-                        bufferedWriter.write("-----Sandwiches-----");
+                        bufferedWriter.newLine();
+                        bufferedWriter.write("---------Sandwiches-------");
+                        bufferedWriter.newLine();
+                        bufferedWriter.write("--------------------------");
                         bufferedWriter.newLine();
                         sandwichLabelPrinted = true;
                     }
@@ -161,7 +169,7 @@ public class FileManager {
                         bufferedWriter.write(((Sandwich) item).getSandwichName());
                         bufferedWriter.newLine();
                     }
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     bufferedWriter.write("Size: " + ((Sandwich) item).getChoosenSize() + "'");
                     bufferedWriter.newLine();
@@ -173,7 +181,7 @@ public class FileManager {
                     }
                     bufferedWriter.write("Toppings");
                     bufferedWriter.newLine();
-                    bufferedWriter.write("===================");
+                    bufferedWriter.write("==========================");
                     bufferedWriter.newLine();
                     for (Toppings toppings : ((Sandwich) item).getToppings()) {
                         if (toppings instanceof PremiumToppings) {
@@ -192,11 +200,11 @@ public class FileManager {
                             bufferedWriter.newLine();
                         }
                     }
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     bufferedWriter.write("Price : $" + String.format("%.2f", item.getPrice()));
                     bufferedWriter.newLine();
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     sandwichCount++;
                 }
@@ -204,13 +212,13 @@ public class FileManager {
             for (Product item : currentOrder) {
                 if (item instanceof Drinks) {
                     if (!drinkLabelPrinted) {
-                        bufferedWriter.write("------Drinks-------");
+                        bufferedWriter.write("-----------Drinks---------");
                         bufferedWriter.newLine();
                         drinkLabelPrinted = true;
                     }
-                    bufferedWriter.write("Drinks");
+                    bufferedWriter.write("Drink #" + drinkCount + "\n");
                     bufferedWriter.newLine();
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     bufferedWriter.write("Flavor: " + ((Drinks) item).getSelectedFlavor());
                     bufferedWriter.newLine();
@@ -220,20 +228,20 @@ public class FileManager {
                     bufferedWriter.newLine();
                     bufferedWriter.write("Price: $" + String.format("%.2f", item.getPrice()));
                     bufferedWriter.newLine();
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                 }
             }
             for (Product item : currentOrder) {
                 if (item instanceof Chips) {
                     if (!chipLabelPrinted) {
-                        bufferedWriter.write("-------Chips-------");
+                        bufferedWriter.write("-----------Chips----------");
                         bufferedWriter.newLine();
                         chipLabelPrinted = true;
                     }
-                    bufferedWriter.write("Chips");
+                    bufferedWriter.write("Chip #" + chipCount + "\n");
                     bufferedWriter.newLine();
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     bufferedWriter.write("Flavor: " + ((Chips) item).getChosenChip());
                     bufferedWriter.newLine();
@@ -241,7 +249,7 @@ public class FileManager {
                     bufferedWriter.newLine();
                     bufferedWriter.write("Price: $" + String.format("%.2f", item.getPrice()));
                     bufferedWriter.newLine();
-                    bufferedWriter.write("-------------------");
+                    bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                 }
             }

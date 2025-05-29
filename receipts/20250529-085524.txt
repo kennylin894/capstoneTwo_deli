@@ -1,0 +1,86 @@
+══════════════════════════
+
+     DELI-cious Receipt   
+
+══════════════════════════
+Date: 05/29/2025 08:55:24
+---------Sandwiches-------
+--------------------------
+Italian Sub
+--------------------------
+Size: 8'
+Bread: italian
+ * is Toasted
+Toppings
+==========================
+- Ham
+- Salami
+- Provolone
+- Lettuce
+- Onions
+- Tomatoes
+- Vinaigrette
+--------------------------
+Price : $12.50
+--------------------------
+Sandwich #2
+--------------------------
+Size: 4'
+Bread: white
+Toppings
+==========================
+--------------------------
+Price : $5.50
+--------------------------
+Sandwich #3
+--------------------------
+Size: 12'
+Bread: white
+Toppings
+==========================
+- Roast Beef
+ * extra meat(s)
+- Chicken
+ * extra meat(s)
+- Provolone
+ * extra cheese(s)
+- Cheddar
+ * extra cheese(s)
+- Peppers
+- Tomatoes
+- Cucumbers
+- Guacamole
+- Mushrooms
+- Mayo
+- Mustard
+- Thousand Isl
+- Au Jus
+- Sauce
+--------------------------
+Price : $23.80
+--------------------------
+-----------Drinks---------
+Drinks
+--------------------------
+Flavor: Cola
+Size: Large
+Quantity: 5
+Price: $15.00
+--------------------------
+-----------Chips----------
+Chips
+--------------------------
+Flavor: Cheddar Cheese
+Quantity: 3
+Price: $4.50
+--------------------------
+Chips
+--------------------------
+Flavor: Kettle Cooked
+Quantity: 5
+Price: $7.50
+--------------------------
+╔═════════════════════════╗
+║    TOTAL: $68.80        ║
+╚═════════════════════════╝
+Thank you for choosing DELI-cious!
