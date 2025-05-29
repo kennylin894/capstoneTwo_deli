@@ -158,36 +158,45 @@ One particularly interesting aspect of this application is the **signature sandw
 ```java
 // Pre-select toppings for signature sandwiches
 ArrayList<String> signatureSandwichToppings = new ArrayList<>();
-for(Toppings toppings : signatureSandwich.getToppings()) {
-        signatureSandwichToppings.add(toppings.getName());
-        }
+for(Toppings toppings : signatureSandwich.getToppings()) 
+{
+    signatureSandwichToppings.add(toppings.getName());
+}
 
 // Auto-check the appropriate checkboxes based on signature sandwich recipe
-        for (String meat : PremiumToppings.getMeatToppings()) {
+for (String meat : PremiumToppings.getMeatToppings()) 
+{
 JCheckBox cb = new JCheckBox(meat);
    cb.setOpaque(false);
-   if (signatureSandwichToppings.contains(meat)) {
+   if (signatureSandwichToppings.contains(meat)) 
+   {
         cb.setSelected(true);
    }
-           meatsPanel.add(cb);
+   meatsPanel.add(cb);
    meatCheckBoxes.add(cb);
 }
-        for (String cheese : PremiumToppings.getCheeseToppings()) {
+
+for (String cheese : PremiumToppings.getCheeseToppings()) 
+{
 JCheckBox cb = new JCheckBox(cheese);
    cb.setOpaque(false);
-   if (signatureSandwichToppings.contains(cheese)) {
+   if (signatureSandwichToppings.contains(cheese)) 
+   {
         cb.setSelected(true);
    }
-           cheesesPanel.add(cb);
+   cheesesPanel.add(cb);
    cheeseCheckBoxes.add(cb);
 }
-        for (String topping : Freetoppings.getToppings()) {
+
+for (String topping : Freetoppings.getToppings()) 
+{
 JCheckBox cb = new JCheckBox(topping);
    cb.setOpaque(false);
-   if (signatureSandwichToppings.contains(topping)) {
+   if (signatureSandwichToppings.contains(topping)) 
+   {
         cb.setSelected(true);
    }
-           normalToppingsPanel.add(cb);
+   normalToppingsPanel.add(cb);
    toppingCheckBoxes.add(cb);
 }
 ```
