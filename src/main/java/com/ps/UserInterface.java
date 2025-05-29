@@ -485,7 +485,6 @@ public class UserInterface {
                 if (cb.getText().equals("extra meat")) {
                     if (cb.isSelected()) {
                         hasExtraMeats = true;
-                        hasMeats = true;
                     }
                 } else {
                     if (cb.isSelected()) {
@@ -499,7 +498,6 @@ public class UserInterface {
                 if (cb.getText().equals("extra cheese")) {
                     if (cb.isSelected()) {
                         hasExtraCheese = true;
-                        hasCheese = true;
                     }
                 } else {
                     if (cb.isSelected()) {
@@ -554,7 +552,7 @@ public class UserInterface {
                     }
                 }
             }
-            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings,"custom");
+            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings, "custom");
             currentOrder.add(sandwich);
             if (!hasMeats) {
                 JOptionPane.showMessageDialog(mainFrame, "Your order has no meats!", "No Meats", JOptionPane.INFORMATION_MESSAGE);
@@ -623,8 +621,8 @@ public class UserInterface {
             bltToppings.add(new FreeToppings("Tomatoes"));
             bltToppings.add(new FreeToppings("Mayo"));
 
-            Sandwich blt = new Sandwich(8, "white", true, bltToppings,"BLT - Classic");
-            createSandwich(blt,"BLT - Classic");
+            Sandwich blt = new Sandwich(8, "white", true, bltToppings, "BLT - Classic");
+            createSandwich(blt, "BLT - Classic");
         });
 
         //phillycheese steak
@@ -639,7 +637,7 @@ public class UserInterface {
             phillyToppings.add(new FreeToppings("Peppers"));
             phillyToppings.add(new FreeToppings("Onions"));
 
-            Sandwich philly = new Sandwich(8, "white", true, phillyToppings,"Philly Cheese Steak");
+            Sandwich philly = new Sandwich(8, "white", true, phillyToppings, "Philly Cheese Steak");
             createSandwich(philly, "Philly Cheese Steak");
         });
 
@@ -658,7 +656,7 @@ public class UserInterface {
             italianToppings.add(new FreeToppings("Onions"));
             italianToppings.add(new FreeToppings("Vinaigrette"));
 
-            Sandwich italian = new Sandwich(8, "italian", true, italianToppings,"Italian Sub");
+            Sandwich italian = new Sandwich(8, "italian", true, italianToppings, "Italian Sub");
             createSandwich(italian, "Italian Sub");
         });
 
@@ -676,7 +674,7 @@ public class UserInterface {
             chickenClubToppings.add(new FreeToppings("Tomatoes"));
             chickenClubToppings.add(new FreeToppings("Mayo"));
 
-            Sandwich chickenClub = new Sandwich(8, "white", true, chickenClubToppings,"Chicken Club");
+            Sandwich chickenClub = new Sandwich(8, "white", true, chickenClubToppings, "Chicken Club");
             createSandwich(chickenClub, "Chicken Club");
         });
 
@@ -696,7 +694,7 @@ public class UserInterface {
             veggieToppings.add(new FreeToppings("Mushrooms"));
             veggieToppings.add(new FreeToppings("Mayo"));
 
-            Sandwich veggie = new Sandwich(8, "wheat", true, veggieToppings,"Veggie Supreme");
+            Sandwich veggie = new Sandwich(8, "wheat", true, veggieToppings, "Veggie Supreme");
             createSandwich(veggie, "Veggie Supreme");
         });
 
@@ -715,7 +713,7 @@ public class UserInterface {
             roastBeefToppings.add(new FreeToppings("Pickles"));
             roastBeefToppings.add(new FreeToppings("Mustard"));
 
-            Sandwich roastBeefDeluxe = new Sandwich(8, "rye", true, roastBeefToppings,"Roast Beef Deluxe");
+            Sandwich roastBeefDeluxe = new Sandwich(8, "rye", true, roastBeefToppings, "Roast Beef Deluxe");
             createSandwich(roastBeefDeluxe, "Roast Beef Deluxe");
         });
 
@@ -732,7 +730,7 @@ public class UserInterface {
             hamSwissToppings.add(new FreeToppings("Tomatoes"));
             hamSwissToppings.add(new FreeToppings("Mustard"));
 
-            Sandwich hamSwiss = new Sandwich(8, "rye", true, hamSwissToppings,"Ham & Swiss Classic");
+            Sandwich hamSwiss = new Sandwich(8, "rye", true, hamSwissToppings, "Ham & Swiss Classic");
             createSandwich(hamSwiss, "Ham & Swiss Classic");
         });
 
@@ -750,7 +748,7 @@ public class UserInterface {
             salamiToppings.add(new FreeToppings("Jalapeños"));
             salamiToppings.add(new FreeToppings("Mustard"));
 
-            Sandwich salami = new Sandwich(8, "italian", true, salamiToppings,"Spicy Salami Supreme");
+            Sandwich salami = new Sandwich(8, "italian", true, salamiToppings, "Spicy Salami Supreme");
             createSandwich(salami, "Spicy Salami Supreme");
         });
 
@@ -768,7 +766,7 @@ public class UserInterface {
             chickenWrapToppings.add(new FreeToppings("Guacamole"));
             chickenWrapToppings.add(new FreeToppings("Ranch"));
 
-            Sandwich chickenWrap = new Sandwich(8, "wrap", false, chickenWrapToppings,"Chicken Avocado Wrap");
+            Sandwich chickenWrap = new Sandwich(8, "wrap", false, chickenWrapToppings, "Chicken Avocado Wrap");
             createSandwich(chickenWrap, "Chicken Avocado Wrap");
         });
 
@@ -1076,12 +1074,9 @@ public class UserInterface {
                         sandwichLabelPrinted = true;
                     }
                     StringBuilder stringBuilder = new StringBuilder();
-                    if(((Sandwich) item).getSandwichName().equals("custom"))
-                    {
+                    if (((Sandwich) item).getSandwichName().equals("custom")) {
                         stringBuilder.append("Sandwich #" + sandwichCount).append("\n");
-                    }
-                    else
-                    {
+                    } else {
                         stringBuilder.append(((Sandwich) item).getSandwichName()).append("\n");
                     }
                     stringBuilder.append("--------------------------\n");
@@ -1091,17 +1086,22 @@ public class UserInterface {
                         stringBuilder.append(" * is Toasted\n");
                     }
                     stringBuilder.append("Toppings").append("\n").append("==========================\n");
-                    for (Toppings toppings : ((Sandwich) item).getToppings()) {
-                        if (toppings instanceof PremiumToppings) {
-                            stringBuilder.append("- ").append(toppings.getName()).append("\n");
-                            if (((PremiumToppings) toppings).isExtraMeat()) {
-                                stringBuilder.append(" * extra meat(s)\n");
+                    if (((Sandwich) item).getToppings().isEmpty()) {
+                        stringBuilder.append("none.").append("\n");
+
+                    } else {
+                        for (Toppings toppings : ((Sandwich) item).getToppings()) {
+                            if (toppings instanceof PremiumToppings) {
+                                stringBuilder.append("- ").append(toppings.getName()).append("\n");
+                                if (((PremiumToppings) toppings).isExtraMeat()) {
+                                    stringBuilder.append(" * extra meat(s)\n");
+                                }
+                                if (((PremiumToppings) toppings).isExtraCheese()) {
+                                    stringBuilder.append(" * extra cheese(s)\n");
+                                }
+                            } else {
+                                stringBuilder.append("- " + toppings.getName()).append("\n");
                             }
-                            if (((PremiumToppings) toppings).isExtraCheese()) {
-                                stringBuilder.append(" * extra cheese(s)\n");
-                            }
-                        } else {
-                            stringBuilder.append("- " + toppings.getName()).append("\n");
                         }
                     }
                     stringBuilder.append("--------------------------\n");
@@ -1190,12 +1190,9 @@ public class UserInterface {
             for (Product item : currentOrder) {
                 StringBuilder stringBuilder = new StringBuilder();
                 if (item instanceof Sandwich) {
-                    if(((Sandwich) item).getSandwichName().equals("custom"))
-                    {
+                    if (((Sandwich) item).getSandwichName().equals("custom")) {
                         stringBuilder.append("Sandwich #" + itemIndex).append("\n");
-                    }
-                    else
-                    {
+                    } else {
                         stringBuilder.append(((Sandwich) item).getSandwichName()).append("\n");
                     }
                 } else if (item instanceof Drinks) {
@@ -1305,9 +1302,7 @@ public class UserInterface {
                                 showViewCartMenu();
                             }
                         }
-                    }
-                    else if (product instanceof Drinks)
-                    {
+                    } else if (product instanceof Drinks) {
                         Drinks drinks = (Drinks) product;
                         if (drinks.getAmountOfDrinks() == 1) {
                             if (numToRemove > drinks.getAmountOfDrinks()) {
@@ -1339,8 +1334,7 @@ public class UserInterface {
                                 showViewCartMenu();
                             }
                         }
-                    }
-                    else if (product instanceof Sandwich) {
+                    } else if (product instanceof Sandwich) {
                         JOptionPane.showMessageDialog(mainFrame,
                                 "Sandwiches cannot have partial quantities removed.",
                                 "Cannot Remove", JOptionPane.WARNING_MESSAGE);
@@ -1537,8 +1531,7 @@ public class UserInterface {
         meatsPanel.setBackground(Color.WHITE);
         meatsPanel.setBorder(BorderFactory.createTitledBorder("Meats"));
         ArrayList<String> signatureSandwichToppings = new ArrayList<>();
-        for(Toppings toppings : signatureSandwich.getToppings())
-        {
+        for (Toppings toppings : signatureSandwich.getToppings()) {
             signatureSandwichToppings.add(toppings.getName());
         }
         for (String meat : PremiumToppings.getMeatToppings()) {
@@ -1647,7 +1640,6 @@ public class UserInterface {
             boolean isToasted = toastedCheckBox.isSelected();
             ArrayList<String> toppings = new ArrayList<>();
             ArrayList<Toppings> actualToppings = new ArrayList<>();
-            boolean hasMeats = false;
             boolean hasExtraMeats = false;
             boolean hasExtraCheese = false;
             //check if extra meat is checked first
@@ -1655,26 +1647,21 @@ public class UserInterface {
                 if (cb.getText().equals("extra meat")) {
                     if (cb.isSelected()) {
                         hasExtraMeats = true;
-                        hasMeats = true;
                     }
                 } else {
                     if (cb.isSelected()) {
                         toppings.add(cb.getText());
-                        hasMeats = true;
                     }
                 }
             }
-            boolean hasCheese = false;
             for (JCheckBox cb : cheeseCheckBoxes) {
                 if (cb.getText().equals("extra cheese")) {
                     if (cb.isSelected()) {
                         hasExtraCheese = true;
-                        hasCheese = true;
                     }
                 } else {
                     if (cb.isSelected()) {
                         toppings.add(cb.getText());
-                        hasCheese = true;
                     }
                 }
             }
@@ -1724,7 +1711,7 @@ public class UserInterface {
                     }
                 }
             }
-            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings,itemName);
+            Sandwich sandwich = new Sandwich(selectedSize, selectedBread, isToasted, actualToppings, itemName);
             currentOrder.add(sandwich);
             JOptionPane.showMessageDialog(mainFrame, itemName + " added to cart!", "Success", JOptionPane.INFORMATION_MESSAGE);
             newinitMainMenu();

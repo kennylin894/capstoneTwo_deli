@@ -19,9 +19,7 @@ public class FileManager {
         if (currentOrder.isEmpty()) {
             textArea.setText("No items in order.");
             return 0.0;
-        }
-        else
-        {
+        } else {
             StringBuilder summary = new StringBuilder();
             summary.append("═══════════════════════════\n");
             summary.append("    DELI-cious Receipt     \n");
@@ -38,12 +36,9 @@ public class FileManager {
                         summary.append("--------Sandwiches------\n");
                         sandwichLabelPrinted = true;
                     }
-                    if(((Sandwich) item).getSandwichName().equals("custom"))
-                    {
+                    if (((Sandwich) item).getSandwichName().equals("custom")) {
                         summary.append("Sandwich #" + sandwichCount).append("\n");
-                    }
-                    else
-                    {
+                    } else {
                         summary.append(((Sandwich) item).getSandwichName()).append("\n");
                     }
                     summary.append("------------------------\n");
@@ -54,17 +49,21 @@ public class FileManager {
                     }
                     summary.append("Toppings\n");
                     summary.append("========================\n");
-                    for (Toppings toppings : ((Sandwich) item).getToppings()) {
-                        if (toppings instanceof PremiumToppings) {
-                            summary.append("- ").append(toppings.getName()).append("\n");
-                            if (((PremiumToppings) toppings).isExtraMeat()) {
-                                summary.append(" * extra meat(s)").append("\n");
+                    if (((Sandwich) item).getToppings().isEmpty()) {
+                        summary.append("none.\n");
+                    } else {
+                        for (Toppings toppings : ((Sandwich) item).getToppings()) {
+                            if (toppings instanceof PremiumToppings) {
+                                summary.append("- ").append(toppings.getName()).append("\n");
+                                if (((PremiumToppings) toppings).isExtraMeat()) {
+                                    summary.append(" * extra meat(s)").append("\n");
+                                }
+                                if (((PremiumToppings) toppings).isExtraCheese()) {
+                                    summary.append(" * extra cheese(s)").append("\n");
+                                }
+                            } else {
+                                summary.append("- " + toppings.getName()).append("\n");
                             }
-                            if (((PremiumToppings) toppings).isExtraCheese()) {
-                                summary.append(" * extra cheese(s)").append("\n");
-                            }
-                        } else {
-                            summary.append("- " + toppings.getName()).append("\n");
                         }
                     }
                     summary.append("------------------------\n");
@@ -134,15 +133,10 @@ public class FileManager {
             String filename = "receipts/" + now.format(formatter) + ".txt";
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
             bufferedWriter.write("══════════════════════════\n");
-            bufferedWriter.newLine();
             bufferedWriter.write("     DELI-cious Receipt   \n");
-            bufferedWriter.newLine();
             bufferedWriter.write("══════════════════════════\n");
-//            bufferedWriter.newLine();
-//            bufferedWriter.newLine();
             bufferedWriter.write("Date: " + now.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss")));
-//            bufferedWriter.newLine();
-//            bufferedWriter.newLine();
+            bufferedWriter.newLine();
             boolean sandwichLabelPrinted = false;
             boolean drinkLabelPrinted = false;
             boolean chipLabelPrinted = false;
@@ -152,20 +146,16 @@ public class FileManager {
             for (Product item : currentOrder) {
                 if (item instanceof Sandwich) {
                     if (!sandwichLabelPrinted) {
-                        bufferedWriter.newLine();
                         bufferedWriter.write("---------Sandwiches-------");
                         bufferedWriter.newLine();
                         bufferedWriter.write("--------------------------");
                         bufferedWriter.newLine();
                         sandwichLabelPrinted = true;
                     }
-                    if(((Sandwich) item).getSandwichName().equals("custom"))
-                    {
+                    if (((Sandwich) item).getSandwichName().equals("custom")) {
                         bufferedWriter.write("Sandwich #" + sandwichCount);
                         bufferedWriter.newLine();
-                    }
-                    else
-                    {
+                    } else {
                         bufferedWriter.write(((Sandwich) item).getSandwichName());
                         bufferedWriter.newLine();
                     }
@@ -183,21 +173,25 @@ public class FileManager {
                     bufferedWriter.newLine();
                     bufferedWriter.write("==========================");
                     bufferedWriter.newLine();
-                    for (Toppings toppings : ((Sandwich) item).getToppings()) {
-                        if (toppings instanceof PremiumToppings) {
-                            bufferedWriter.write("- " + toppings.getName());
-                            bufferedWriter.newLine();
-                            if (((PremiumToppings) toppings).isExtraMeat()) {
-                                bufferedWriter.write(" * extra meat(s)");
+                    if (((Sandwich) item).getToppings().isEmpty()) {
+                        bufferedWriter.write("none.\n");
+                    } else {
+                        for (Toppings toppings : ((Sandwich) item).getToppings()) {
+                            if (toppings instanceof PremiumToppings) {
+                                bufferedWriter.write("- " + toppings.getName());
+                                bufferedWriter.newLine();
+                                if (((PremiumToppings) toppings).isExtraMeat()) {
+                                    bufferedWriter.write(" * extra meat(s)");
+                                    bufferedWriter.newLine();
+                                }
+                                if (((PremiumToppings) toppings).isExtraCheese()) {
+                                    bufferedWriter.write(" * extra cheese(s)");
+                                    bufferedWriter.newLine();
+                                }
+                            } else {
+                                bufferedWriter.write("- " + toppings.getName());
                                 bufferedWriter.newLine();
                             }
-                            if (((PremiumToppings) toppings).isExtraCheese()) {
-                                bufferedWriter.write(" * extra cheese(s)");
-                                bufferedWriter.newLine();
-                            }
-                        } else {
-                            bufferedWriter.write("- " + toppings.getName());
-                            bufferedWriter.newLine();
                         }
                     }
                     bufferedWriter.write("--------------------------");
@@ -217,7 +211,6 @@ public class FileManager {
                         drinkLabelPrinted = true;
                     }
                     bufferedWriter.write("Drink #" + drinkCount + "\n");
-                    bufferedWriter.newLine();
                     bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     bufferedWriter.write("Flavor: " + ((Drinks) item).getSelectedFlavor());
@@ -240,7 +233,6 @@ public class FileManager {
                         chipLabelPrinted = true;
                     }
                     bufferedWriter.write("Chip #" + chipCount + "\n");
-                    bufferedWriter.newLine();
                     bufferedWriter.write("--------------------------");
                     bufferedWriter.newLine();
                     bufferedWriter.write("Flavor: " + ((Chips) item).getChosenChip());
