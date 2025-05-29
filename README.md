@@ -119,6 +119,10 @@ This application demonstrates advanced **Object-Oriented Programming** principle
 - `Chips` - Simple chip products with flavor options
 - `FileManager` - Handles receipt generation and file I/O
 
+**Basic OOP diagram design**
+
+![OOP diagram design](src/main/resources/images/OOP%20diagram%20design.png)
+
 ---
 
 ## 🚀 How to Run
