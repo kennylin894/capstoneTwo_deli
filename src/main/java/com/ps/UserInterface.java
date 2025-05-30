@@ -469,6 +469,8 @@ public class UserInterface {
         int buttonSpacing = 15;
         JButton addToCartButton = new JButton("🛒  Add to Cart");
         JButton cancelOrderButton = new JButton("❌  Cancel Order");
+        addToCartButton.setBackground(new Color(173, 216, 230));
+        cancelOrderButton.setBackground(new Color(173, 216, 230));
 
         //adding to cart
         addToCartButton.addActionListener(e -> {
@@ -1352,9 +1354,11 @@ public class UserInterface {
         buttonPanel.setBackground(Color.WHITE);
 
         JButton btnBack = new JButton("⬅️  Back to Main Menu");
+        btnBack.setBackground(new Color(173, 216, 230));
         btnBack.addActionListener(e -> newinitMainMenu());
 
         JButton btnClearCart = new JButton("❌ Clear Cart");
+        btnClearCart.setBackground(new Color(173, 216, 230));
         btnClearCart.addActionListener(e -> {
             int result = JOptionPane.showConfirmDialog(mainFrame,
                     "Are you sure you want to clear all items from your cart?",
@@ -1380,6 +1384,7 @@ public class UserInterface {
             }
         });
         JButton btnCheckOut = new JButton("💳  Checkout");
+        btnCheckOut.setBackground(new Color(173, 216, 230));
         btnCheckOut.addActionListener(e -> checkOutMenu());
 
         int maxWidth = Math.max(btnBack.getPreferredSize().width,
@@ -1632,6 +1637,8 @@ public class UserInterface {
         int buttonSpacing = 15;
         JButton addToCartButton = new JButton("🛒 Add to Cart");
         JButton cancelOrderButton = new JButton("❌ Cancel Order");
+        addToCartButton.setBackground(new Color(173, 216, 230));
+        cancelOrderButton.setBackground(new Color(173, 216, 230));
 
         //adding to cart
         addToCartButton.addActionListener(e -> {

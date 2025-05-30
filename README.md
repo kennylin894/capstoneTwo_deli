@@ -46,7 +46,7 @@ Below are the main screens available in the DELI-cious application. Each section
 
 *The sandwich builder allows customers to fully customize their sandwich with size, bread, and toppings.*
 
-![img_3.png](src/main/resources/images/img_3.png)
+![img.png](src/main/resources/images/byosandwich.png)
 
 ### 3. **🍽️ Signature Sandwiches**
 
@@ -56,7 +56,7 @@ Below are the main screens available in the DELI-cious application. Each section
 
 *ex. user chooses BLT as the sandwich they want (user can customize everything to their liking.)*
 
-![img_5.png](src/main/resources/images/img_5.png)
+![img.png](src/main/resources/images/BLTsandwich.png)
 
 ### 4. **🍟 Order Chips**
 
@@ -74,7 +74,7 @@ Below are the main screens available in the DELI-cious application. Each section
 
 *Review your order, modify quantities, and complete your purchase.*
 
-![img_8.png](src/main/resources/images/img_8.png)
+![img.png](src/main/resources/images/checkout.png)
 
 *Confirming Purchase*
 
